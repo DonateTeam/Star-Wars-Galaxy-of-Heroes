@@ -1,24 +1,24 @@
-/* ——— 1. Скрываем скроллбар ——— */
-/* Firefox */
-body {
+/* ——— 1. Скрываем ВСЕ скроллбары, но не сам скролл ——— */
+* {
+  /* Firefox */
   scrollbar-width: none;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: white;
-  /* чтобы WebKit показывал контент, но не полосу */
-  overflow-y: scroll;
-}
-/* IE10+ */
-body {
+  /* IE10+ */
   -ms-overflow-style: none;
 }
-body::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 
-/* ——— 2. Контейнер, навигация, шапка, фильтры ——— */
+/* ——— 2. Общие стили ——— */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #111;
+  color: white;
+}
+
+/* ——— 3. Контейнер и навигация ——— */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -32,6 +32,7 @@ body::-webkit-scrollbar {
   white-space: nowrap;
 }
 
+/* ——— 4. Шапка: игра + фильтры ——— */
 .header-grid {
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -44,7 +45,7 @@ body::-webkit-scrollbar {
 .game-logo {
   width: 100px;
   height: 100px;
-  border-radius: 10px;
+  border-radius: 30px;
 }
 
 .header-info {
@@ -69,14 +70,14 @@ body::-webkit-scrollbar {
   color: white;
   border: none;
   padding: 8px 14px;
-  border-radius: 6px;
+  border-radius: 30px;
   cursor: pointer;
 }
 .filter-btn.active {
   background: #a855f7;
 }
 
-/* ——— 3. Основной контент и карточки ——— */
+/* ——— 5. Основное содержимое и карточки ——— */
 .main-content {
   display: flex;
   justify-content: space-between;
@@ -94,25 +95,23 @@ body::-webkit-scrollbar {
 .product-card {
   background: #1c1c1c;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 30px;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 260px;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .product-card img {
   max-height: 140px;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 30px;
 }
-
 .product-card h3,
 .product-card p {
   margin: 5px 0;
 }
-
 .product-card button {
   margin-top: 10px;
   padding: 8px;
@@ -120,37 +119,41 @@ body::-webkit-scrollbar {
   background: #a855f7;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
 }
 
-/* ——— 4. Корзина ——— */
+/* hover-свечение и подъём */
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 0 20px rgba(168,85,247,0.7),
+    0 0 10px rgba(168,85,247,0.5);
+}
+
+/* ——— 6. Корзина ——— */
 .cart {
   width: 250px;
   background: #1c1c1c;
   padding: 15px;
-  border-radius: 10px;
+  border-radius: 30px;
   height: fit-content;
 }
-
 .cart h2 {
   font-size: 18px;
   margin: 0 0 10px;
 }
-
 .cart ul {
   list-style: none;
   padding: 0;
   margin: 0 0 15px;
 }
-
 .cart li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
-
 .remove-btn {
   background: none;
   border: none;
@@ -162,17 +165,23 @@ body::-webkit-scrollbar {
   color: #ff0000;
 }
 
+/* заблокированная кнопка оплаты */
+#checkout-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #555 !important;
+}
 #checkout-btn {
   width: 100%;
   padding: 10px;
   background: #a855f7;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
   cursor: pointer;
 }
 
-/* ——— 5. Модалка с выбором мессенджеров ——— */
+/* ——— 7. Модалка выбора мессенджера ——— */
 #pay-modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -182,20 +191,17 @@ body::-webkit-scrollbar {
   justify-content: center;
   z-index: 9999;
 }
-
 #pay-modal.open {
   display: flex;
 }
-
 #pay-modal .modal-content {
   background: #1c1c1c;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 30px;
   width: 320px;
   text-align: center;
   position: relative;
 }
-
 #pay-modal .modal-close {
   position: absolute;
   top: 8px; right: 8px;
@@ -205,7 +211,6 @@ body::-webkit-scrollbar {
   color: #fff;
   cursor: pointer;
 }
-
 .messenger-btn {
   display: flex;
   align-items: center;
@@ -214,16 +219,14 @@ body::-webkit-scrollbar {
   padding: 12px;
   margin: 12px 0;
   border: none;
-  border-radius: 8px;
+  border-radius: 30px;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
 }
-
 .messenger-btn.vk       { background: #2a71ff; }
 .messenger-btn.telegram { background: #28a7e0; }
 .messenger-btn.whatsapp { background: #25d366; }
-
 .messenger-btn i {
   font-size: 20px;
 }
