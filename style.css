@@ -1,11 +1,11 @@
-/* контейнер одной ширины для шапки и фильтров */
+/* контейнер фиксированной ширины + центровка */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-/* общий фон и типографика */
+/* общий фон и шрифты */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -13,33 +13,48 @@ body {
   color: white;
 }
 
-/* шапка: хлебные крошки + логотип + заголовок */
-.header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0;
-}
+/* навигация (хлебные крошки) */
 .breadcrumbs {
   font-size: 16px;
   color: #ccc;
+  padding: 20px 0 10px;
   white-space: nowrap;
 }
+
+/* сетка шапки: 2 колонки (изображение | блок с заголовком+фильтрами) */
+.header-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  column-gap: 30px;
+  align-items: start;
+  padding-bottom: 30px;
+}
+
+/* логотип-изображение */
 .game-logo {
   width: 150px;
   height: 150px;
   border-radius: 10px;
 }
-.title-container h1 {
-  margin: 0;
-  font-size: 30px;
+
+/* блок с заголовком и фильтрами */
+.header-info {
+  display: flex;
+  flex-direction: column;
 }
 
-/* панель фильтров */
+/* название игры */
+.game-title {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+/* панель фильтров, чуть ниже заголовка */
 .filter-buttons {
   display: flex;
   gap: 10px;
-  margin: 10px 0 20px;
+  margin-top: 20px;
 }
 .filter-btn {
   background: #222;
@@ -53,7 +68,8 @@ body {
   background: #a855f7;
 }
 
-/* основное содержимое */
+/* ===== остальное без изменений ===== */
+
 .main-content {
   display: flex;
   justify-content: space-between;
@@ -61,13 +77,13 @@ body {
   padding: 0 20px 40px;
 }
 
-/* карточки товаров */
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
   flex: 1;
 }
+
 .product-card {
   background: #1c1c1c;
   padding: 15px;
@@ -78,15 +94,18 @@ body {
   justify-content: space-between;
   min-height: 260px;
 }
+
 .product-card img {
   max-height: 140px;
   object-fit: contain;
   border-radius: 10px;
 }
+
 .product-card h3,
 .product-card p {
   margin: 5px 0;
 }
+
 .product-card button {
   margin-top: 10px;
   padding: 8px;
@@ -98,7 +117,6 @@ body {
   cursor: pointer;
 }
 
-/* корзина */
 .cart {
   width: 250px;
   background: #1c1c1c;
@@ -106,21 +124,25 @@ body {
   border-radius: 10px;
   height: fit-content;
 }
+
 .cart h2 {
   font-size: 18px;
   margin: 0 0 10px;
 }
+
 .cart ul {
   list-style: none;
   padding: 0;
   margin: 0 0 15px;
 }
+
 .cart li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
+
 .remove-btn {
   background: none;
   border: none;
@@ -128,9 +150,11 @@ body {
   font-size: 18px;
   cursor: pointer;
 }
+
 .remove-btn:hover {
   color: #ff0000;
 }
+
 #checkout-btn {
   width: 100%;
   padding: 10px;
