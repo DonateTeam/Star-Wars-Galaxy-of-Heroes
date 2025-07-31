@@ -34,4 +34,28 @@ function addToCart(id) {
   const product = productsData.find(p => p.id === id);
   cart.push(product);
   localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart
+  renderCart();
+}
+
+function renderCart() {
+  cartItems.innerHTML = "";
+  let total = 0;
+  cart.forEach((item, index) => {
+    total += item.price;
+    const li = document.createElement("li");
+    li.textContent = `${item.name} - ${item.price} ₽`;
+    cartItems.appendChild(li);
+  });
+  cartTotal.textContent = `${total} ₽`;
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderProducts(btn.dataset.category);
+  });
+});
+
+renderProducts();
+renderCart();
