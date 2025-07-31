@@ -7,22 +7,25 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <nav class="top-nav">
-    <a href="#">Главная</a> / <span>Star Wars: Galaxy of Heroes</span>
-  </nav>
 
   <header class="header">
+    <nav class="breadcrumbs">
+      <a href="#">Главная</a> / <span>Star Wars: Galaxy of Heroes</span>
+    </nav>
+
     <img src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png" alt="Logo" class="game-logo">
+
     <div class="title-container">
       <h1>Star Wars: Galaxy of Heroes</h1>
-      <div class="filter-buttons">
-        <button class="filter-btn active" data-category="all">Все товары</button>
-        <button class="filter-btn" data-category="crystals">Кристаллы</button>
-        <button class="filter-btn" data-category="sets">Наборы</button>
-        <button class="filter-btn" data-category="passes">Пропуски</button>
-      </div>
     </div>
   </header>
+
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-category="all">Все товары</button>
+    <button class="filter-btn" data-category="crystals">Кристаллы</button>
+    <button class="filter-btn" data-category="sets">Наборы</button>
+    <button class="filter-btn" data-category="passes">Пропуски</button>
+  </div>
 
   <main class="main-content">
     <section id="products" class="products"></section>
