@@ -4,27 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Wars: Galaxy of Heroes</title>
+
+  <!-- Стили -->
   <link rel="stylesheet" href="style.css" />
+  <!-- FontAwesome для иконок мессенджеров -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-papOTU8Kz+OaOo82tbR+3EvWgUrdXhQkjoYm+9Q1QpKfUuB0VVLvS0rSx6FfsqcU31qPZ+0bOwWq+LrZiIJU2Q=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 </head>
 <body>
   <div class="container">
     <!-- Навигация -->
     <nav class="breadcrumbs">
-      <a href="https://donateteam.ru">Главная</a> / 
+      <a href="https://donateteam.ru">Главная</a> /
       <span>Star Wars: Galaxy of Heroes</span>
     </nav>
 
-    <!-- Шапка: картинка + инфо -->
+    <!-- Шапка: картинка + заголовок + фильтры -->
     <div class="header-grid">
       <img
         src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png"
         alt="Logo"
         class="game-logo"
       />
-
       <div class="header-info">
         <h1 class="game-title">Star Wars: Galaxy of Heroes</h1>
-
         <div class="filter-buttons">
           <button class="filter-btn active" data-category="all">Все товары</button>
           <button class="filter-btn" data-category="crystals">Кристаллы</button>
@@ -34,10 +42,9 @@
       </div>
     </div>
 
-    <!-- Основной контент формируется через JS -->
+    <!-- Основной контент -->
     <main class="main-content">
       <section id="products" class="products"></section>
-
       <aside class="cart">
         <h2>Корзина <span id="cart-total">0 ₽</span></h2>
         <ul id="cart-items"></ul>
@@ -46,6 +53,26 @@
     </main>
   </div>
 
+  <!-- Модалка выбора мессенджера -->
+  <div id="pay-modal">
+    <div class="modal-content">
+      <button class="modal-close">×</button>
+      <button class="messenger-btn vk">
+        <i class="fab fa-vk"></i>
+        Пополнить через ВКонтакте
+      </button>
+      <button class="messenger-btn telegram">
+        <i class="fab fa-telegram-plane"></i>
+        Пополнить через Telegram
+      </button>
+      <button class="messenger-btn whatsapp">
+        <i class="fab fa-whatsapp"></i>
+        Пополнить через WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Скрипты -->
   <script src="script.js"></script>
 </body>
 </html>
