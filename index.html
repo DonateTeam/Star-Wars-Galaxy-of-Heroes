@@ -5,7 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Wars: Galaxy of Heroes</title>
 
-  <!-- Стили -->
+  <!-- 1) Скрываем ВСЕ скроллбары -->
+  <style>
+    /* Firefox */
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important; /* IE10+ */
+    }
+    /* WebKit (Chrome, Safari, Opera) */
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+  </style>
+
+  <!-- 2) Основные стили -->
   <link rel="stylesheet" href="style.css" />
   <!-- FontAwesome для иконок мессенджеров -->
   <link
