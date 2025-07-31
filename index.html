@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Star Wars Galaxy of Heroes - Донат</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Wars: Galaxy of Heroes</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="header">
-    <img src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png" alt="Star Wars" class="logo">
-    <h1>Star Wars: Galaxy of Heroes</h1>
-    <div class="cart-icon" id="cart-icon">🛒 <span id="cart-count">0</span></div>
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png" alt="Star Wars Logo">
+      <h1>Star Wars: Galaxy of Heroes</h1>
+    </div>
+    <nav class="nav">
+      <button class="nav-btn active" data-category="all">Кристаллы</button>
+      <button class="nav-btn" data-category="sets">Наборы</button>
+      <button class="nav-btn" data-category="passes">Пропуски</button>
+    </nav>
   </header>
 
   <main>
-    <section class="product-grid" id="product-grid">
-      <!-- Карточки товаров генерируются через JS -->
-    </section>
+    <section id="products" class="products"></section>
   </main>
-
-  <div class="cart" id="cart">
-    <h2>Корзина</h2>
-    <div id="cart-items"></div>
-    <p class="total">Итого: <span id="cart-total">0 ₽</span></p>
-    <button id="clear-cart">Очистить корзину</button>
-  </div>
 
   <script src="script.js"></script>
 </body>
