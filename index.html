@@ -8,15 +8,21 @@
 </head>
 <body>
   <header class="header">
-    <div class="logo">
-      <img src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png" alt="Star Wars Logo">
-      <h1>Star Wars: Galaxy of Heroes</h1>
-    </div>
-    <nav class="nav">
-      <button class="nav-btn active" data-category="all">Кристаллы</button>
-      <button class="nav-btn" data-category="sets">Наборы</button>
-      <button class="nav-btn" data-category="passes">Пропуски</button>
+    <nav class="breadcrumb">
+      <a href="#">Главная</a> / <span>Star Wars Galaxy of Heroes</span>
     </nav>
+
+    <div class="game-info">
+      <img class="game-logo" src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png" alt="Star Wars Logo">
+      <div class="game-details">
+        <h1>Star Wars: Galaxy of Heroes</h1>
+        <div class="nav-buttons">
+          <button class="nav-btn active" data-category="crystals">Кристаллы</button>
+          <button class="nav-btn" data-category="sets">Наборы</button>
+          <button class="nav-btn" data-category="passes">Пропуски</button>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
