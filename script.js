@@ -37,13 +37,22 @@ function addToCart(id) {
   renderCart();
 }
 
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
+
 function renderCart() {
   cartItems.innerHTML = "";
   let total = 0;
   cart.forEach((item, index) => {
     total += item.price;
     const li = document.createElement("li");
-    li.textContent = `${item.name} - ${item.price} ₽`;
+    li.innerHTML = `
+      <span>${item.name} - ${item.price} ₽</span>
+      <button class="remove-btn" onclick="removeFromCart(${index})">×</button>
+    `;
     cartItems.appendChild(li);
   });
   cartTotal.textContent = `${total} ₽`;
