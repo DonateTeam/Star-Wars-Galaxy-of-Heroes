@@ -5,26 +5,17 @@ body {
   color: white;
 }
 
-.breadcrumb {
-  font-size: 14px;
-  color: #aaa;
+.top-nav {
   padding: 10px 20px;
-}
-
-.breadcrumb a {
-  color: #aaa;
-  text-decoration: none;
+  font-size: 14px;
+  color: #ccc;
 }
 
 .header {
-  padding: 10px 20px;
-}
-
-.game-info {
   display: flex;
   align-items: center;
+  padding: 20px 5%;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
 .game-logo {
@@ -33,71 +24,96 @@ body {
   border-radius: 10px;
 }
 
-.game-details h1 {
+.title-container h1 {
+  margin: 0;
   font-size: 28px;
-  margin: 0 0 10px 0;
 }
 
-.nav-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+.filter-buttons {
+  margin-top: 10px;
 }
 
-.nav-btn {
+.filter-btn {
   background: #222;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  margin-right: 8px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-.nav-btn:hover {
-  background: #444;
+.filter-btn.active {
+  background: #a855f7;
 }
 
-.nav-btn.active {
-  background: #9b59b6;
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px 5%;
 }
 
 .products {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
-  justify-content: center;
-  padding: 20px;
+  flex: 1;
 }
 
 .product-card {
-  background: #1b1b1b;
-  padding: 10px;
+  background: #1c1c1c;
+  padding: 15px;
   border-radius: 10px;
   text-align: center;
-  width: 200px;
-  transition: transform 0.3s;
 }
 
 .product-card img {
-  max-width: 100%;
+  width: 100%;
   border-radius: 10px;
 }
 
-.product-card:hover {
-  transform: scale(1.05);
-}
-
-.price {
-  font-weight: bold;
-}
-
-.add-btn {
-  background: #9b59b6;
+.product-card button {
+  margin-top: 10px;
+  padding: 8px;
+  width: 100%;
+  background: #a855f7;
   color: white;
   border: none;
-  padding: 8px 12px;
-  margin-top: 8px;
-  border-radius: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart {
+  width: 250px;
+  background: #1c1c1c;
+  padding: 15px;
+  border-radius: 10px;
+  height: fit-content;
+}
+
+.cart h2 {
+  font-size: 18px;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.cart ul li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+#checkout-btn {
+  width: 100%;
+  padding: 10px;
+  background: #a855f7;
+  color: white;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
