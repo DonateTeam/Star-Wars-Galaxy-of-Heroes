@@ -1,16 +1,14 @@
-/* ——— 1. Скрываем ВСЕ скроллбары, но не сам скролл ——— */
+/* ——— 1. Общие стили и скрытие скроллбаров ——— */
 * {
-  /* Firefox */
-  scrollbar-width: none;
-  /* IE10+ */
-  -ms-overflow-style: none;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 *::-webkit-scrollbar {
-  width: 0;
-  height: 0;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
-/* ——— 2. Общие стили ——— */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -18,7 +16,7 @@ body {
   color: white;
 }
 
-/* ——— 3. Контейнер и навигация ——— */
+/* ——— 2. Контейнер и навигация ——— */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -32,7 +30,12 @@ body {
   white-space: nowrap;
 }
 
-/* ——— 4. Шапка: игра + фильтры ——— */
+/* title в навигации чуть смещён, но берём из .game-title */
+.game-title-inline {
+  color: #fff;
+}
+
+/* ——— 3. Шапка: логотип + заголовок + фильтры ——— */
 .header-grid {
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -77,7 +80,7 @@ body {
   background: #a855f7;
 }
 
-/* ——— 5. Основное содержимое и карточки ——— */
+/* ——— 4. Основной контент и карточки ——— */
 .main-content {
   display: flex;
   justify-content: space-between;
@@ -131,7 +134,7 @@ body {
     0 0 10px rgba(168,85,247,0.5);
 }
 
-/* ——— 6. Корзина ——— */
+/* ——— 5. Корзина ——— */
 .cart {
   width: 250px;
   background: #1c1c1c;
@@ -181,7 +184,7 @@ body {
   cursor: pointer;
 }
 
-/* ——— 7. Модалка выбора мессенджера ——— */
+/* ——— 6. Модалка выбора мессенджера ——— */
 #pay-modal {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
