@@ -1,62 +1,69 @@
-/* контейнер одной ширины + центровка */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px; /* увеличили горизонтальные отступы */
-}
-
-/* общий фон и шрифты */
+/* ——— 1. Скрываем скроллбар ——— */
+/* Firefox */
 body {
+  scrollbar-width: none;
   margin: 0;
   font-family: Arial, sans-serif;
   background: #111;
   color: white;
+  /* чтобы WebKit показывал контент, но не полосу */
+  overflow-y: scroll;
+}
+/* IE10+ */
+body {
+  -ms-overflow-style: none;
+}
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
-/* навигация (хлебные крошки) */
+/* ——— 2. Контейнер, навигация, шапка, фильтры ——— */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 .breadcrumbs {
   font-size: 16px;
   color: #ccc;
-  padding: 30px 0 10px; /* больше отступ сверху */
+  padding: 30px 0 10px;
   white-space: nowrap;
 }
 
-/* сетка шапки: 2 колонки (изображение | блок с заголовком+фильтрами) */
 .header-grid {
   display: grid;
-  grid-template-columns: 100px 1fr; /* картинка 100px */
+  grid-template-columns: 100px 1fr;
   column-gap: 30px;
   align-items: start;
-  margin-top: 20px; /* отступ между навигацией и шапкой */
+  margin-top: 20px;
   padding-bottom: 30px;
 }
 
-/* логотип-изображение */
 .game-logo {
-  width: 100px;  /* стало 100×100 */
+  width: 100px;
   height: 100px;
   border-radius: 10px;
 }
 
-/* блок с заголовком и фильтрами */
 .header-info {
   display: flex;
   flex-direction: column;
 }
 
-/* название игры */
 .game-title {
   margin: 0;
   font-size: 30px;
   line-height: 1.2;
 }
 
-/* панель фильтров, чуть ниже заголовка */
 .filter-buttons {
   display: flex;
   gap: 10px;
   margin-top: 20px;
 }
+
 .filter-btn {
   background: #222;
   color: white;
@@ -69,7 +76,7 @@ body {
   background: #a855f7;
 }
 
-/* основной контент */
+/* ——— 3. Основной контент и карточки ——— */
 .main-content {
   display: flex;
   justify-content: space-between;
@@ -77,13 +84,13 @@ body {
   padding-bottom: 40px;
 }
 
-/* карточки товаров */
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 20px;
   flex: 1;
 }
+
 .product-card {
   background: #1c1c1c;
   padding: 15px;
@@ -94,15 +101,18 @@ body {
   justify-content: space-between;
   min-height: 260px;
 }
+
 .product-card img {
   max-height: 140px;
   object-fit: contain;
   border-radius: 10px;
 }
+
 .product-card h3,
 .product-card p {
   margin: 5px 0;
 }
+
 .product-card button {
   margin-top: 10px;
   padding: 8px;
@@ -114,7 +124,7 @@ body {
   cursor: pointer;
 }
 
-/* корзина */
+/* ——— 4. Корзина ——— */
 .cart {
   width: 250px;
   background: #1c1c1c;
@@ -122,21 +132,25 @@ body {
   border-radius: 10px;
   height: fit-content;
 }
+
 .cart h2 {
   font-size: 18px;
   margin: 0 0 10px;
 }
+
 .cart ul {
   list-style: none;
   padding: 0;
   margin: 0 0 15px;
 }
+
 .cart li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
 }
+
 .remove-btn {
   background: none;
   border: none;
@@ -147,6 +161,7 @@ body {
 .remove-btn:hover {
   color: #ff0000;
 }
+
 #checkout-btn {
   width: 100%;
   padding: 10px;
@@ -155,4 +170,60 @@ body {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+/* ——— 5. Модалка с выбором мессенджеров ——— */
+#pay-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+#pay-modal.open {
+  display: flex;
+}
+
+#pay-modal .modal-content {
+  background: #1c1c1c;
+  padding: 20px;
+  border-radius: 10px;
+  width: 320px;
+  text-align: center;
+  position: relative;
+}
+
+#pay-modal .modal-close {
+  position: absolute;
+  top: 8px; right: 8px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.messenger-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.messenger-btn.vk       { background: #2a71ff; }
+.messenger-btn.telegram { background: #28a7e0; }
+.messenger-btn.whatsapp { background: #25d366; }
+
+.messenger-btn i {
+  font-size: 20px;
 }
