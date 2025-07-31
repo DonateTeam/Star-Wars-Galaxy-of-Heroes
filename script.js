@@ -1,77 +1,77 @@
 const products = [
-  { id: 1, name: "Супер пропуск", price: 386, img: "images/pass.webp" },
-  { id: 2, name: "Набор Супер пропуска", price: 721, img: "images/pass-set.webp" },
-  { id: 3, name: "Недельная карта", price: 77, img: "images/week-card.webp" },
-  { id: 4, name: "Месячная карта", price: 770, img: "images/month-card.webp" },
-  { id: 5, name: "100 звёзд", price: 75, img: "images/100-stars.webp" },
-  { id: 6, name: "310 звёзд", price: 178, img: "images/310-stars.webp" },
+  { name: "610 кристаллов", price: 550, img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+  { name: "1340 кристаллов", price: 1100, img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+  { name: "2800 кристаллов", price: 2100, img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+  { name: "7370 кристаллов", price: 4600, img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
+  { name: "15710 кристаллов", price: 8800, img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" }
 ];
 
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+const productGrid = document.getElementById("product-grid");
+const cartIcon = document.getElementById("cart-icon");
+const cart = document.getElementById("cart");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const cartCount = document.getElementById("cart-count");
+const clearCartBtn = document.getElementById("clear-cart");
+
+let cartData = JSON.parse(localStorage.getItem("cart")) || [];
 
 function renderProducts() {
-  const container = document.getElementById("products-container");
-  container.innerHTML = "";
-  products.forEach((p) => {
+  products.forEach((p, i) => {
     const card = document.createElement("div");
-    card.className = "product-card";
+    card.classList.add("product-card");
     card.innerHTML = `
-      <img src="${p.img}" alt="${p.name}" />
+      <img src="${p.img}" alt="${p.name}">
       <h3>${p.name}</h3>
-      <p>${p.price} ₽</p>
-      <button onclick="addToCart(${p.id})">Добавить</button>
+      <p><strong>${p.price} ₽</strong></p>
+      <button onclick="addToCart(${i})">Добавить</button>
     `;
-    container.appendChild(card);
+    productGrid.appendChild(card);
   });
 }
 
 function renderCart() {
-  const list = document.getElementById("cart-items");
-  const totalElem = document.getElementById("cart-total");
-  const countElem = document.getElementById("cart-count");
-
-  list.innerHTML = "";
+  cartItems.innerHTML = "";
   let total = 0;
-
-  cart.forEach((item) => {
-    total += item.price * item.quantity;
-    const li = document.createElement("li");
-    li.innerHTML = `${item.name} x${item.quantity} – ${item.price * item.quantity} ₽
-      <button onclick="removeFromCart(${item.id})">❌</button>`;
-    list.appendChild(li);
+  cartData.forEach((item, i) => {
+    total += item.price * item.qty;
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = `
+      ${item.name} x${item.qty} — ${item.price * item.qty} ₽
+      <button onclick="removeItem(${i})">✖</button>
+    `;
+    cartItems.appendChild(div);
   });
-
-  totalElem.textContent = total;
-  countElem.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-  localStorage.setItem("cart", JSON.stringify(cart));
+  cartTotal.textContent = total + " ₽";
+  cartCount.textContent = cartData.reduce((a, b) => a + b.qty, 0);
+  localStorage.setItem("cart", JSON.stringify(cartData));
 }
 
-function addToCart(id) {
-  const product = products.find((p) => p.id === id);
-  const existing = cart.find((i) => i.id === id);
-
+function addToCart(i) {
+  const product = products[i];
+  const existing = cartData.find(item => item.name === product.name);
   if (existing) {
-    existing.quantity++;
+    existing.qty++;
   } else {
-    cart.push({ ...product, quantity: 1 });
+    cartData.push({ ...product, qty: 1 });
   }
   renderCart();
 }
 
-function removeFromCart(id) {
-  cart = cart.filter((item) => item.id !== id);
+function removeItem(i) {
+  cartData.splice(i, 1);
   renderCart();
 }
 
-function clearCart() {
-  cart = [];
+clearCartBtn.addEventListener("click", () => {
+  cartData = [];
   renderCart();
-}
+});
 
-function toggleCart() {
-  const cartElem = document.getElementById("cart");
-  cartElem.style.display = cartElem.style.display === "block" ? "none" : "block";
-}
+cartIcon.addEventListener("click", () => {
+  cart.style.display = cart.style.display === "block" ? "none" : "block";
+});
 
 renderProducts();
 renderCart();
