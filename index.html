@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super SUS Shop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Super SUS Shop</h1>
+    <div class="cart-icon" onclick="toggleCart()">🛒 <span id="cart-count">0</span></div>
+  </header>
+
+  <main>
+    <section class="products" id="products-container"></section>
+  </main>
+
+  <div class="cart" id="cart">
+    <h2>Корзина</h2>
+    <ul id="cart-items"></ul>
+    <p>Итого: <span id="cart-total">0</span> ₽</p>
+    <button onclick="clearCart()">Очистить</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
