@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Wars: Galaxy of Heroes</title>
 
-  <!-- ваш CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- FontAwesome для иконок -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -65,14 +62,10 @@
       </aside>
     </main>
 
-    <!-- Описание игры + стрелка -->
-    <section id="game-description" class="game-description">
-      <h2>
-        Описание игры
-        <details class="more-info-inline">
-          <summary></summary>
-        </details>
-      </h2>
+    <!-- Описание игры + разворачиваемый блок -->
+    <details class="more-info">
+      <summary>Описание игры</summary>
+
       <p>
         <strong>Star Wars: Galaxy of Heroes</strong> — это коллекционная RPG-стратегия
         во вселенной «Звёздных Войн», где вы быстро прокачиваете героев, собираете
@@ -80,34 +73,30 @@
         появляются легендарные персонажи, эксклюзивные скины и внутриигровые бустеры.
       </p>
 
-      <details class="more-info">
-        <summary></summary>
+      <h2>Какие виды доната в Star Wars: Galaxy of Heroes?</h2>
+      <ul>
+        <li><span class="highlight">Кристаллы</span> — основная валюта, за которую покупаются герои, команды и бустеры опыта.</li>
+        <li><span class="highlight">Боевые наборы</span> — гарантированный набор редких персонажей и ресурсов.</li>
+        <li><span class="highlight">Пропуска сезона</span> — дают доступ к эксклюзивным наградам за выполнение PvP-челленджей и ежедневных заданий.</li>
+      </ul>
 
-        <h2>Какие виды доната в Star Wars: Galaxy of Heroes?</h2>
-        <ul>
-          <li><span class="highlight">Кристаллы</span> — основная валюта, за которую покупаются герои, команды и бустеры опыта.</li>
-          <li><span class="highlight">Боевые наборы</span> — гарантированный набор редких персонажей и ресурсов.</li>
-          <li><span class="highlight">Пропуска сезона</span> — дают доступ к эксклюзивным наградам за выполнение PvP-челленджей и ежедневных заданий.</li>
-        </ul>
+      <h2>Что выбрать?</h2>
+      <p>
+        Если вы хотите быстро собрать мощную команду, берите
+        <span class="highlight">кристаллы</span> — они универсальны.
+        Для фанатов PvP идеально подойдут
+        <span class="highlight">боевые наборы</span>.
+        Если же планируете регулярно фармить награды, выбирайте
+        <span class="highlight">пропуск сезона</span>.
+      </p>
 
-        <h2>Что выбрать?</h2>
-        <p>
-          Если вы хотите быстро собрать мощную команду, берите
-          <span class="highlight">кристаллы</span> — они универсальны.
-          Для фанатов PvP идеально подойдут
-          <span class="highlight">боевые наборы</span>.
-          Если же планируете регулярно фармить награды, выбирайте
-          <span class="highlight">пропуск сезона</span>.
-        </p>
-
-        <h2>Почему DonateTeam?</h2>
-        <p>
-          Мы гарантируем <strong>скорость</strong>, <strong>безопасность</strong> и
-          <strong>выгодные цены</strong> на все пакеты для Star Wars: Galaxy of Heroes.
-          Просто введите свой Game ID — и нужные ресурсы моментально зачислятся к вам в игру!
-        </p>
-      </details>
-    </section>
+      <h2>Почему DonateTeam?</h2>
+      <p>
+        Мы гарантируем <strong>скорость</strong>, <strong>безопасность</strong> и
+        <strong>выгодные цены</strong> на все пакеты для Star Wars: Galaxy of Heroes.
+        Просто введите свой Game ID — и нужные ресурсы моментально зачислятся к вам в игру!
+      </p>
+    </details>
 
     <!-- Модалка выбора мессенджера -->
     <div id="pay-modal">
