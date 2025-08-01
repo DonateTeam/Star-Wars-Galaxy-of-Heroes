@@ -51,13 +51,18 @@
     <!-- Контент -->
     <main class="main-content">
       <section id="products" class="products"></section>
-      <aside class="cart">
-        <h2>Корзина <span id="cart-total">0 ₽</span></h2>
+        <aside class="cart">
+          <div class="cart-header">
+    <h2>
+      Корзина&nbsp;<span id="cart-total">0 ₽</span>
+      <button id="clear-cart" class="clear-btn"><i class="fas fa-trash-alt"></i></button>
+    </h2>
+      <div id="cart-count" class="cart-count">0 товаров</div>
+        </div>
         <ul id="cart-items"></ul>
-        <button id="checkout-btn">Перейти к оплате</button>
-      </aside>
-    </main>
-  </div>
+          <button id="checkout-btn">Перейти к оплате</button>
+</aside>
+
 
   <!-- Модалка выбора мессенджера -->
   <div id="pay-modal">
