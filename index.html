@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Wars: Galaxy of Heroes</title>
 
-  <!-- Ваш основной CSS -->
+  <!-- ваш CSS -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- FontAwesome для иконок -->
@@ -17,7 +17,6 @@
     referrerpolicy="no-referrer"
   />
 </head>
-
 <body>
   <div class="container">
     <!-- Навигация -->
@@ -44,13 +43,14 @@
       </div>
     </div>
 
-    <!-- Контент -->
+    <!-- Контент и корзина -->
     <main class="main-content">
       <section id="products" class="products"></section>
       <aside class="cart">
         <div class="cart-header">
           <h2>
-            Корзина <span id="cart-total">0 ₽</span>
+            Корзина
+            <span id="cart-total">0 ₽</span>
             <button id="clear-cart" class="clear-btn"><i class="fas fa-trash-alt"></i></button>
           </h2>
           <div id="cart-count" class="cart-count">0 товаров</div>
@@ -60,19 +60,13 @@
       </aside>
     </main>
 
-    <!-- Модалка выбора мессенджера -->
+    <!-- Модалка -->
     <div id="pay-modal">
       <div class="modal-content">
         <button class="modal-close">×</button>
-        <button class="messenger-btn vk">
-          <i class="fab fa-vk"></i> Пополнить через ВКонтакте
-        </button>
-        <button class="messenger-btn telegram">
-          <i class="fab fa-telegram-plane"></i> Пополнить через Telegram
-        </button>
-        <button class="messenger-btn whatsapp">
-          <i class="fab fa-whatsapp"></i> Пополнить через WhatsApp
-        </button>
+        <button class="messenger-btn vk"><i class="fab fa-vk"></i> Пополнить через ВКонтакте</button>
+        <button class="messenger-btn telegram"><i class="fab fa-telegram-plane"></i> Пополнить через Telegram</button>
+        <button class="messenger-btn whatsapp"><i class="fab fa-whatsapp"></i> Пополнить через WhatsApp</button>
       </div>
     </div>
   </div>
