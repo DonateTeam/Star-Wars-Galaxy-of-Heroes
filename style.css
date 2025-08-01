@@ -176,19 +176,24 @@ body {
   font-size: 18px;
   margin: 0;
 }
-/* Фиолетовый цвет итоговой суммы */
+/* Итоговая сумма */
 #cart-total {
   margin-left: 8px;
   color: #a855f7;
 }
-/* Скрываем старую кнопу-контейнер */
+/* Скрываем старую кнопу */
 .clear-btn { display: none; }
-/* Новая иконка */
+/* Новая иконка очистки */
 .clear-img {
   margin-left: auto;
   width: 20px;
   height: 20px;
   cursor: pointer;
+  opacity: 0.3;                       /* полупрозрачная по умолчанию */
+  transition: opacity 0.2s ease-in-out;
+}
+.clear-img:hover {
+  opacity: 1;                         /* подсветка при наведении */
 }
 .cart-count {
   font-size: 14px;
