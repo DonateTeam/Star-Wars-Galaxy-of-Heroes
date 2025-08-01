@@ -5,25 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Wars: Galaxy of Heroes</title>
 
-  <!-- Скрываем все скроллбары -->
+  <!-- Скрываем все системные и веб-скроллбары -->
   <style>
-    /* Firefox */
-    * {
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important; /* IE10+ */
-    }
-    /* WebKit (Chrome, Safari, Opera) */
-    *::-webkit-scrollbar {
-      display: none !important;
-      width: 0 !important;
-      height: 0 !important;
-    }
+    * { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+    *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
   </style>
 
-  <!-- Основные стили -->
+  <!-- Основной CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- FontAwesome для иконок мессенджеров -->
+  <!-- FontAwesome для иконок -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -40,7 +30,7 @@
       <span class="game-title-inline">Star Wars: Galaxy of Heroes</span>
     </nav>
 
-    <!-- Шапка: картинка + заголовок + фильтры -->
+    <!-- Шапка -->
     <div class="header-grid">
       <img
         src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png"
@@ -58,7 +48,7 @@
       </div>
     </div>
 
-    <!-- Основной контент -->
+    <!-- Контент -->
     <main class="main-content">
       <section id="products" class="products"></section>
       <aside class="cart">
@@ -74,16 +64,13 @@
     <div class="modal-content">
       <button class="modal-close">×</button>
       <button class="messenger-btn vk">
-        <i class="fab fa-vk"></i>
-        Пополнить через ВКонтакте
+        <i class="fab fa-vk"></i> Пополнить через ВКонтакте
       </button>
       <button class="messenger-btn telegram">
-        <i class="fab fa-telegram-plane"></i>
-        Пополнить через Telegram
+        <i class="fab fa-telegram-plane"></i> Пополнить через Telegram
       </button>
       <button class="messenger-btn whatsapp">
-        <i class="fab fa-whatsapp"></i>
-        Пополнить через WhatsApp
+        <i class="fab fa-whatsapp"></i> Пополнить через WhatsApp
       </button>
     </div>
   </div>
