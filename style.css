@@ -324,3 +324,34 @@ body {
 .messenger-btn.telegram { background: #28a7e0; }
 .messenger-btn.whatsapp { background: #25d366; }
 .messenger-btn i        { font-size: 20px; }
+
+/* --- SEO-блок highlight --- */
+.highlight {
+  color: #a855f7;
+}
+
+/* --- details-summary справа от описания --- */
+.more-info {
+  margin-top: 12px;
+  border-top: 1px solid #333;
+  padding-top: 12px;
+}
+.more-info summary {
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: #a855f7;
+  font-weight: 500;
+}
+.more-info summary::-webkit-details-marker {
+  display: none;
+}
+.more-info summary::before {
+  content: "▼";
+  margin-right: 6px;
+  transition: transform 0.2s;
+}
+.more-info[open] summary::before {
+  transform: rotate(180deg);
+}
