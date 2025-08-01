@@ -327,38 +327,46 @@ body {
   color: #a855f7;
 }
 
-/* inline-стрелка рядом с «Описание игры» */
-.more-info-inline {
-  display: inline-block;
-  margin-left: 8px;
-  vertical-align: middle;
+/* Выпадающий блок «Описание игры» */
+.more-info {
+  border-top: 1px solid #333;
+  margin: 20px 0 0;
+  padding-top: 20px;
 }
-.more-info-inline summary {
+.more-info > summary {
   list-style: none;
   cursor: pointer;
-  color: #a855f7;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  padding-right: 30px;
 }
-.more-info-inline summary::-webkit-details-marker {
+.more-info > summary::-webkit-details-marker {
   display: none;
 }
-.more-info-inline summary::before {
+.more-info > summary::after {
   content: "▼";
-  font-size: 18px;
-  line-height: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #a855f7;
   transition: transform 0.2s;
 }
-.more-info-inline[open] summary::before {
+.more-info[open] > summary::after {
   transform: rotate(180deg);
 }
-
-/* прячем текст внутри основного сворачиваемого summary */
-.more-info summary {
-  font-size: 0;
+.more-info > *:not(summary) {
+  margin-top: 15px;
+  color: #ccc;
 }
-
-/* блок разворачиваемый */
-.more-info {
-  margin-top: 12px;
-  border-top: 1px solid #333;
-  padding-top: 12px;
+.more-info h2 {
+  margin: 10px 0 5px;
+  color: #fff;
+}
+.more-info ul {
+  padding-left: 20px;
+}
+.more-info li {
+  margin-bottom: 6px;
 }
