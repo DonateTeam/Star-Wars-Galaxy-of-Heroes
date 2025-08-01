@@ -183,3 +183,9 @@ tgBtn.addEventListener("click", () => {
 // Старт
 renderProducts();
 renderCart();
+
+document.getElementById("clear-cart-img").addEventListener("click", () => {
+  cart = [];
+  saveAndRepaint();
+});
+
