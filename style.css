@@ -1,4 +1,4 @@
-/* 1) Скрыть все внешние и веб-скроллбары */
+/* Скрыть все внешние и веб-скроллбары */
 * {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
@@ -21,7 +21,7 @@ body {
   padding: 0 40px;
 }
 
-/* хлебные крошки */
+/* Хлебные крошки */
 .breadcrumbs {
   font-size: 16px;
   color: #ccc;
@@ -30,7 +30,7 @@ body {
 }
 .game-title-inline { color: #fff; }
 
-/* шапка */
+/* Шапка */
 .header-grid {
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -47,7 +47,7 @@ body {
   margin: 0; font-size: 30px; line-height: 1.2;
 }
 
-/* фильтры */
+/* Фильтры */
 .filter-buttons {
   display: flex; gap: 10px; margin-top: 20px;
 }
@@ -57,7 +57,7 @@ body {
 }
 .filter-btn.active { background: #a855f7; }
 
-/* контент */
+/* Основное содержимое */
 .main-content {
   display: flex; align-items: flex-start;
   justify-content: space-between; gap: 20px;
@@ -69,12 +69,11 @@ body {
   gap: 20px; flex: 1;
 }
 
-/* карточки товаров */
+/* Карточки товаров */
 .product-card {
   background: #1c1c1c; padding: 15px; border-radius: 15px;
-  display: flex; flex-direction: column;
-  justify-content: space-between; min-height: 300px;
-  text-align: center; transition: .2s;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 300px; text-align: center; transition: .2s;
 }
 .product-card:hover {
   transform: translateY(-5px);
@@ -86,13 +85,15 @@ body {
 .product-card h3 {
   margin: 5px 0; word-break: break-word;
 }
-/* центрируем цену */
+/* Центрирование цены */
 .product-card .price {
   display: inline-block; margin: 5px auto;
   background: #555; color: #fff;
   padding: 6px 12px; border-radius: 15px;
   font-weight: bold;
 }
+
+/* Кнопки + / счётчик */
 .add-btn {
   background: #a855f7; color: #fff; border: none;
   border-radius: 50%; width: 36px; height: 36px;
@@ -113,7 +114,7 @@ body {
   text-align: center;
 }
 
-/* корзина */
+/* КОРЗИНА */
 .cart {
   flex: 0 0 250px; width: 250px;
   background: #1c1c1c; padding: 15px; border-radius: 15px;
@@ -122,20 +123,16 @@ body {
   display: flex; flex-direction: column;
 }
 .cart-header h2 {
-  display: flex; align-items: center; font-size: 18px;
-  margin: 0;
+  display: flex; align-items: center; font-size: 18px; margin: 0;
 }
-/* цвет итоговой суммы — фиолетовый */
+/* Фиолетовый цвет итоговой суммы */
 #cart-total {
   margin-left: 8px; color: #a855f7;
 }
-/* кнопка очистки «прилипает» вправо */
 .clear-btn {
   margin-left: auto; background: none;
-  border: none; color: #fff; font-size: 18px;
-  cursor: pointer;
+  border: none; color: #fff; font-size: 18px; cursor: pointer;
 }
-/* отступ от количества */
 .cart-count {
   font-size: 14px; color: #ccc; margin: 10px 0;
 }
@@ -144,12 +141,12 @@ body {
   list-style: none; padding: 0; margin: 0 0 15px;
 }
 
-/* объединённый контейнер товара */
+/* Объединённый контейнер товара */
 .cart-item-card {
   background: #1c1c1c; border-radius: 10px;
   padding: 12px 15px; margin-bottom: 10px;
 }
-/* единый блок для имени и цены */
+/* Шапка товара: имя и цена */
 .cart-item-card .item-header {
   display: flex; justify-content: space-between;
   align-items: center; padding-bottom: 8px;
@@ -162,12 +159,11 @@ body {
   font-size: 14px; color: #ccc;
 }
 
-/* счётчик с фоном, как у цены в карточке товара */
+/* Счётчик с фоном как у цены */
 .cart-item-card .item-counter {
-  display: flex; align-items: center;
-  justify-content: space-between; background: #555;
-  border-radius: 30px; padding: 6px 12px;
-  margin-top: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: #555; border-radius: 30px;
+  padding: 6px 12px; margin-top: 12px;
 }
 .cart-item-card .item-counter button {
   background: none; border: none;
@@ -178,7 +174,7 @@ body {
   text-align: center;
 }
 
-/* скролл если >2 */
+/* Скролл, если >2 */
 .cart.scrollable ul {
   max-height: 200px; overflow-y: auto;
 }
@@ -189,7 +185,7 @@ body {
   background: rgba(255,255,255,.3); border-radius: 3px;
 }
 
-/* кнопка «Перейти к оплате» */
+/* Кнопка оплаты */
 #checkout-btn {
   width: 100%; padding: 10px;
   background: #a855f7; color: white; border: none;
@@ -199,7 +195,7 @@ body {
   opacity: .5; cursor: not-allowed; background: #555!important;
 }
 
-/* модалка */
+/* Модалка */
 #pay-modal {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0,0,0,.6); display: none;
