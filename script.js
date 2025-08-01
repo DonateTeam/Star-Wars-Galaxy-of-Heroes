@@ -1,12 +1,20 @@
 const productsData = [
-  { id:1, name:"610 кристаллов",    price:550,  category:"crystals", img:".../610.png" },
-  { id:2, name:"1340 кристаллов",   price:1100, category:"crystals", img:".../1340.png" },
-  { id:3, name:"2800 кристаллов",   price:2100, category:"crystals", img:".../2800.png" },
-  { id:4, name:"7370 кристаллов",   price:4600, category:"crystals", img:".../7370.png" },
-  { id:5, name:"15710 кристаллов",  price:8800, category:"crystals", img:".../15710.png" },
-  { id:6, name:"Набор джедая",      price:3200, category:"sets",     img:".../1340.png" },
-  { id:7, name:"Набор ситха",       price:4100, category:"sets",     img:".../2800.png" },
-  { id:8, name:"Боевой пропуск",    price:950,  category:"passes",   img:".../610.png" }
+  { id:1, name:"610 кристаллов",    price:550,  category:"crystals",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+  { id:2, name:"1340 кристаллов",   price:1100, category:"crystals",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+  { id:3, name:"2800 кристаллов",   price:2100, category:"crystals",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+  { id:4, name:"7370 кристаллов",   price:4600, category:"crystals",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
+  { id:5, name:"15710 кристаллов",  price:8800, category:"crystals",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
+  { id:6, name:"Набор джедая",      price:3200, category:"sets",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+  { id:7, name:"Набор ситха",       price:4100, category:"sets",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+  { id:8, name:"Боевой пропуск",    price:950,  category:"passes",
+    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" }
 ];
 
 const productsContainer = document.getElementById("products");
