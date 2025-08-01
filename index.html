@@ -5,14 +5,320 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Star Wars: Galaxy of Heroes</title>
 
-  <!-- Скрываем все системные и веб-скроллбары -->
+  <!-- Скрываем все внешние и веб-скроллбары -->
   <style>
-    * { scrollbar-width: none !important; -ms-overflow-style: none !important; }
-    *::-webkit-scrollbar { display: none !important; width: 0 !important; height: 0 !important; }
+    * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+    }
+
+    /* контейнер и навигация */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .breadcrumbs {
+      font-size: 16px;
+      color: #ccc;
+      padding: 30px 0 10px;
+      white-space: nowrap;
+    }
+    .game-title-inline { color: #fff; }
+
+    /* шапка */
+    .header-grid {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      column-gap: 30px;
+      align-items: start;
+      margin-top: 20px;
+      padding-bottom: 30px;
+    }
+    .game-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+    }
+    .header-info { display: flex; flex-direction: column; }
+    .game-title {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.2;
+    }
+
+    /* фильтры */
+    .filter-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .filter-btn {
+      background: #222;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    .filter-btn.active { background: #a855f7; }
+
+    /* контент и карточки */
+    .main-content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 40px;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      flex: 1;
+    }
+    .product-card {
+      background: #1c1c1c;
+      padding: 15px;
+      border-radius: 15px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 300px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 0 20px rgba(168,85,247,0.7),
+        0 0 10px rgba(168,85,247,0.5);
+    }
+    .product-card img {
+      max-height: 140px;
+      object-fit: contain;
+      border-radius: 15px;
+    }
+    .product-card h3 {
+      margin: 5px 0;
+      white-space: normal;
+      word-break: break-word;
+    }
+    .product-card .price {
+      display: inline-block;
+      background: #555;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 15px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+    .add-btn {
+      background: #a855f7;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 24px;
+      line-height: 1;
+      cursor: pointer;
+      margin: 10px auto 0;
+    }
+    .counter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: #222;
+      border-radius: 15px;
+      padding: 6px 12px;
+      margin-top: 10px;
+    }
+    .counter button {
+      background: none;
+      border: none;
+      color: #a855f7;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .counter span {
+      color: #fff;
+      font-size: 18px;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    /* корзина */
+    .cart {
+      flex: 0 0 250px;
+      width: 250px;
+      background: #1c1c1c;
+      padding: 15px;
+      border-radius: 15px;
+      height: auto;
+    }
+    /* заголовок корзины */
+    .cart-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cart-header h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+      margin: 0;
+    }
+    #cart-total {
+      color: #B0FF00;
+      margin-left: 8px;
+    }
+    .clear-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+    }
+    .cart-count {
+      font-size: 14px;
+      color: #ccc;
+      margin: 0;
+    }
+    /* карточка товара в корзине */
+    .cart-item-card {
+      background: #1c1c1c;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cart-item-card .item-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-item-card .item-name {
+      font-weight: bold;
+      font-size: 16px;
+      color: #fff;
+    }
+    .cart-item-card .item-price {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 4px;
+    }
+    .cart-item-card .item-counter {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-item-card .item-counter button {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #a855f7;
+      cursor: pointer;
+    }
+    .cart-item-card .item-counter .count {
+      min-width: 20px;
+      text-align: center;
+      color: #fff;
+      font-size: 16px;
+    }
+    .cart ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 15px;
+    }
+    .cart.scrollable ul {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .cart.scrollable ul::-webkit-scrollbar {
+      width: 6px;
+    }
+    .cart.scrollable ul::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.3);
+      border-radius: 3px;
+    }
+    #checkout-btn {
+      width: 100%;
+      padding: 10px;
+      background: #a855f7;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+    #checkout-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      background: #555 !important;
+    }
+
+    /* модалка */
+    #pay-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #pay-modal.open { display: flex; }
+    #pay-modal .modal-content {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 15px;
+      width: 320px;
+      text-align: center;
+      position: relative;
+    }
+    #pay-modal .modal-close {
+      position: absolute;
+      top: 8px; right: 8px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .messenger-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 12px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 15px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .messenger-btn.vk       { background: #2a71ff; }
+    .messenger-btn.telegram { background: #28a7e0; }
+    .messenger-btn.whatsapp { background: #25d366; }
+    .messenger-btn i { font-size: 20px; }
   </style>
 
-  <!-- Основной CSS -->
-  <link rel="stylesheet" href="style.css" />
   <!-- FontAwesome для иконок -->
   <link
     rel="stylesheet"
@@ -22,6 +328,7 @@
     referrerpolicy="no-referrer"
   />
 </head>
+
 <body>
   <div class="container">
     <!-- Навигация -->
@@ -51,36 +358,194 @@
     <!-- Контент -->
     <main class="main-content">
       <section id="products" class="products"></section>
-        <aside class="cart">
-          <div class="cart-header">
-    <h2>
-      Корзина&nbsp;<span id="cart-total">0 ₽</span>
-      <button id="clear-cart" class="clear-btn"><i class="fas fa-trash-alt"></i></button>
-    </h2>
-      <div id="cart-count" class="cart-count">0 товаров</div>
+      <aside class="cart">
+        <div class="cart-header">
+          <h2>
+            Корзина <span id="cart-total">0 ₽</span>
+            <button id="clear-cart" class="clear-btn"><i class="fas fa-trash-alt"></i></button>
+          </h2>
+          <div id="cart-count" class="cart-count">0 товаров</div>
         </div>
         <ul id="cart-items"></ul>
-          <button id="checkout-btn">Перейти к оплате</button>
-</aside>
+        <button id="checkout-btn" disabled>Перейти к оплате</button>
+      </aside>
+    </main>
 
-
-  <!-- Модалка выбора мессенджера -->
-  <div id="pay-modal">
-    <div class="modal-content">
-      <button class="modal-close">×</button>
-      <button class="messenger-btn vk">
-        <i class="fab fa-vk"></i> Пополнить через ВКонтакте
-      </button>
-      <button class="messenger-btn telegram">
-        <i class="fab fa-telegram-plane"></i> Пополнить через Telegram
-      </button>
-      <button class="messenger-btn whatsapp">
-        <i class="fab fa-whatsapp"></i> Пополнить через WhatsApp
-      </button>
+    <!-- Модалка выбора мессенджера -->
+    <div id="pay-modal">
+      <div class="modal-content">
+        <button class="modal-close">×</button>
+        <button class="messenger-btn vk">
+          <i class="fab fa-vk"></i> Пополнить через ВКонтакте
+        </button>
+        <button class="messenger-btn telegram">
+          <i class="fab fa-telegram-plane"></i> Пополнить через Telegram
+        </button>
+        <button class="messenger-btn whatsapp">
+          <i class="fab fa-whatsapp"></i> Пополнить через WhatsApp
+        </button>
+      </div>
     </div>
   </div>
 
-  <!-- Скрипты -->
-  <script src="script.js"></script>
+  <script>
+    const productsData = [
+      { id: 1,  name: "610 кристаллов",   price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+      { id: 2,  name: "1340 кристаллов",  price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+      { id: 3,  name: "2800 кристаллов",  price: 2100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+      { id: 4,  name: "7370 кристаллов",  price: 4600, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
+      { id: 5,  name: "15710 кристаллов", price: 8800, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
+      { id: 6,  name: "Набор джедая",     price: 3200, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+      { id: 7,  name: "Набор ситха",      price: 4100, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+      { id: 8,  name: "Боевой пропуск",   price: 950,  category: "passes",   img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+    ];
+
+    const productsContainer = document.getElementById("products");
+    const cartItems          = document.getElementById("cart-items");
+    const cartTotal          = document.getElementById("cart-total");
+    const cartCount          = document.getElementById("cart-count");
+    const checkoutBtn        = document.getElementById("checkout-btn");
+    const payModal           = document.getElementById("pay-modal");
+    const closeModalBtn      = payModal.querySelector(".modal-close");
+    const tgBtn              = document.querySelector(".messenger-btn.telegram");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderProducts(filter = "all") {
+      productsContainer.innerHTML = "";
+      const filtered = filter === "all"
+        ? productsData
+        : productsData.filter(p => p.category === filter);
+
+      filtered.forEach(prod => {
+        const inCart = cart.find(i => i.id === prod.id);
+        const qty    = inCart?.qty || 0;
+        const card   = document.createElement("div");
+        card.className = "product-card";
+        card.dataset.id = prod.id;
+        card.innerHTML = `
+          <img src="${prod.img}" alt="${prod.name}">
+          <h3>${prod.name}</h3>
+          <div class="price">${prod.price} ₽</div>
+          ${qty > 0
+            ? `<div class="counter">
+                 <button class="dec">−</button>
+                 <span class="count">${qty}</span>
+                 <button class="inc">+</button>
+               </div>`
+            : `<button class="add-btn">+</button>`
+          }
+        `;
+        productsContainer.appendChild(card);
+      });
+
+      document.querySelectorAll(".add-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = +btn.closest(".product-card").dataset.id;
+          cart.push({ id, qty: 1 });
+          saveAndRepaint();
+        });
+      });
+      document.querySelectorAll(".inc").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = +btn.closest(".product-card").dataset.id;
+          cart.find(i => i.id === id).qty++;
+          saveAndRepaint();
+        });
+      });
+      document.querySelectorAll(".dec").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = +btn.closest(".product-card").dataset.id;
+          const item = cart.find(i => i.id === id);
+          if (item.qty > 1) item.qty--;
+          else cart = cart.filter(i => i.id !== id);
+          saveAndRepaint();
+        });
+      });
+    }
+
+    function renderCart() {
+      cartItems.innerHTML = "";
+      let total = 0;
+
+      cart.forEach(item => {
+        const prod = productsData.find(p => p.id === item.id);
+        const sum  = prod.price * item.qty;
+        total += sum;
+
+        const li = document.createElement("li");
+        li.className = "cart-item-card";
+        li.innerHTML = `
+          <div class="item-info">
+            <div class="item-name">${prod.name}</div>
+            <div class="item-price">${sum} ₽</div>
+          </div>
+          <div class="item-counter">
+            <button class="dec">−</button>
+            <span class="count">${item.qty}</span>
+            <button class="inc">+</button>
+          </div>
+        `;
+        cartItems.appendChild(li);
+
+        li.querySelector(".inc").addEventListener("click", () => {
+          item.qty++;
+          saveAndRepaint();
+        });
+        li.querySelector(".dec").addEventListener("click", () => {
+          if (item.qty > 1) item.qty--;
+          else cart = cart.filter(i => i.id !== item.id);
+          saveAndRepaint();
+        });
+      });
+
+      cartTotal.textContent = `${total} ₽`;
+      cartCount.textContent = `${cart.length} ${cart.length % 10 === 1 && cart.length !== 11 ? 'товар' : 'товаров'}`;
+      checkoutBtn.disabled = total === 0;
+
+      if (cart.length > 2) document.querySelector(".cart").classList.add("scrollable");
+      else                  document.querySelector(".cart").classList.remove("scrollable");
+    }
+
+    function saveAndRepaint() {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderProducts(document.querySelector(".filter-btn.active").dataset.category);
+      renderCart();
+    }
+
+    document.querySelectorAll(".filter-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderProducts(btn.dataset.category);
+      });
+    });
+
+    checkoutBtn.addEventListener("click", e => {
+      e.preventDefault();
+      if (checkoutBtn.disabled) return;
+      payModal.classList.add("open");
+    });
+    closeModalBtn.addEventListener("click", () => payModal.classList.remove("open"));
+    payModal.addEventListener("click", e => {
+      if (e.target === payModal) payModal.classList.remove("open");
+    });
+
+    tgBtn.addEventListener("click", () => {
+      const title = document.querySelector(".game-title").textContent.trim();
+      let text = `${title}\n\nСодержание корзины:\n`, total = 0;
+      cart.forEach(i => {
+        const prod = productsData.find(p => p.id === i.id);
+        const sum  = prod.price * i.qty;
+        total += sum;
+        text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
+      });
+      text += `\nИтого: ${total} ₽`;
+      window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
+    });
+
+    // Инициализация
+    renderProducts();
+    renderCart();
+  </script>
 </body>
 </html>
