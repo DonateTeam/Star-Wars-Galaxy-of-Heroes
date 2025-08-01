@@ -15,7 +15,6 @@ body {
   background: #111;
   color: white;
 }
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -82,6 +81,8 @@ body {
   gap: 20px;
   flex: 1;
 }
+
+/* карточки товаров */
 .product-card {
   background: #1c1c1c;
   padding: 15px;
@@ -90,6 +91,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: 300px;
+  text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
 }
 .product-card:hover {
@@ -108,15 +110,19 @@ body {
   white-space: normal;
   word-break: break-word;
 }
+
+/* 1) Центрируем цену */
 .product-card .price {
   display: inline-block;
+  margin: 5px auto;        /* авто-отступы по бокам */
   background: #555;
   color: #fff;
   padding: 6px 12px;
   border-radius: 15px;
   font-weight: bold;
-  margin: 5px 0;
 }
+
+/* кнопки плюс/счетчики */
 .add-btn {
   background: #a855f7;
   color: #fff;
@@ -153,7 +159,7 @@ body {
   text-align: center;
 }
 
-/* корзина */
+/* ---------- КОРЗИНА ---------- */
 .cart {
   flex: 0 0 250px;
   width: 250px;
@@ -161,6 +167,7 @@ body {
   padding: 15px;
   border-radius: 15px;
 }
+
 .cart-header {
   display: flex;
   flex-direction: column;
@@ -184,28 +191,33 @@ body {
   font-size: 18px;
   cursor: pointer;
 }
+/* 2) Отступ от «2 товара» */
 .cart-count {
   font-size: 14px;
   color: #ccc;
   margin: 10px 0;
 }
+
 .cart ul {
   list-style: none;
   padding: 0;
   margin: 0 0 15px;
 }
+
+/* 3+4) Оформляем карточку товара по макету */
 .cart-item-card {
   background: #1c1c1c;
   border-radius: 10px;
-  padding: 10px 10px 10px 15px;
+  padding: 10px 15px;
   margin-bottom: 10px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
 }
+/* выравниваем контент по левому краю карточки */
 .cart-item-card .item-info {
   display: flex;
   flex-direction: column;
+  margin-bottom: 12px;
 }
 .cart-item-card .item-name {
   font-weight: bold;
@@ -217,10 +229,16 @@ body {
   color: #ccc;
   margin-top: 4px;
 }
+
+/* обёртка счётчика по всей ширине и в виде «пилы» */
 .cart-item-card .item-counter {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 30px;
+  padding: 6px 12px;
 }
 .cart-item-card .item-counter button {
   background: none;
@@ -230,11 +248,13 @@ body {
   cursor: pointer;
 }
 .cart-item-card .item-counter .count {
-  min-width: 20px;
-  text-align: center;
   color: #fff;
   font-size: 16px;
+  min-width: 20px;
+  text-align: center;
 }
+
+/* скролл если > 2 */
 .cart.scrollable ul {
   max-height: 200px;
   overflow-y: auto;
@@ -246,6 +266,8 @@ body {
   background: rgba(255,255,255,0.3);
   border-radius: 3px;
 }
+
+/* кнопка «Перейти к оплате» */
 #checkout-btn {
   width: 100%;
   padding: 10px;
