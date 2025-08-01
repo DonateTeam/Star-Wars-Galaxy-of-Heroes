@@ -1,12 +1,12 @@
 const productsData = [
-  { id: 1, name: "610 кристаллов",   price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
-  { id: 2, name: "1340 кристаллов",  price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
-  { id: 3, name: "2800 кристаллов",  price: 2100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-  { id: 4, name: "7370 кристаллов",  price: 4600, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
-  { id: 5, name: "15710 кристаллов", price: 8800, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
-  { id: 6, name: "Набор джедая",     price: 3200, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
-  { id: 7, name: "Набор ситха",      price: 4100, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-  { id: 8, name: "Боевой пропуск",   price: 950,  category: "passes",   img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+  { id: 1,  name: "610 кристаллов",   price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+  { id: 2,  name: "1340 кристаллов",  price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+  { id: 3,  name: "2800 кристаллов",  price: 2100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+  { id: 4,  name: "7370 кристаллов",  price: 4600, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
+  { id: 5,  name: "15710 кристаллов", price: 8800, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
+  { id: 6,  name: "Набор джедая",     price: 3200, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+  { id: 7,  name: "Набор ситха",      price: 4100, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+  { id: 8,  name: "Боевой пропуск",   price: 950,  category: "passes",   img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
 ];
 
 const productsContainer = document.getElementById("products");
@@ -20,6 +20,20 @@ const tgBtn              = document.querySelector(".messenger-btn.telegram");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+// Плавная анимация числового счёта
+function animateValue(el, start, end, duration = 500) {
+  let startTime = null;
+  function step(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    const value = Math.floor(progress * (end - start) + start);
+    el.textContent = `${value} ₽`;
+    if (progress < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// Рендер товаров
 function renderProducts(filter = "all") {
   productsContainer.innerHTML = "";
   const filtered = filter === "all"
@@ -73,22 +87,22 @@ function renderProducts(filter = "all") {
   });
 }
 
+// Рендер корзины
 function renderCart() {
   cartItems.innerHTML = "";
   let total = 0;
 
   cart.forEach(item => {
-    const prod      = productsData.find(p => p.id === item.id);
-    const sum       = prod.price * item.qty;
-    const unitPrice = prod.price;
+    const prod = productsData.find(p => p.id === item.id);
+    const sum  = prod.price * item.qty;
     total += sum;
 
     const li = document.createElement("li");
     li.className = "cart-item-card";
     li.innerHTML = `
-      <div class="item-info">
+      <div class="item-header">
         <div class="item-name">${prod.name}</div>
-        <div class="item-price">${unitPrice} ₽</div>
+        <div class="item-price">${prod.price} ₽</div>
       </div>
       <div class="item-counter">
         <button class="dec">−</button>
@@ -99,8 +113,7 @@ function renderCart() {
     cartItems.appendChild(li);
 
     li.querySelector(".inc").addEventListener("click", () => {
-      item.qty++;
-      saveAndRepaint();
+      item.qty++; saveAndRepaint();
     });
     li.querySelector(".dec").addEventListener("click", () => {
       if (item.qty > 1) item.qty--;
@@ -109,8 +122,13 @@ function renderCart() {
     });
   });
 
-  cartTotal.textContent = `${total} ₽`;
+  // Анимируем смену суммы
+  const prev = parseInt(cartTotal.dataset.prev) || 0;
+  cartTotal.style.color = "#a855f7";
+  animateValue(cartTotal, prev, total, 500);
+  cartTotal.dataset.prev = total;
 
+  // Склонение
   const n = cart.length;
   const word = n % 10 === 1 && n % 100 !== 11
     ? 'товар'
@@ -124,12 +142,14 @@ function renderCart() {
           .classList.toggle("scrollable", cart.length > 2);
 }
 
+// Сохранить и перерисовать
 function saveAndRepaint() {
   localStorage.setItem("cart", JSON.stringify(cart));
   renderProducts(document.querySelector(".filter-btn.active").dataset.category);
   renderCart();
 }
 
+// Фильтры
 document.querySelectorAll(".filter-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -138,6 +158,7 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 });
 
+// Модалка и Telegram
 checkoutBtn.addEventListener("click", e => {
   e.preventDefault();
   if (!checkoutBtn.disabled) payModal.classList.add("open");
@@ -159,5 +180,6 @@ tgBtn.addEventListener("click", () => {
   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
 });
 
+// Старт
 renderProducts();
 renderCart();
