@@ -183,21 +183,20 @@ body {
 }
 /* Скрываем старую кнопу */
 .clear-btn { display: none; }
-/* --- Иконка очистки корзины (clear-img) --- */
+/* Иконка очистки корзины */
 .clear-img {
   margin-left: auto;
-  width: 24px;                   /* увеличили размер */
+  width: 24px;
   height: 24px;
   cursor: pointer;
-  opacity: 0.4;                  /* более светлый серый */
-  filter: grayscale(100%) brightness(75%); /* серый тон */
+  opacity: 0.4;
+  filter: grayscale(100%) brightness(75%);
   transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 .clear-img:hover {
   opacity: 1;
-  filter: none;                  /* при наведении оригинальный контраст */
+  filter: none;
 }
-
 .cart-count {
   font-size: 14px;
   color: #ccc;
@@ -217,7 +216,6 @@ body {
   padding: 12px 15px;
   margin-bottom: 10px;
 }
-
 /* Имя + цена */
 .cart-item-card .item-header {
   display: flex;
@@ -225,8 +223,7 @@ body {
   align-items: center;
   margin-bottom: 12px;
 }
-
-/* Счётчик со своей рамкой внутри общей */
+/* Счётчик со своей рамкой */
 .cart-item-card .item-counter {
   display: flex;
   align-items: center;
@@ -325,33 +322,43 @@ body {
 .messenger-btn.whatsapp { background: #25d366; }
 .messenger-btn i        { font-size: 20px; }
 
-/* --- SEO-блок highlight --- */
+/* SEO-блок highlight */
 .highlight {
   color: #a855f7;
 }
 
-/* --- details-summary справа от описания --- */
+/* inline-стрелка рядом с «Описание игры» */
+.more-info-inline {
+  display: inline-block;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.more-info-inline summary {
+  list-style: none;
+  cursor: pointer;
+  color: #a855f7;
+}
+.more-info-inline summary::-webkit-details-marker {
+  display: none;
+}
+.more-info-inline summary::before {
+  content: "▼";
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.2s;
+}
+.more-info-inline[open] summary::before {
+  transform: rotate(180deg);
+}
+
+/* прячем текст внутри основного сворачиваемого summary */
+.more-info summary {
+  font-size: 0;
+}
+
+/* блок разворачиваемый */
 .more-info {
   margin-top: 12px;
   border-top: 1px solid #333;
   padding-top: 12px;
-}
-.more-info summary {
-  list-style: none;
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  color: #a855f7;
-  font-weight: 500;
-}
-.more-info summary::-webkit-details-marker {
-  display: none;
-}
-.more-info summary::before {
-  content: "▼";
-  margin-right: 6px;
-  transition: transform 0.2s;
-}
-.more-info[open] summary::before {
-  transform: rotate(180deg);
 }
