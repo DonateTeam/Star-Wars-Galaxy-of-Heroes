@@ -16,12 +16,13 @@ body {
   color: white;
 }
 
-/* контейнер и навигация */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
 }
+
+/* хлебные крошки */
 .breadcrumbs {
   font-size: 16px;
   color: #ccc;
@@ -67,7 +68,7 @@ body {
 }
 .filter-btn.active { background: #a855f7; }
 
-/* контент и карточки товаров */
+/* основное содержимое */
 .main-content {
   display: flex;
   align-items: flex-start;
@@ -85,7 +86,6 @@ body {
   background: #1c1c1c;
   padding: 15px;
   border-radius: 15px;
-  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -164,20 +164,20 @@ body {
 .cart-header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
 }
 .cart-header h2 {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: flex-start;
   font-size: 18px;
   margin: 0;
 }
 #cart-total {
-  color: #B0FF00;
   margin-left: 8px;
+  color: #B0FF00;
 }
 .clear-btn {
+  margin-left: auto;
   background: none;
   border: none;
   color: #fff;
@@ -187,12 +187,17 @@ body {
 .cart-count {
   font-size: 14px;
   color: #ccc;
-  margin: 0;
+  margin: 10px 0;
+}
+.cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px;
 }
 .cart-item-card {
   background: #1c1c1c;
   border-radius: 10px;
-  padding: 10px;
+  padding: 10px 10px 10px 15px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
@@ -229,11 +234,6 @@ body {
   text-align: center;
   color: #fff;
   font-size: 16px;
-}
-.cart ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 15px;
 }
 .cart.scrollable ul {
   max-height: 200px;
