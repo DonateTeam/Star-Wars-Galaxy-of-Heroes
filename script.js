@@ -20,7 +20,6 @@ const tgBtn              = document.querySelector(".messenger-btn.telegram");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Рендер списка товаров
 function renderProducts(filter = "all") {
   productsContainer.innerHTML = "";
   const filtered = filter === "all"
@@ -74,7 +73,6 @@ function renderProducts(filter = "all") {
   });
 }
 
-// Рендер корзины
 function renderCart() {
   cartItems.innerHTML = "";
   let total = 0;
@@ -113,7 +111,6 @@ function renderCart() {
 
   cartTotal.textContent = `${total} ₽`;
 
-  // склонение
   const n = cart.length;
   const word = n % 10 === 1 && n % 100 !== 11
     ? 'товар'
@@ -127,14 +124,12 @@ function renderCart() {
           .classList.toggle("scrollable", cart.length > 2);
 }
 
-// Сохранить и перерисовать
 function saveAndRepaint() {
   localStorage.setItem("cart", JSON.stringify(cart));
   renderProducts(document.querySelector(".filter-btn.active").dataset.category);
   renderCart();
 }
 
-// Фильтры
 document.querySelectorAll(".filter-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -143,7 +138,6 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 });
 
-// Модалка и Telegram
 checkoutBtn.addEventListener("click", e => {
   e.preventDefault();
   if (!checkoutBtn.disabled) payModal.classList.add("open");
@@ -165,6 +159,5 @@ tgBtn.addEventListener("click", () => {
   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
 });
 
-// старт
 renderProducts();
 renderCart();
