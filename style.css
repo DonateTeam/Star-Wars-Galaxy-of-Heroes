@@ -183,18 +183,21 @@ body {
 }
 /* Скрываем старую кнопу */
 .clear-btn { display: none; }
-/* Новая иконка очистки */
+/* --- Иконка очистки корзины (clear-img) --- */
 .clear-img {
   margin-left: auto;
-  width: 20px;
-  height: 20px;
+  width: 24px;                   /* увеличили размер */
+  height: 24px;
   cursor: pointer;
-  opacity: 0.3;                       /* полупрозрачная по умолчанию */
-  transition: opacity 0.2s ease-in-out;
+  opacity: 0.4;                  /* более светлый серый */
+  filter: grayscale(100%) brightness(75%); /* серый тон */
+  transition: opacity 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 .clear-img:hover {
-  opacity: 1;                         /* подсветка при наведении */
+  opacity: 1;
+  filter: none;                  /* при наведении оригинальный контраст */
 }
+
 .cart-count {
   font-size: 14px;
   color: #ccc;
