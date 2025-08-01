@@ -1,4 +1,4 @@
-/* скрыть любые скроллбары */
+/* 1) Скрыть все внешние и веб-скроллбары */
 * {
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
@@ -28,9 +28,7 @@ body {
   padding: 30px 0 10px;
   white-space: nowrap;
 }
-.game-title-inline {
-  color: #fff;
-}
+.game-title-inline { color: #fff; }
 
 /* шапка */
 .header-grid {
@@ -46,10 +44,7 @@ body {
   height: 100px;
   border-radius: 15px;
 }
-.header-info {
-  display: flex;
-  flex-direction: column;
-}
+.header-info { display: flex; flex-direction: column; }
 .game-title {
   margin: 0;
   font-size: 30px;
@@ -70,14 +65,12 @@ body {
   border-radius: 15px;
   cursor: pointer;
 }
-.filter-btn.active {
-  background: #a855f7;
-}
+.filter-btn.active { background: #a855f7; }
 
 /* контент и карточки */
 .main-content {
   display: flex;
-  align-items: flex-start;     /* выравниваем корзину по верху */
+  align-items: flex-start;     /* корзина сверху */
   justify-content: space-between;
   gap: 20px;
   padding-bottom: 40px;
@@ -125,7 +118,6 @@ body {
   font-weight: bold;
   margin: 5px 0;
 }
-
 /* кнопка + и счётчик */
 .add-btn {
   background: #a855f7;
@@ -163,9 +155,9 @@ body {
   text-align: center;
 }
 
-/* корзина — фиксированная ширина */
+/* корзина — фиксированная ширина + прокрутка при >2 */
 .cart {
-  flex: 0 0 250px; /* не растягиваем по ширине */
+  flex: 0 0 250px;
   width: 250px;
   background: #1c1c1c;
   padding: 15px;
@@ -181,12 +173,10 @@ body {
   padding: 0;
   margin: 0 0 15px;
 }
-/* скролл внутри, если много товаров */
 .cart.scrollable ul {
   max-height: 200px;
   overflow-y: auto;
 }
-/* опциональный тонкий скролл */
 .cart.scrollable ul::-webkit-scrollbar {
   width: 6px;
 }
@@ -235,9 +225,7 @@ body {
   justify-content: center;
   z-index: 9999;
 }
-#pay-modal.open {
-  display: flex;
-}
+#pay-modal.open { display: flex; }
 #pay-modal .modal-content {
   background: #1c1c1c;
   padding: 20px;
@@ -271,6 +259,4 @@ body {
 .messenger-btn.vk       { background: #2a71ff; }
 .messenger-btn.telegram { background: #28a7e0; }
 .messenger-btn.whatsapp { background: #25d366; }
-.messenger-btn i {
-  font-size: 20px;
-}
+.messenger-btn i { font-size: 20px; }
