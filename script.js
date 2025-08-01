@@ -1,25 +1,18 @@
 const productsData = [
-  { id: 1, name: "610 кристаллов",   price: 550,  category: "crystals",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
-  { id: 2, name: "1340 кристаллов",  price: 1100, category: "crystals",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
-  { id: 3, name: "2800 кристаллов",  price: 2100, category: "crystals",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-  { id: 4, name: "7370 кристаллов",  price: 4600, category: "crystals",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
-  { id: 5, name: "15710 кристаллов", price: 8800, category: "crystals",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
-  { id: 6, name: "Набор джедая",     price: 3200, category: "sets",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
-  { id: 7, name: "Набор ситха",      price: 4100, category: "sets",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-  { id: 8, name: "Боевой пропуск",   price: 950,  category: "passes",
-    img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+  { id: 1,  name: "610 кристаллов",   price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
+  { id: 2,  name: "1340 кристаллов",  price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+  { id: 3,  name: "2800 кристаллов",  price: 2100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+  { id: 4,  name: "7370 кристаллов",  price: 4600, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
+  { id: 5,  name: "15710 кристаллов", price: 8800, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
+  { id: 6,  name: "Набор джедая",     price: 3200, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+  { id: 7,  name: "Набор ситха",      price: 4100, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+  { id: 8,  name: "Боевой пропуск",   price: 950,  category: "passes",   img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
 ];
 
 const productsContainer = document.getElementById("products");
 const cartItems          = document.getElementById("cart-items");
 const cartTotal          = document.getElementById("cart-total");
+const cartCount          = document.getElementById("cart-count");
 const checkoutBtn        = document.getElementById("checkout-btn");
 const payModal           = document.getElementById("pay-modal");
 const closeModalBtn      = payModal.querySelector(".modal-close");
@@ -27,7 +20,7 @@ const tgBtn              = document.querySelector(".messenger-btn.telegram");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Рендер списка товаров
+// Рендер товаров
 function renderProducts(filter = "all") {
   productsContainer.innerHTML = "";
   const filtered = filter === "all"
@@ -57,7 +50,6 @@ function renderProducts(filter = "all") {
     productsContainer.appendChild(card);
   });
 
-  // Навешиваем события на кнопки в карточке
   document.querySelectorAll(".add-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
@@ -68,8 +60,7 @@ function renderProducts(filter = "all") {
   document.querySelectorAll(".inc").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
-      const item = cart.find(i => i.id === id);
-      item.qty++;
+      cart.find(i => i.id === id).qty++;
       saveAndRepaint();
     });
   });
@@ -84,14 +75,7 @@ function renderProducts(filter = "all") {
   });
 }
 
-// Сохраняем и перерисовываем всё
-function saveAndRepaint() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderProducts(document.querySelector(".filter-btn.active").dataset.category);
-  renderCart();
-}
-
-// Рендер корзины + прокрутка при >2 товаров
+// Рендер корзины
 function renderCart() {
   cartItems.innerHTML = "";
   let total = 0;
@@ -102,25 +86,43 @@ function renderCart() {
     total += sum;
 
     const li = document.createElement("li");
+    li.className = "cart-item-card";
     li.innerHTML = `
-      <span>${prod.name} × ${item.qty} — ${sum} ₽</span>
-      <button class="remove-btn" onclick="removeFromCart(${item.id})">×</button>
+      <div class="item-info">
+        <div class="item-name">${prod.name}</div>
+        <div class="item-price">${sum} ₽</div>
+      </div>
+      <div class="item-counter">
+        <button class="dec">−</button>
+        <span class="count">${item.qty}</span>
+        <button class="inc">+</button>
+      </div>
     `;
     cartItems.appendChild(li);
+
+    li.querySelector(".inc").addEventListener("click", () => {
+      item.qty++;
+      saveAndRepaint();
+    });
+    li.querySelector(".dec").addEventListener("click", () => {
+      if (item.qty > 1) item.qty--;
+      else cart = cart.filter(i => i.id !== item.id);
+      saveAndRepaint();
+    });
   });
 
   cartTotal.textContent = `${total} ₽`;
-  checkoutBtn.disabled  = total === 0;
+  cartCount.textContent = `${cart.length} ${cart.length % 10 === 1 && cart.length !== 11 ? 'товар' : 'товаров'}`;
+  checkoutBtn.disabled = total === 0;
 
-  const cartEl = document.querySelector(".cart");
-  if (cart.length > 2) cartEl.classList.add("scrollable");
-  else                cartEl.classList.remove("scrollable");
+  document.querySelector(".cart").classList.toggle("scrollable", cart.length > 2);
 }
 
-// Удаляем из корзины
-function removeFromCart(id) {
-  cart = cart.filter(i => i.id !== id);
-  saveAndRepaint();
+// Сохранить + перерисовать
+function saveAndRepaint() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderProducts(document.querySelector(".filter-btn.active").dataset.category);
+  renderCart();
 }
 
 // Фильтры
@@ -132,31 +134,24 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 });
 
-// Модалка
+// Модалка и Telegram
 checkoutBtn.addEventListener("click", e => {
   e.preventDefault();
-  if (checkoutBtn.disabled) return;
-  payModal.classList.add("open");
+  if (!checkoutBtn.disabled) payModal.classList.add("open");
 });
-closeModalBtn.addEventListener("click", () => {
-  payModal.classList.remove("open");
-});
+closeModalBtn.addEventListener("click", () => payModal.classList.remove("open"));
 payModal.addEventListener("click", e => {
   if (e.target === payModal) payModal.classList.remove("open");
 });
-
-// Telegram-сообщение
 tgBtn.addEventListener("click", () => {
   const title = document.querySelector(".game-title").textContent.trim();
   let text = `${title}\n\nСодержание корзины:\n`, total = 0;
-
   cart.forEach(i => {
     const prod = productsData.find(p => p.id === i.id);
     const sum  = prod.price * i.qty;
     total += sum;
     text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
   });
-
   text += `\nИтого: ${total} ₽`;
   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
 });
