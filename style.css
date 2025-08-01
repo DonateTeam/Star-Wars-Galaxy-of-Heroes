@@ -194,51 +194,37 @@ body {
   color: #ccc;
   margin: 10px 0;
 }
-
 .cart ul {
   list-style: none;
   padding: 0;
   margin: 0 0 15px;
 }
 
-/* Объединённый контейнер товара */
+/* Объединённый контейнер товара с общей рамкой */
 .cart-item-card {
   background: #1c1c1c;
-  border-radius: 10px;
-  padding: 12px 15px;
+  border: 1px solid #555;    /* общая серая рамка */
+  border-radius: 15px;       /* скругление 15px */
+  padding: 12px 15px;        /* внутренние отступы */
   margin-bottom: 10px;
 }
 
-/* Имя + цена в рамке */
+/* Имя + цена */
 .cart-item-card .item-header {
-  border: 1px solid #555;
-  border-radius: 15px;
-  padding: 10px;
-  margin-bottom: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 12px;
 }
-.cart-item-card .item-name {
-  font-weight: bold;
-  font-size: 16px;
-  color: #fff;
-}
-.cart-item-card .item-price {
-  font-size: 14px;
-  color: #ccc;
-}
-
-/* Счётчик в рамке */
+/* Счётчик со своей рамкой внутри общей */
 .cart-item-card .item-counter {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #555;
+  border: 1px solid #555;    /* внутренняя рамка счётчика */
   border-radius: 15px;
-  padding: 10px;
-  background: transparent;
-  margin-top: 0;
+  background: #555;          /* фон как у цены в карточке товара */
+  padding: 6px 12px;
 }
 .cart-item-card .item-counter button {
   background: none;
