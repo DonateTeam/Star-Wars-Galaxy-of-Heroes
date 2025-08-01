@@ -77,6 +77,7 @@ body {
 /* контент и карточки */
 .main-content {
   display: flex;
+  align-items: flex-start;     /* выравниваем корзину по верху */
   justify-content: space-between;
   gap: 20px;
   padding-bottom: 40px;
@@ -114,7 +115,7 @@ body {
   white-space: normal;
   word-break: break-word;
 }
-/* цена — теперь серый фон */
+/* цена — серый фон */
 .product-card .price {
   display: inline-block;
   background: #555;
@@ -164,10 +165,12 @@ body {
 
 /* корзина — фиксированная ширина */
 .cart {
+  flex: 0 0 250px; /* не растягиваем по ширине */
   width: 250px;
   background: #1c1c1c;
   padding: 15px;
   border-radius: 15px;
+  height: auto;
 }
 .cart h2 {
   font-size: 18px;
@@ -177,6 +180,19 @@ body {
   list-style: none;
   padding: 0;
   margin: 0 0 15px;
+}
+/* скролл внутри, если много товаров */
+.cart.scrollable ul {
+  max-height: 200px;
+  overflow-y: auto;
+}
+/* опциональный тонкий скролл */
+.cart.scrollable ul::-webkit-scrollbar {
+  width: 6px;
+}
+.cart.scrollable ul::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
 }
 .cart li {
   display: flex;
