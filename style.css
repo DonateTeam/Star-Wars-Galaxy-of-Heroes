@@ -46,7 +46,7 @@ body {
 /* Фильтры */
 .filter-buttons { display: flex; gap: 10px; margin-top: 20px; }
 .filter-btn {
-  background: #222; color: white; border: none;
+  background: #222; color: #fff; border: none;
   padding: 8px 14px; border-radius: 15px; cursor: pointer;
 }
 .filter-btn.active { background: #a855f7; }
