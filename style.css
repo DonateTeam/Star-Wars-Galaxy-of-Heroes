@@ -149,13 +149,15 @@ body {
   opacity:.5; background:#555!important; cursor:not-allowed;
 }
 
-/* краткое описание */
+/* короткое описание сразу */
 .game-desc-short {
   margin:40px 0 0;
 }
-.game-desc-short p { color:#ccc; line-height:1.4; }
+.game-desc-short p {
+  color:#ccc; line-height:1.4;
+}
 
-/* подробности */
+/* подробности под описанием */
 .more-info {
   margin:20px 0 0;
 }
@@ -180,8 +182,7 @@ body {
 /* FAQ */
 .faq { margin:40px 0 0; }
 .faq-title {
-  font-size:24px; color:#fff;
-  margin-bottom:12px;
+  font-size:24px; color:#fff; margin-bottom:12px;
 }
 .faq-item {
   background:#555; border-radius:15px;
@@ -201,35 +202,33 @@ body {
   margin:10px 0 0; color:#ccc; padding-left:6px; line-height:1.4;
 }
 
-/* модалка */
-.pay-modal {
-  position:fixed; top:0; left:0; right:0; bottom:0;
+/* стили для <dialog> */
+dialog#pay-dialog {
+  border:none; border-radius:15px; padding:0; max-width:320px; width:90%;
+}
+dialog::backdrop {
   background:rgba(0,0,0,0.6);
-  display:none; align-items:center; justify-content:center;
-  z-index:1000;
 }
-.pay-modal.open { display:flex; }
-.modal-content {
-  background:#1c1c1c; padding:20px; border-radius:15px; width:320px; text-align:center;
-  position:relative;
+#pay-dialog .modal-content {
+  background:#1c1c1c; padding:20px; border-radius:15px; position:relative;
+  display:flex; flex-direction:column; gap:12px;
 }
-.modal-close {
+#pay-dialog .modal-close {
   position:absolute; top:8px; right:8px;
-  background:none; border:none; color:#fff; font-size:24px; cursor:pointer;
+  background:none; border:none; font-size:24px; color:#fff; cursor:pointer;
 }
-.messenger-btn {
+#pay-dialog .messenger-btn {
   display:flex; align-items:center; gap:10px;
-  width:100%; padding:12px; margin:8px 0;
-  border:none; border-radius:15px; color:#fff; cursor:pointer;
+  width:100%; padding:12px; border:none; border-radius:15px;
+  color:#fff; font-size:16px; cursor:pointer;
 }
-.messenger-btn.telegram { background:#28a7e0; }
-.messenger-btn.whatsapp { background:#25d366; }
+#pay-dialog .messenger-btn.telegram { background:#28a7e0; }
+#pay-dialog .messenger-btn.whatsapp { background:#25d366; }
 
 /* футер */
 .site-footer {
   margin:60px 0 20px; text-align:center; color:#aaa; font-size:14px;
 }
-.footer-content { display:inline-block; }
 .footer-link {
   color:#a855f7; text-decoration:none; margin-left:6px;
 }
