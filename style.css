@@ -1,228 +1,147 @@
-/* Скрыть все внешние и веб-скроллбары */
-* {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-}
-*::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-}
+/* базовый сброс */
+* { margin:0; padding:0; box-sizing:border-box; scrollbar-width:none !important; -ms-overflow-style:none!important; }
+*::-webkit-scrollbar { display:none!important; width:0!important; height:0!important; }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #111;
-  color: white;
+  font-family:Arial,sans-serif;
+  background:#111;
+  color:#fff;
 }
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
+.container { max-width:1200px; margin:0 auto; padding:0 40px; }
 
-/* Хлебные крошки */
-.breadcrumbs {
-  font-size: 16px;
-  color: #ccc;
-  padding: 30px 0 10px;
-  white-space: nowrap;
-}
-.game-title-inline { color: #fff; }
+/* breadcrumbs */
+.breadcrumbs { font-size:16px; color:#ccc; padding:30px 0 10px; white-space:nowrap; }
+.game-title-inline { color:#fff; }
 
-/* Шапка */
-.header-grid {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  column-gap: 30px;
-  align-items: start;
-  margin-top: 20px;
-  padding-bottom: 30px;
-}
-.game-logo { width: 100px; height: 100px; border-radius: 15px; }
-.header-info { display: flex; flex-direction: column; }
-.game-title { margin: 0; font-size: 30px; line-height: 1.2; }
+/* header */
+.header-grid { display:grid; grid-template-columns:100px 1fr; gap:30px; align-items:start; margin-top:20px; padding-bottom:30px; }
+.game-logo { width:100px; height:100px; border-radius:15px; }
+.header-info { display:flex; flex-direction:column; }
+.game-title { font-size:30px; line-height:1.2; }
 
-/* Фильтры */
-.filter-buttons { display: flex; gap: 10px; margin-top: 20px; }
-.filter-btn {
-  background: #222; color: #fff; border: none;
-  padding: 8px 14px; border-radius: 15px; cursor: pointer;
-}
-.filter-btn.active { background: #a855f7; }
+/* filters */
+.filter-buttons { display:flex; gap:10px; margin-top:20px; }
+.filter-btn { background:#222; color:#fff; border:none; padding:8px 14px; border-radius:15px; cursor:pointer; }
+.filter-btn.active { background:#a855f7; }
 
-/* Основное содержимое */
-.main-content {
-  display: flex; align-items: flex-start;
-  justify-content: space-between; gap: 20px;
-  padding-bottom: 40px;
-}
+/* main */
+.main-content { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; padding-bottom:40px; }
 .products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px; flex: 1;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:20px;
 }
 
-/* Карточки товаров */
+/* product card */
 .product-card {
-  background: #1c1c1c; padding: 15px; border-radius: 15px;
-  display: flex; flex-direction: column; justify-content: space-between;
-  min-height: 300px; text-align: center;
-  transition: transform .2s, box-shadow .2s;
+  background:#1c1c1c; border-radius:15px; padding:15px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  text-align:center; min-height:300px; transition:.2s;
 }
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(168,85,247,.7), 0 0 10px rgba(168,85,247,.5);
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(168,85,247,.7),0 0 10px rgba(168,85,247,.5);
 }
-.product-card img { max-height: 140px; object-fit: contain; border-radius: 15px; }
-.product-card h3 { margin: 5px 0; word-break: break-word; }
-/* Цена */
+.product-card img { max-height:140px; object-fit:contain; border-radius:15px; }
+.product-card h3 { margin:5px 0; }
 .product-card .price {
-  display: inline-block; margin: 5px auto;
-  background: #555; color: #fff; padding: 6px 12px; border-radius: 15px; font-weight: bold;
+  background:#555; color:#fff; display:inline-block;
+  padding:6px 12px; border-radius:15px; font-weight:bold;
 }
 
-/* Кнопки */
+/* add/counter */
 .add-btn {
-  background: #a855f7; color: #fff; border: none; border-radius: 50%;
-  width: 36px; height: 36px; margin: 10px auto 0; font-size: 24px; cursor: pointer;
+  background:#a855f7; color:#fff; border:none; border-radius:50%;
+  width:36px; height:36px; font-size:24px; cursor:pointer; margin:10px auto 0;
 }
 .counter {
-  display: flex; align-items: center; justify-content: center; gap: 12px;
-  background: #222; border-radius: 15px; padding: 6px 12px; margin-top: 10px;
+  display:flex; gap:12px; align-items:center; justify-content:center;
+  background:#222; border-radius:15px; padding:6px 12px; margin-top:10px;
 }
-.counter button { background: none; border: none; color: #a855f7; font-size: 20px; cursor: pointer; }
-.counter span { color: #fff; font-size: 18px; min-width: 24px; text-align: center; }
+.counter button { background:none; border:none; color:#a855f7; font-size:20px; cursor:pointer; }
+.counter span { color:#fff; font-size:18px; min-width:24px; text-align:center; }
 
-/* Корзина */
-.cart {
-  flex: 0 0 250px; width: 250px; background: #1c1c1c; padding: 15px; border-radius: 15px;
-}
-.cart-header h2 {
-  display: flex; align-items: center; font-size: 18px; margin: 0;
-}
-#cart-total { margin-left: 8px; color: #a855f7; }
-.clear-img {
-  margin-left: auto; width: 24px; height: 24px; cursor: pointer;
-  opacity: .4; filter: grayscale(100%) brightness(75%);
-  transition: opacity .2s, filter .2s;
-}
-.clear-img:hover { opacity: 1; filter: none; }
-.cart-count { font-size: 14px; color: #ccc; margin: 10px 0; }
-.cart ul { list-style: none; padding: 0; margin: 0 0 15px; }
+/* cart */
+.cart { width:250px; background:#1c1c1c; border-radius:15px; padding:15px; }
+.cart-header h2 { font-size:18px; display:flex; align-items:center; }
+#cart-total { margin-left:8px; color:#a855f7; }
+.clear-img { margin-left:auto; width:24px; height:24px; cursor:pointer; opacity:.4; filter:grayscale(100%) brightness(75%); transition:.2s; }
+.clear-img:hover { opacity:1; filter:none; }
+.cart-count { font-size:14px; color:#ccc; margin:10px 0; }
+.cart ul { list-style:none; }
 
-/* Карточки в корзине */
+/* cart item */
 .cart-item-card {
-  background: #1c1c1c; border: 1px solid #555; border-radius: 15px;
-  padding: 12px 15px; margin-bottom: 10px;
+  background:#1c1c1c; border:1px solid #555; border-radius:15px;
+  padding:12px; margin-bottom:10px;
 }
-.cart-item-card .item-header {
-  display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
-}
+.cart-item-card .item-header { display:flex; justify-content:space-between; margin-bottom:12px; }
 .cart-item-card .item-counter {
-  display: flex; align-items: center; justify-content: space-between;
-  border: 1px solid #555; border-radius: 15px; background: #555; padding: 6px 12px;
+  display:flex; justify-content:space-between; align-items:center;
+  background:#555; border:1px solid #555; border-radius:15px; padding:6px 12px;
 }
-.cart-item-card .item-counter button {
-  background: none; border: none; font-size: 20px; color: #a855f7; cursor: pointer;
-}
-.cart-item-card .item-counter .count {
-  color: #fff; font-size: 16px; min-width: 20px; text-align: center;
-}
-.cart.scrollable ul { max-height: 200px; overflow-y: auto; }
-.cart.scrollable ul::-webkit-scrollbar { width: 6px; }
-.cart.scrollable ul::-webkit-scrollbar-thumb { background: rgba(255,255,255,.3); border-radius: 3px; }
+.cart-item-card .item-counter button { background:none; border:none; font-size:20px; color:#a855f7; cursor:pointer; }
+.cart-item-card .count { color:#fff; min-width:20px; text-align:center; }
 
-/* Кнопка оплаты */
+/* checkout */
 #checkout-btn {
-  width: 100%; padding: 10px; background: #a855f7; color: #fff;
-  border: none; border-radius: 15px; cursor: pointer;
+  width:100%; padding:10px; background:#a855f7; color:#fff;
+  border:none; border-radius:15px; cursor:pointer;
 }
-#checkout-btn:disabled {
-  opacity: .5; cursor: not-allowed; background: #555!important;
-}
+#checkout-btn:disabled { opacity:.5; cursor:not-allowed; background:#555!important; }
 
-/* Выпадающее описание */
-.more-info {
-  border-top: 1px solid #333; margin: 20px 0 0;
+/* description */
+.game-description h2 {
+  font-size:24px; display:flex; align-items:center; gap:6px;
 }
-.more-info > summary {
-  list-style: none; cursor: pointer; font-size: 24px; font-weight: bold; color: #fff;
-  display: inline-block;
-}
-.more-info > summary::-webkit-details-marker { display: none; }
-.more-info > summary::after {
-  content: "▼"; color: #a855f7; margin-left: 6px; transition: transform .2s;
-}
-.more-info[open] > summary::after { transform: rotate(180deg); }
-.more-info > *:not(summary) { margin-top: 20px; color: #ccc; }
-.more-info h2 { margin: 10px 0 5px; color: #fff; }
-.more-info ul { padding-left: 20px; }
-.more-info li { margin-bottom: 6px; }
+.game-description .desc-toggle { color:#a855f7; cursor:pointer; transition:.2s; }
+.game-description h2.collapsed .desc-toggle { transform:rotate(-90deg); }
+.more-desc { display:none; margin-top:12px; }
+.more-desc p, .more-desc h3, .more-desc ul { color:#ccc; }
+.more-desc ul { padding-left:20px; }
+.more-desc li { margin-bottom:6px; }
 
-/* SEO-выделение */
-.highlight { color: #a855f7; }
-
-/* ---------------- FAQ ---------------- */
-.faq {
-  margin-top: 40px;
-}
-.faq-title {
-  font-size: 24px;
-  color: #fff;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #333;
-  padding-bottom: 8px;
-}
+/* FAQ */
+.faq { margin-top:40px; }
+.faq-title { font-size:24px; margin-bottom:12px; color:#fff; }
 .faq-item {
-  background: #555;
-  border-radius: 15px;
-  margin-bottom: 10px;
-  padding: 12px 15px;
+  background:#555; border-radius:15px; padding:12px 15px; margin-bottom:10px;
 }
-.faq-item + .faq-item {
-  margin-top: 10px;
+.faq-item summary {
+  list-style:none; display:flex; justify-content:space-between; align-items:center;
+  cursor:pointer; font-size:18px; font-weight:bold; color:#fff;
 }
-.faq-item > summary {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-}
-.faq-item > summary::-webkit-details-marker {
-  display: none;
-}
-.faq-item > summary::after {
-  content: "+";
-  color: #a855f7;
-  font-size: 20px;
-  transition: transform .2s;
-}
-.faq-item[open] > summary::after {
-  content: "–";
-}
-.faq-item > p {
-  margin: 10px 0 0;
-  color: #ccc;
-  padding-left: 6px;
-  line-height: 1.4;
-}
+.faq-item summary::-webkit-details-marker { display:none; }
+.faq-item summary::after { content:"+"; color:#a855f7; font-size:20px; transition:.2s; }
+.faq-item[open] summary::after { content:"–"; }
+.faq-item p { margin-top:10px; color:#ccc; padding-left:6px; }
 
-/* Футер */
-.site-footer { margin-top: 60px; color: #aaa; font-size: 14px; }
-.footer-separator { border: 0; height: 1px; background: #333; margin: 0; }
-.footer-content {
-  display: flex; justify-content: space-between; align-items: center; padding: 12px 0;
+/* footer */
+.site-footer {
+  margin-top:40px; padding:20px 0; text-align:center;
+  background:#111; color:#aaa; font-size:14px;
 }
-.footer-text { margin: 0; }
-.footer-buttons { display: flex; gap: 12px; }
-.footer-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px; background: #222; border-radius: 50%;
-  color: #fff; text-decoration: none; transition: background .2s;
+.footer-buttons .telegram {
+  background:#0088cc; color:#fff;
 }
-.footer-btn:hover { background: #444; }
+.footer-buttons .telegram:hover { background:#00aaff; }
+
+/* modal */
+.modal.hidden { display:none; }
+.modal {
+  position:fixed; top:0; left:0; right:0; bottom:0;
+  background:rgba(0,0,0,0.6); display:flex; justify-content:center; align-items:center;
+  z-index:10;
+}
+.modal-content {
+  background:#1c1c1c; padding:20px; border-radius:15px; text-align:center;
+}
+.modal-close {
+  position:absolute; top:10px; right:10px; background:none; border:none; font-size:24px; cursor:pointer; color:#fff;
+}
+.messenger-btn {
+  display:block; width:100%; margin:10px 0; padding:10px; border:none; border-radius:15px;
+  color:#fff; font-size:16px; cursor:pointer;
+}
+.messenger-btn.telegram { background:#0088cc; }
+.messenger-btn.whatsapp { background:#25d366; }
