@@ -181,8 +181,6 @@ body {
   margin-left: 8px;
   color: #a855f7;
 }
-/* Скрываем старую кнопу */
-.clear-btn { display: none; }
 /* Иконка очистки корзины */
 .clear-img {
   margin-left: auto;
@@ -216,14 +214,12 @@ body {
   padding: 12px 15px;
   margin-bottom: 10px;
 }
-/* Имя + цена */
 .cart-item-card .item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
 }
-/* Счётчик со своей рамкой */
 .cart-item-card .item-counter {
   display: flex;
   align-items: center;
@@ -276,80 +272,28 @@ body {
   background: #555 !important;
 }
 
-/* Модалка */
-#pay-modal {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-#pay-modal.open { display: flex; }
-#pay-modal .modal-content {
-  background: #1c1c1c;
-  padding: 20px;
-  border-radius: 15px;
-  width: 320px;
-  text-align: center;
-  position: relative;
-}
-#pay-modal .modal-close {
-  position: absolute;
-  top: 8px; right: 8px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-}
-.messenger-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 12px;
-  margin: 12px 0;
-  border: none;
-  border-radius: 15px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-.messenger-btn.vk       { background: #2a71ff; }
-.messenger-btn.telegram { background: #28a7e0; }
-.messenger-btn.whatsapp { background: #25d366; }
-.messenger-btn i        { font-size: 20px; }
-
-/* SEO-блок highlight */
-.highlight {
-  color: #a855f7;
-}
-
 /* Выпадающий блок «Описание игры» */
 .more-info {
   border-top: 1px solid #333;
   margin: 20px 0 0;
-  padding-top: 20px;
+  padding-top: 0;
 }
 .more-info > summary {
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   cursor: pointer;
   font-size: 24px;
   font-weight: bold;
   color: #fff;
-  position: relative;
-  padding-right: 30px;
+  padding: 10px 0;        /* отступы от линии */
 }
 .more-info > summary::-webkit-details-marker {
   display: none;
 }
 .more-info > summary::after {
   content: "▼";
-  position: absolute;
-  top: 0;
-  right: 0;
   color: #a855f7;
   transition: transform 0.2s;
 }
