@@ -1,6 +1,5 @@
 // script.js
 
-// Данные товаров
 const productsData = [
   { id: 1,  name: "610 кристаллов",   price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
   { id: 2,  name: "1340 кристаллов",  price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
@@ -12,7 +11,6 @@ const productsData = [
   { id: 8,  name: "Боевой пропуск",   price: 950,  category: "passes",   img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
 ];
 
-// Селекторы
 const productsContainer = document.getElementById("products");
 const cartItems          = document.getElementById("cart-items");
 const cartTotal          = document.getElementById("cart-total");
@@ -23,10 +21,8 @@ const payModal           = document.getElementById("pay-modal");
 const closeModalBtn      = payModal.querySelector(".modal-close");
 const tgBtn              = document.querySelector(".messenger-btn.telegram");
 
-// Состояние корзины
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Плавная анимация суммы
 function animateValue(el, start, end, duration = 500) {
   let startTime = null;
   function step(ts) {
@@ -39,7 +35,6 @@ function animateValue(el, start, end, duration = 500) {
   requestAnimationFrame(step);
 }
 
-// Рендер товаров
 function renderProducts(filter = "all") {
   productsContainer.innerHTML = "";
   const list = filter === "all"
@@ -68,7 +63,6 @@ function renderProducts(filter = "all") {
     productsContainer.appendChild(card);
   });
 
-  // Добавляем обработчики
   document.querySelectorAll(".add-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
@@ -94,11 +88,9 @@ function renderProducts(filter = "all") {
   });
 }
 
-// Рендер корзины
 function renderCart() {
   cartItems.innerHTML = "";
-  let total = 0;
-  let countSum = 0;
+  let total = 0, countSum = 0;
 
   cart.forEach(item => {
     const prod = productsData.find(p => p.id === item.id);
@@ -121,8 +113,7 @@ function renderCart() {
     cartItems.appendChild(li);
 
     li.querySelector(".inc").addEventListener("click", () => {
-      item.qty++;
-      saveAndRepaint();
+      item.qty++; saveAndRepaint();
     });
     li.querySelector(".dec").addEventListener("click", () => {
       if (item.qty > 1) item.qty--;
@@ -131,12 +122,10 @@ function renderCart() {
     });
   });
 
-  // Анимация итоговой суммы
   const prev = parseInt(cartTotal.dataset.prev) || 0;
   animateValue(cartTotal, prev, total);
   cartTotal.dataset.prev = total;
 
-  // Склонение "товар"
   const word =
     countSum % 10 === 1 && countSum % 100 !== 11 ? "товар" :
     countSum % 10 >= 2 && countSum % 10 <= 4 && !(countSum % 100 >= 12 && countSum % 100 <= 14) ? "товара" :
@@ -147,14 +136,12 @@ function renderCart() {
   document.querySelector(".cart").classList.toggle("scrollable", cart.length > 2);
 }
 
-// Сохранить в localStorage и перерисовать
 function saveAndRepaint() {
   localStorage.setItem("cart", JSON.stringify(cart));
   renderProducts(document.querySelector(".filter-btn.active").dataset.category);
   renderCart();
 }
 
-// Фильтры
 document.querySelectorAll(".filter-btn").forEach(btn => {
   btn.addEventListener("click", () => {
     document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -163,37 +150,36 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 });
 
-// Модалка оплаты
 checkoutBtn.addEventListener("click", e => {
   e.preventDefault();
   if (!checkoutBtn.disabled) payModal.classList.add("open");
 });
-closeModalBtn.addEventListener("click", () => payModal.classList.remove("open"));
+const closeModalBtnEl = document.querySelector(".modal-close");
+closeModalBtnEl.addEventListener("click", () => payModal.classList.remove("open"));
 payModal.addEventListener("click", e => {
   if (e.target === payModal) payModal.classList.remove("open");
 });
 
-// Очистка корзины
 clearCartImg.addEventListener("click", () => {
   cart = [];
   saveAndRepaint();
 });
 
-  // Отправка в Telegram
-  tgBtn.addEventListener("click", () => {
-    const title = document.querySelector(".game-title").textContent.trim();
-    let text = `${title}\n\nСодержание корзины:\n`, total = 0;
-    cart.forEach(i => {
-      const prod = productsData.find(p => p.id === i.id);
-      const sum  = prod.price * i.qty;
-      total += sum;
-      text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
-    });
-    text += `\nИтого: ${total} ₽`;
--   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank`);
-+   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
+tgBtn.addEventListener("click", () => {
+  const title = document.querySelector(".game-title").textContent.trim();
+  let text = `${title}\n\nСодержание корзины:\n`, total = 0;
+  cart.forEach(i => {
+    const prod = productsData.find(p => p.id === i.id);
+    const sum  = prod.price * i.qty;
+    total += sum;
+    text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
   });
+  text += `\nИтого: ${total} ₽`;
+  window.open(
+    `https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
+});
 
-// Первый рендер
 renderProducts();
 renderCart();
