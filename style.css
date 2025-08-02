@@ -68,59 +68,53 @@ body {
   background: #1c1c1c; padding: 15px; border-radius: 15px;
   display: flex; flex-direction: column; justify-content: space-between;
   min-height: 300px; text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform .2s, box-shadow .2s;
 }
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 0 20px rgba(168,85,247,0.7), 0 0 10px rgba(168,85,247,0.5);
+  box-shadow: 0 0 20px rgba(168,85,247,.7), 0 0 10px rgba(168,85,247,.5);
 }
 .product-card img { max-height: 140px; object-fit: contain; border-radius: 15px; }
 .product-card h3 { margin: 5px 0; word-break: break-word; }
-/* Цена по центру */
+/* Цена */
 .product-card .price {
   display: inline-block; margin: 5px auto;
-  background: #555; color: #fff;
-  padding: 6px 12px; border-radius: 15px; font-weight: bold;
+  background: #555; color: #fff; padding: 6px 12px; border-radius: 15px; font-weight: bold;
 }
 
-/* + / счётчик */
+/* Кнопки */
 .add-btn {
-  background: #a855f7; color: #fff;
-  border: none; border-radius: 50%;
-  width: 36px; height: 36px; margin: 10px auto 0;
-  font-size: 24px; cursor: pointer;
+  background: #a855f7; color: #fff; border: none; border-radius: 50%;
+  width: 36px; height: 36px; margin: 10px auto 0; font-size: 24px; cursor: pointer;
 }
 .counter {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; background: #222; border-radius: 15px;
-  padding: 6px 12px; margin-top: 10px;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  background: #222; border-radius: 15px; padding: 6px 12px; margin-top: 10px;
 }
 .counter button { background: none; border: none; color: #a855f7; font-size: 20px; cursor: pointer; }
 .counter span { color: #fff; font-size: 18px; min-width: 24px; text-align: center; }
 
 /* КОРЗИНА */
 .cart {
-  flex: 0 0 250px; width: 250px;
-  background: #1c1c1c; padding: 15px; border-radius: 15px;
+  flex: 0 0 250px; width: 250px; background: #1c1c1c; padding: 15px; border-radius: 15px;
 }
 .cart-header h2 {
   display: flex; align-items: center; font-size: 18px; margin: 0;
 }
 #cart-total { margin-left: 8px; color: #a855f7; }
 .clear-img {
-  margin-left: auto; width: 24px; height: 24px;
-  cursor: pointer; opacity: 0.4;
-  filter: grayscale(100%) brightness(75%);
+  margin-left: auto; width: 24px; height: 24px; cursor: pointer;
+  opacity: .4; filter: grayscale(100%) brightness(75%);
   transition: opacity .2s, filter .2s;
 }
 .clear-img:hover { opacity: 1; filter: none; }
 .cart-count { font-size: 14px; color: #ccc; margin: 10px 0; }
 .cart ul { list-style: none; padding: 0; margin: 0 0 15px; }
 
-/* Единый контейнер товара */
+/* Карточки в корзине */
 .cart-item-card {
-  background: #1c1c1c; border: 1px solid #555;
-  border-radius: 15px; padding: 12px 15px; margin-bottom: 10px;
+  background: #1c1c1c; border: 1px solid #555; border-radius: 15px;
+  padding: 12px 15px; margin-bottom: 10px;
 }
 .cart-item-card .item-header {
   display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
@@ -148,13 +142,12 @@ body {
   opacity: .5; cursor: not-allowed; background: #555!important;
 }
 
-/* Выпадающий блок «Описание игры» */
+/* Выпадающее описание */
 .more-info {
   border-top: 1px solid #333; margin: 20px 0 0;
 }
 .more-info > summary {
-  list-style: none; cursor: pointer;
-  font-size: 24px; font-weight: bold; color: #fff;
+  list-style: none; cursor: pointer; font-size: 24px; font-weight: bold; color: #fff;
   display: inline-block;
 }
 .more-info > summary::-webkit-details-marker { display: none; }
@@ -162,9 +155,7 @@ body {
   content: "▼"; color: #a855f7; margin-left: 6px; transition: transform .2s;
 }
 .more-info[open] > summary::after { transform: rotate(180deg); }
-.more-info > *:not(summary) {
-  margin-top: 20px; color: #ccc;
-}
+.more-info > *:not(summary) { margin-top: 20px; color: #ccc; }
 .more-info h2 { margin: 10px 0 5px; color: #fff; }
 .more-info ul { padding-left: 20px; }
 .more-info li { margin-bottom: 6px; }
@@ -172,103 +163,29 @@ body {
 /* SEO-выделение */
 .highlight { color: #a855f7; }
 
-/* FAQ-блок */
+/* FAQ */
 .faq { margin-top: 40px; }
-.faq-item {
-  border-top: 1px solid #333;
-}
+.faq-item { border-top: 1px solid #333; }
 .faq-item > summary {
-  list-style: none;
-  display: flex; justify-content: space-between; align-items: center;
-  cursor: pointer;
-  padding: 12px 0;
-  font-size: 20px; font-weight: bold; color: #fff;
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; padding: 12px 0; font-size: 20px; font-weight: bold; color: #fff;
 }
 .faq-item > summary::-webkit-details-marker { display: none; }
-.faq-item > summary::after {
-  content: "+"; color: #a855f7; font-size: 20px; transition: transform .2s;
-}
+.faq-item > summary::after { content: "+"; color: #a855f7; font-size: 20px; transition: transform .2s; }
 .faq-item[open] > summary::after { content: "–"; }
-.faq-item > p {
-  margin: 8px 0 20px; padding-left: 10px; color: #ccc;
-}
+.faq-item > p { margin: 8px 0 20px; padding-left: 10px; color: #ccc; }
 
 /* Футер */
-.site-footer {
-  margin-top: 60px;
-  color: #aaa;
-  font-size: 14px;
-}
-.footer-separator {
-  border: 0; height: 1px; background: #333; margin: 0;
-}
+.site-footer { margin-top: 60px; color: #aaa; font-size: 14px; }
+.footer-separator { border: 0; height: 1px; background: #333; margin: 0; }
 .footer-content {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 12px 0;
+  display: flex; justify-content: space-between; align-items: center; padding: 12px 0;
 }
-.footer-text {
-  margin: 0;
-}
-.footer-buttons {
-  display: flex; gap: 12px;
-}
+.footer-text { margin: 0; }
+.footer-buttons { display: flex; gap: 12px; }
 .footer-btn {
   display: inline-flex; align-items: center; justify-content: center;
   width: 36px; height: 36px; background: #222; border-radius: 50%;
-  color: #fff; text-decoration: none; transition: background 0.2s;
+  color: #fff; text-decoration: none; transition: background .2s;
 }
 .footer-btn:hover { background: #444; }
-.footer-btn i { font-size: 18px; }
-
-/* Модалка выбора мессенджера */
-#pay-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-#pay-modal.open {
-  display: flex;
-}
-#pay-modal .modal-content {
-  background: #1c1c1c;
-  padding: 20px;
-  border-radius: 15px;
-  width: 320px;
-  text-align: center;
-  position: relative;
-}
-#pay-modal .modal-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-}
-/* Кнопки-мессенджеры в модалке */
-.messenger-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-  padding: 12px;
-  margin: 12px 0;
-  border: none;
-  border-radius: 15px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-}
-.messenger-btn.vk       { background: #2a71ff; }
-.messenger-btn.telegram { background: #28a7e0; }
-.messenger-btn.whatsapp { background: #25d366; }
-.messenger-btn i        { font-size: 20px; }
