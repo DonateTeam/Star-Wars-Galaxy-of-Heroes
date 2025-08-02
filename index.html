@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Star Wars: Galaxy of Heroes</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- убрали integrity/crossorigin, чтобы CDN не блокировалось -->
+  <!-- убрали integrity/crossorigin -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -60,25 +60,33 @@
     </main>
 
     <!-- Описание игры -->
-    <div class="game-description">
-      <h2>Описание игры <span class="desc-toggle">▼</span></h2>
-      <p class="always-visible">
-        <strong>Star Wars: Galaxy of Heroes</strong> — это коллекционная RPG-стратегия во вселенной «Звёздных Войн», где вы быстро прокачиваете героев, собираете отряды и сражаетесь в эпичных PvP-аренах.
+    <details class="more-info">
+      <summary>Описание игры</summary>
+      <p>
+        <strong>Star Wars: Galaxy of Heroes</strong> — это коллекционная RPG-стратегия
+        во вселенной «Звёздных Войн», где вы быстро прокачиваете героев, собираете
+        отряды и сражаетесь в эпичных PvP-аренах. С донатом процесс идёт ещё быстрее:
+        появляются легендарные персонажи, эксклюзивные скины и внутриигровые бустеры.
       </p>
-      <div class="more-desc">
-        <p>С донатом процесс идёт ещё быстрее: появляются легендарные персонажи, эксклюзивные скины и внутриигровые бустеры.</p>
-        <h3>Какие виды доната?</h3>
-        <ul>
-          <li><span class="highlight">Кристаллы</span> — основная валюта.</li>
-          <li><span class="highlight">Боевые наборы</span> — гарантированные ресурсы.</li>
-          <li><span class="highlight">Пропуска сезона</span> — эксклюзивные награды.</li>
-        </ul>
-        <h3>Что выбрать?</h3>
-        <p>Если хотите быстро прокачаться — берите <span class="highlight">кристаллы</span>. Для PvP — <span class="highlight">боевые наборы</span>. Регулярный фарм — <span class="highlight">пропуск сезона</span>.</p>
-        <h3>Почему DonateTeam?</h3>
-        <p>Гарантируем <strong>скорость</strong>, <strong>безопасность</strong> и <strong>выгодные цены</strong>. Просто введите свой Game ID — и ресурсы будут зачислены моментально!</p>
-      </div>
-    </div>
+      <h2>Какие виды доната?</h2>
+      <ul>
+        <li><span class="highlight">Кристаллы</span> — основная валюта.</li>
+        <li><span class="highlight">Боевые наборы</span> — гарантированные ресурсы.</li>
+        <li><span class="highlight">Пропуска сезона</span> — эксклюзивные награды.</li>
+      </ul>
+      <h2>Что выбрать?</h2>
+      <p>
+        Если хотите быстро прокачаться — берите <span class="highlight">кристаллы</span>.
+        Для PvP — <span class="highlight">боевые наборы</span>. Регулярный фарм —
+        <span class="highlight">пропуск сезона</span>.
+      </p>
+      <h2>Почему DonateTeam?</h2>
+      <p>
+        Гарантируем <strong>скорость</strong>, <strong>безопасность</strong> и
+        <strong>выгодные цены</strong>. Просто введите свой Game ID — и ресурсы
+        будут зачислены моментально!
+      </p>
+    </details>
 
     <!-- FAQ-блок -->
     <section class="faq">
@@ -102,21 +110,17 @@
       <div class="footer-content">
         <p class="footer-text">DonateTeam. Магазин пополнения и донатов.</p>
         <div class="footer-buttons">
-          <a href="https://t.me/DonateTeam_channel" target="_blank" class="footer-btn telegram">
-            <i class="fab fa-telegram-plane"></i>
+          <!-- заменили иконку, убрали VK -->
+          <a href="https://t.me/DonateTeam_channel" target="_blank" class="footer-btn">
+            <img
+              src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/telegram.png"
+              alt="Telegram"
+              width="20" height="20"
+            />
           </a>
         </div>
       </div>
     </footer>
-  </div>
-
-  <!-- Модалка (по умолчанию скрыта) -->
-  <div id="pay-modal" class="modal hidden">
-    <div class="modal-content">
-      <button class="modal-close">×</button>
-      <button class="messenger-btn telegram"><i class="fab fa-telegram-plane"></i> Пополнить через Telegram</button>
-      <button class="messenger-btn whatsapp"><i class="fab fa-whatsapp"></i> Пополнить через WhatsApp</button>
-    </div>
   </div>
 
   <script src="script.js"></script>
