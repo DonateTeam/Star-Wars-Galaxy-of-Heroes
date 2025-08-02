@@ -174,7 +174,9 @@ tgBtn.addEventListener("click",()=>{
     text+=`• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
   });
   text+=`\nИтого: ${total} ₽`;
-  window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
+  - window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank`);
+  + window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
+
 });
 
 // старт
