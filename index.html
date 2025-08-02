@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Star Wars: Galaxy of Heroes</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- убрал integrity/cors, чтобы CDN не блокировалось -->
+  <!-- убрали integrity/cors, чтобы не блокировало -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -98,6 +97,16 @@
       </details>
     </section>
 
+    <!-- Модалка выбора мессенджера -->
+    <div id="pay-modal" class="pay-modal">
+      <div class="modal-content">
+        <button class="modal-close">×</button>
+        <button class="messenger-btn vk"><i class="fab fa-vk"></i> Пополнить через ВКонтакте</button>
+        <button class="messenger-btn telegram"><i class="fab fa-telegram-plane"></i> Пополнить через Telegram</button>
+        <button class="messenger-btn whatsapp"><i class="fab fa-whatsapp"></i> Пополнить через WhatsApp</button>
+      </div>
+    </div>
+
     <!-- Футер -->
     <footer class="site-footer">
       <hr class="footer-separator"/>
@@ -108,7 +117,7 @@
             <img
               src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/telegram.png"
               alt="Telegram"
-              style="width:20px; height:20px;"
+              width="20" height="20"
             />
           </a>
         </div>
