@@ -179,19 +179,20 @@ clearCartImg.addEventListener("click", () => {
   saveAndRepaint();
 });
 
-// Отправка в Telegram
-tgBtn.addEventListener("click", () => {
-  const title = document.querySelector(".game-title").textContent.trim();
-  let text = `${title}\n\nСодержание корзины:\n`, total = 0;
-  cart.forEach(i => {
-    const prod = productsData.find(p => p.id === i.id);
-    const sum  = prod.price * i.qty;
-    total += sum;
-    text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
+  // Отправка в Telegram
+  tgBtn.addEventListener("click", () => {
+    const title = document.querySelector(".game-title").textContent.trim();
+    let text = `${title}\n\nСодержание корзины:\n`, total = 0;
+    cart.forEach(i => {
+      const prod = productsData.find(p => p.id === i.id);
+      const sum  = prod.price * i.qty;
+      total += sum;
+      text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
+    });
+    text += `\nИтого: ${total} ₽`;
+-   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank`);
++   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
   });
-  text += `\nИтого: ${total} ₽`;
-  window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank`);
-});
 
 // Первый рендер
 renderProducts();
