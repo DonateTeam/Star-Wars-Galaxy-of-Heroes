@@ -9,10 +9,10 @@ const productsData = [
   { id: 5, name: "15710 кристаллов", price: 8800, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
   { id: 6, name: "Набор джедая",     price: 3200, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
   { id: 7, name: "Набор ситха",      price: 4100, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-  { id: 8, name: "Пропуск эпизода",   price: 2000,  category: "passes",   img: "https://imgur.com/1QtabKs" },
-  { id: 9, name: "Пропуск эпизода +",   price: 3800,  category: "passes",   img: "https://imgur.com/1QtabKs" },
-  { id: 10, name: "Пропуск завоевания",   price: 1100,  category: "passes",   img: "https://imgur.com/1QtabKs" }, 
-  { id: 11, name: "Пропуск завеования +",   price: 3000,  category: "passes",   img: "https://imgur.com/1QtabKs" },
+  { id: 8, name: "Пропуск эпизода",  price: 2000, category: "passes",   img: "https://imgur.com/1QtabKs" },
+  { id: 9, name: "Пропуск эпизода +",price: 3800, category: "passes",   img: "https://imgur.com/1QtabKs" },
+  { id:10, name: "Пропуск завоевания",price:1100, category: "passes",   img: "https://imgur.com/1QtabKs" },
+  { id:11, name: "Пропуск завоевания +",price:3000,category: "passes",   img: "https://imgur.com/1QtabKs" },
 ];
 
 // селекторы
@@ -71,7 +71,7 @@ function renderProducts(filter = "all") {
     productsContainer.appendChild(card);
   });
 
-  // обработчики кнопок
+  // события кнопок
   document.querySelectorAll(".add-btn").forEach(btn =>
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
@@ -138,7 +138,7 @@ function renderCart() {
 
   const word =
     countSum % 10 === 1 && countSum % 100 !== 11 ? "товар" :
-    countSum % 10 >= 2 && countSum % 10 <= 4 && !(countSum % 100 >= 12 && countSum % 100 <= 14) ? "товара" :
+    countSum % 10 >= 2 && countSum % 10 <= 4 ? "товара" :
     "товаров";
   cartCount.textContent = `${countSum} ${word}`;
 
@@ -163,20 +163,15 @@ document.querySelectorAll(".filter-btn").forEach(btn =>
   })
 );
 
-// модалка оплаты — ОБОРОТКА по наличию элементов:
+// модалка оплаты
 if (payModal) {
-  // открытие
   checkoutBtn.addEventListener("click", e => {
     e.preventDefault();
     if (checkoutBtn.disabled) return;
     payModal.classList.add("open");
   });
-
-  // закрытие по кресту и по фону
   if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", () => {
-      payModal.classList.remove("open");
-    });
+    closeModalBtn.addEventListener("click", () => payModal.classList.remove("open"));
     payModal.addEventListener("click", e => {
       if (e.target === payModal) payModal.classList.remove("open");
     });
