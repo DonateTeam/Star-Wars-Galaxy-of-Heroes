@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Star Wars: Galaxy of Heroes</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- убрали integrity/crossorigin -->
+  <!-- integrity/crossorigin удалены -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -59,15 +59,16 @@
       </aside>
     </main>
 
-    <!-- Описание игры -->
-    <details class="more-info">
-      <summary>Описание игры</summary>
+    <!-- Описание игры (кратко) -->
+    <div class="game-desc-short">
       <p>
-        <strong>Star Wars: Galaxy of Heroes</strong> — это коллекционная RPG-стратегия
-        во вселенной «Звёздных Войн», где вы быстро прокачиваете героев, собираете
-        отряды и сражаетесь в эпичных PvP-аренах. С донатом процесс идёт ещё быстрее:
-        появляются легендарные персонажи, эксклюзивные скины и внутриигровые бустеры.
+        <strong>Star Wars: Galaxy of Heroes</strong> — это коллекционная RPG-стратегия во вселенной «Звёздных Войн», где вы быстро прокачиваете героев, собираете отряды и сражаетесь в эпичных PvP-аренах. С донатом процесс идёт ещё быстрее: появляются легендарные персонажи, эксклюзивные скины и внутриигровые бустеры.
       </p>
+    </div>
+
+    <!-- Развернуть подробности -->
+    <details class="more-info">
+      <summary>Подробнее о донате</summary>
       <h2>Какие виды доната?</h2>
       <ul>
         <li><span class="highlight">Кристаллы</span> — основная валюта.</li>
@@ -76,19 +77,15 @@
       </ul>
       <h2>Что выбрать?</h2>
       <p>
-        Если хотите быстро прокачаться — берите <span class="highlight">кристаллы</span>.
-        Для PvP — <span class="highlight">боевые наборы</span>. Регулярный фарм —
-        <span class="highlight">пропуск сезона</span>.
+        Если хотите быстро прокачаться — берите <span class="highlight">кристаллы</span>. Для PvP — <span class="highlight">боевые наборы</span>. Регулярный фарм — <span class="highlight">пропуск сезона</span>.
       </p>
       <h2>Почему DonateTeam?</h2>
       <p>
-        Гарантируем <strong>скорость</strong>, <strong>безопасность</strong> и
-        <strong>выгодные цены</strong>. Просто введите свой Game ID — и ресурсы
-        будут зачислены моментально!
+        Гарантируем <strong>скорость</strong>, <strong>безопасность</strong> и <strong>выгодные цены</strong>. Просто введите свой Game ID — и ресурсы будут зачислены моментально!
       </p>
     </details>
 
-    <!-- FAQ-блок -->
+    <!-- FAQ -->
     <section class="faq">
       <h2 class="faq-title">FAQ</h2>
       <details class="faq-item">
@@ -105,20 +102,28 @@
       </details>
     </section>
 
+    <!-- Модалка оплаты -->
+    <div id="pay-modal" class="pay-modal">
+      <div class="modal-content">
+        <button class="modal-close">×</button>
+        <button class="messenger-btn telegram">
+          <i class="fab fa-telegram-plane"></i> Пополнить через Telegram
+        </button>
+        <button class="messenger-btn whatsapp">
+          <i class="fab fa-whatsapp"></i> Пополнить через WhatsApp
+        </button>
+      </div>
+    </div>
+
     <!-- Футер -->
     <footer class="site-footer">
       <div class="footer-content">
-        <p class="footer-text">DonateTeam. Магазин пополнения и донатов.</p>
-        <div class="footer-buttons">
-          <!-- заменили иконку, убрали VK -->
-          <a href="https://t.me/DonateTeam_channel" target="_blank" class="footer-btn">
-            <img
-              src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/telegram.png"
-              alt="Telegram"
-              width="20" height="20"
-            />
+        <p class="footer-text">
+          DonateTeam. Магазин пополнения и донатов.&nbsp;
+          <a href="https://t.me/DonateTeam_channel" target="_blank" class="footer-link">
+            <i class="fab fa-telegram-plane"></i> Наш канал
           </a>
-        </div>
+        </p>
       </div>
     </footer>
   </div>
