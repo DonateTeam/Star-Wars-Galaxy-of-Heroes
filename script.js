@@ -66,7 +66,7 @@ function renderProducts(filter = "all") {
     productsContainer.appendChild(card);
   });
 
-  // события кнопок
+  // кнопки +/−
   document.querySelectorAll(".add-btn").forEach(btn =>
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
@@ -159,10 +159,11 @@ document.querySelectorAll(".filter-btn").forEach(btn =>
 // модалка оплаты
 checkoutBtn.addEventListener("click", e => {
   e.preventDefault();
-  if (!checkoutBtn.disabled) payModal.classList.add("open");
+  if (!checkoutBtn.disabled) payModal?.classList.add("open");
 });
-closeModalBtn.addEventListener("click", () => payModal.classList.remove("open"));
-payModal.addEventListener("click", e => {
+// далеко не всегда вёрстка модалки на странице, поэтому:
+closeModalBtn?.addEventListener("click", () => payModal?.classList.remove("open"));
+payModal?.addEventListener("click", e => {
   if (e.target === payModal) payModal.classList.remove("open");
 });
 
@@ -172,8 +173,8 @@ clearCartImg.addEventListener("click", () => {
   saveAndRepaint();
 });
 
-// Telegram-сборка
-tgBtn.addEventListener("click", () => {
+// Telegram-сборка (тоже только если кнопка есть)
+tgBtn?.addEventListener("click", () => {
   const title = document.querySelector(".game-title").textContent.trim();
   let text = `${title}\n\nСодержимое корзины:\n`, total = 0;
   cart.forEach(i => {
@@ -183,13 +184,12 @@ tgBtn.addEventListener("click", () => {
     text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
   });
   text += `\nИтого: ${total} ₽`;
-  // Нормальный вызов window.open без лишних символов
   window.open(
     `https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`,
     "_blank"
   );
 });
 
-// стартовый рендер
+// первый рендер
 renderProducts();
 renderCart();
