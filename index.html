@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Star Wars: Galaxy of Heroes</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- integrity/crossorigin удалены -->
+  <!-- убрали integrity/crossorigin, чтобы ничего не блокировалось -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -59,16 +59,12 @@
       </aside>
     </main>
 
-    <!-- Описание игры (кратко) -->
-    <div class="game-desc-short">
+    <!-- Описание игры -->
+    <details class="more-info">
+      <summary>Описание игры</summary>
       <p>
         <strong>Star Wars: Galaxy of Heroes</strong> — это коллекционная RPG-стратегия во вселенной «Звёздных Войн», где вы быстро прокачиваете героев, собираете отряды и сражаетесь в эпичных PvP-аренах. С донатом процесс идёт ещё быстрее: появляются легендарные персонажи, эксклюзивные скины и внутриигровые бустеры.
       </p>
-    </div>
-
-    <!-- Развернуть подробности -->
-    <details class="more-info">
-      <summary>Подробнее о донате</summary>
       <h2>Какие виды доната?</h2>
       <ul>
         <li><span class="highlight">Кристаллы</span> — основная валюта.</li>
@@ -85,7 +81,7 @@
       </p>
     </details>
 
-    <!-- FAQ -->
+    <!-- FAQ-блок -->
     <section class="faq">
       <h2 class="faq-title">FAQ</h2>
       <details class="faq-item">
@@ -102,29 +98,31 @@
       </details>
     </section>
 
-    <!-- Модалка оплаты -->
-    <div id="pay-modal" class="pay-modal">
+    <!-- Модалка оплаты через <dialog> -->
+    <dialog id="pay-dialog">
+      <button class="modal-close">×</button>
       <div class="modal-content">
-        <button class="modal-close">×</button>
-        <button class="messenger-btn telegram">
-          <i class="fab fa-telegram-plane"></i> Пополнить через Telegram
-        </button>
-        <button class="messenger-btn whatsapp">
-          <i class="fab fa-whatsapp"></i> Пополнить через WhatsApp
-        </button>
+        <button class="messenger-btn telegram"><i class="fab fa-telegram-plane"></i> Пополнить через Telegram</button>
+        <button class="messenger-btn whatsapp"><i class="fab fa-whatsapp"></i> Пополнить через WhatsApp</button>
       </div>
-    </div>
+    </dialog>
 
     <!-- Футер -->
     <footer class="site-footer">
+      <hr class="footer-separator"/>
       <div class="footer-content">
-        <p class="footer-text">
-          DonateTeam. Магазин пополнения и донатов.&nbsp;
-          <a href="https://t.me/DonateTeam_channel" target="_blank" class="footer-link">
-            <i class="fab fa-telegram-plane"></i> Наш канал
+        <p class="footer-text">DonateTeam. Магазин пополнения и донатов.</p>
+        <div class="footer-buttons">
+          <a href="https://t.me/DonateTeam_channel" target="_blank" class="footer-btn">
+            <img
+              src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/telegram.png"
+              alt="Telegram"
+              style="width:20px; height:20px;"
+            />
           </a>
-        </p>
+        </div>
       </div>
+      <hr class="footer-separator"/>
     </footer>
   </div>
 
