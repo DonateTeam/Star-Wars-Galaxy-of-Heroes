@@ -1,3 +1,6 @@
+// script.js
+
+// Данные товаров
 const productsData = [
   { id: 1,  name: "610 кристаллов",   price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
   { id: 2,  name: "1340 кристаллов",  price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
@@ -9,23 +12,26 @@ const productsData = [
   { id: 8,  name: "Боевой пропуск",   price: 950,  category: "passes",   img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
 ];
 
+// Селекторы
 const productsContainer = document.getElementById("products");
 const cartItems          = document.getElementById("cart-items");
 const cartTotal          = document.getElementById("cart-total");
 const cartCount          = document.getElementById("cart-count");
 const checkoutBtn        = document.getElementById("checkout-btn");
+const clearCartImg       = document.getElementById("clear-cart-img");
 const payModal           = document.getElementById("pay-modal");
 const closeModalBtn      = payModal.querySelector(".modal-close");
 const tgBtn              = document.querySelector(".messenger-btn.telegram");
 
+// Состояние корзины
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Плавная анимация числового счёта
+// Плавная анимация суммы
 function animateValue(el, start, end, duration = 500) {
   let startTime = null;
-  function step(timestamp) {
-    if (!startTime) startTime = timestamp;
-    const progress = Math.min((timestamp - startTime) / duration, 1);
+  function step(ts) {
+    if (!startTime) startTime = ts;
+    const progress = Math.min((ts - startTime) / duration, 1);
     const value = Math.floor(progress * (end - start) + start);
     el.textContent = `${value} ₽`;
     if (progress < 1) requestAnimationFrame(step);
@@ -36,14 +42,14 @@ function animateValue(el, start, end, duration = 500) {
 // Рендер товаров
 function renderProducts(filter = "all") {
   productsContainer.innerHTML = "";
-  const filtered = filter === "all"
+  const list = filter === "all"
     ? productsData
     : productsData.filter(p => p.category === filter);
 
-  filtered.forEach(prod => {
+  list.forEach(prod => {
     const inCart = cart.find(i => i.id === prod.id);
-    const qty    = inCart?.qty || 0;
-    const card   = document.createElement("div");
+    const qty    = inCart ? inCart.qty : 0;
+    const card = document.createElement("div");
     card.className = "product-card";
     card.dataset.id = prod.id;
     card.innerHTML = `
@@ -62,6 +68,7 @@ function renderProducts(filter = "all") {
     productsContainer.appendChild(card);
   });
 
+  // Добавляем обработчики
   document.querySelectorAll(".add-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
@@ -91,11 +98,12 @@ function renderProducts(filter = "all") {
 function renderCart() {
   cartItems.innerHTML = "";
   let total = 0;
+  let countSum = 0;
 
   cart.forEach(item => {
     const prod = productsData.find(p => p.id === item.id);
-    const sum  = prod.price * item.qty;
-    total += sum;
+    total += prod.price * item.qty;
+    countSum += item.qty;
 
     const li = document.createElement("li");
     li.className = "cart-item-card";
@@ -113,7 +121,8 @@ function renderCart() {
     cartItems.appendChild(li);
 
     li.querySelector(".inc").addEventListener("click", () => {
-      item.qty++; saveAndRepaint();
+      item.qty++;
+      saveAndRepaint();
     });
     li.querySelector(".dec").addEventListener("click", () => {
       if (item.qty > 1) item.qty--;
@@ -122,27 +131,23 @@ function renderCart() {
     });
   });
 
-  // Анимируем смену суммы
+  // Анимация итоговой суммы
   const prev = parseInt(cartTotal.dataset.prev) || 0;
-  cartTotal.style.color = "#a855f7";
-  animateValue(cartTotal, prev, total, 500);
+  animateValue(cartTotal, prev, total);
   cartTotal.dataset.prev = total;
 
-  // Склонение
-  const n = cart.length;
-  const word = n % 10 === 1 && n % 100 !== 11
-    ? 'товар'
-    : n % 10 >= 2 && n % 10 <= 4 && !(n % 100 >= 12 && n % 100 <= 14)
-      ? 'товара'
-      : 'товаров';
-  cartCount.textContent = `${n} ${word}`;
+  // Склонение "товар"
+  const word =
+    countSum % 10 === 1 && countSum % 100 !== 11 ? "товар" :
+    countSum % 10 >= 2 && countSum % 10 <= 4 && !(countSum % 100 >= 12 && countSum % 100 <= 14) ? "товара" :
+    "товаров";
+  cartCount.textContent = `${countSum} ${word}`;
 
   checkoutBtn.disabled = total === 0;
-  document.querySelector(".cart")
-          .classList.toggle("scrollable", cart.length > 2);
+  document.querySelector(".cart").classList.toggle("scrollable", cart.length > 2);
 }
 
-// Сохранить и перерисовать
+// Сохранить в localStorage и перерисовать
 function saveAndRepaint() {
   localStorage.setItem("cart", JSON.stringify(cart));
   renderProducts(document.querySelector(".filter-btn.active").dataset.category);
@@ -158,7 +163,7 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
   });
 });
 
-// Модалка и Telegram
+// Модалка оплаты
 checkoutBtn.addEventListener("click", e => {
   e.preventDefault();
   if (!checkoutBtn.disabled) payModal.classList.add("open");
@@ -167,6 +172,14 @@ closeModalBtn.addEventListener("click", () => payModal.classList.remove("open"))
 payModal.addEventListener("click", e => {
   if (e.target === payModal) payModal.classList.remove("open");
 });
+
+// Очистка корзины
+clearCartImg.addEventListener("click", () => {
+  cart = [];
+  saveAndRepaint();
+});
+
+// Отправка в Telegram
 tgBtn.addEventListener("click", () => {
   const title = document.querySelector(".game-title").textContent.trim();
   let text = `${title}\n\nСодержание корзины:\n`, total = 0;
@@ -177,15 +190,9 @@ tgBtn.addEventListener("click", () => {
     text += `• ${prod.name} × ${i.qty} — ${sum} ₽\n`;
   });
   text += `\nИтого: ${total} ₽`;
-  window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
+  window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank`);
 });
 
-// Старт
+// Первый рендер
 renderProducts();
 renderCart();
-
-document.getElementById("clear-cart-img").addEventListener("click", () => {
-  cart = [];
-  saveAndRepaint();
-});
-
