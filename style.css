@@ -68,7 +68,6 @@ body {
   background: #1c1c1c; padding: 15px; border-radius: 15px;
   display: flex; flex-direction: column; justify-content: space-between;
   min-height: 300px; text-align: center;
-  transition: transform 0.2s, box-shadow 0.2s;
 }
 .product-card:hover {
   transform: translateY(-5px);
@@ -87,8 +86,8 @@ body {
 .add-btn {
   background: #a855f7; color: #fff;
   border: none; border-radius: 50%;
-  width: 36px; height: 36px; font-size: 24px;
-  cursor: pointer; margin: 10px auto 0;
+  width: 36px; height: 36px;
+  margin: 10px auto 0; cursor: pointer;
 }
 .counter {
   display: flex; align-items: center; justify-content: center;
@@ -104,8 +103,7 @@ body {
   background: #1c1c1c; padding: 15px; border-radius: 15px;
 }
 .cart-header h2 {
-  display: flex; align-items: center;
-  font-size: 18px; margin: 0;
+  display: flex; align-items: center; font-size: 18px; margin: 0;
 }
 #cart-total { margin-left: 8px; color: #a855f7; }
 .clear-img {
@@ -124,13 +122,11 @@ body {
   border-radius: 15px; padding: 12px 15px; margin-bottom: 10px;
 }
 .cart-item-card .item-header {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-bottom: 12px;
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
 }
 .cart-item-card .item-counter {
   display: flex; align-items: center; justify-content: space-between;
-  border: 1px solid #555; border-radius: 15px; background: #555;
-  padding: 6px 12px;
+  border: 1px solid #555; border-radius: 15px; background: #555; padding: 6px 12px;
 }
 .cart-item-card .item-counter button {
   background: none; border: none; font-size: 20px; color: #a855f7; cursor: pointer;
@@ -138,9 +134,7 @@ body {
 .cart-item-card .item-counter .count {
   color: #fff; font-size: 16px; min-width: 20px; text-align: center;
 }
-.cart.scrollable ul {
-  max-height: 200px; overflow-y: auto;
-}
+.cart.scrollable ul { max-height: 200px; overflow-y: auto; }
 .cart.scrollable ul::-webkit-scrollbar { width: 6px; }
 .cart.scrollable ul::-webkit-scrollbar-thumb { background: rgba(255,255,255,.3); border-radius: 3px; }
 
@@ -155,7 +149,7 @@ body {
 
 /* Выпадающий блок «Описание игры» */
 .more-info {
-  border-top: 1px solid #333; margin: 20px 0 0; padding-top: 0;
+  border-top: 1px solid #333; margin: 20px 0 0; /* чёрта + отступ сверху */
 }
 .more-info > summary {
   list-style: none; cursor: pointer;
@@ -164,23 +158,46 @@ body {
 }
 .more-info > summary::-webkit-details-marker { display: none; }
 .more-info > summary::after {
-  content: "▼"; color: #a855f7; margin-left: 6px;
-  transition: transform .2s;
+  content: "▼"; color: #a855f7; margin-left: 6px; transition: transform .2s;
 }
-.more-info[open] > summary::after {
-  transform: rotate(180deg);
-}
+.more-info[open] > summary::after { transform: rotate(180deg); }
 .more-info > *:not(summary) {
-  margin-top: 15px; color: #ccc;
+  margin-top: 20px; /* увеличенный отступ под линией */
+  color: #ccc;
 }
 .more-info h2 { margin: 10px 0 5px; color: #fff; }
 .more-info ul { padding-left: 20px; }
 .more-info li { margin-bottom: 6px; }
 
-/* Маркер для выделения */
+/* SEO-выделение */
 .highlight { color: #a855f7; }
 
-/* Модалка (убрана по умолчанию) */
+/* FAQ-блок */
+.faq { margin-top: 40px; }
+.faq-item {
+  border-top: 1px solid #333;
+}
+.faq-item > summary {
+  list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+  padding: 12px 0;
+  font-size: 20px; font-weight: bold; color: #fff;
+}
+.faq-item > summary::-webkit-details-marker { display: none; }
+.faq-item > summary::after {
+  content: "+"; color: #a855f7; font-size: 20px; transition: transform .2s;
+}
+.faq-item[open] > summary::after {
+  content: "–"; /* минус при раскрытии */
+}
+.faq-item > p {
+  margin: 8px 0 20px;
+  padding-left: 10px;
+  color: #ccc;
+}
+
+/* Модалка */
 #pay-modal {
   position: fixed; top:0; left:0; right:0; bottom:0;
   background: rgba(0,0,0,.6); display:none;
