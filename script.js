@@ -9,8 +9,8 @@ const productsData = [
   { id: 7,  name: "Набор ситха",         price: 4100, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
   { id: 8,  name: "Пропуск эпизода",     price: 2000, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
   { id: 9,  name: "Пропуск эпизода +",   price: 3800, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
-  { id: 10, name: "Пропуск завоевания",   price: 1100, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
-  { id: 11, name: "Пропуск завоевания +", price: 3000, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
+  { id: 10, name: "Пропуск завоевания",   price: 1100, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
+  { id: 11, name: "Пропуск завоевания +", price: 3000, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
 ];
 
 const productsContainer = document.getElementById("products");
