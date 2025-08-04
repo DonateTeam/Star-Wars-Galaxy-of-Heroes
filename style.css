@@ -198,10 +198,12 @@ body {
   margin: 0 0 12px;
 }
 
-/* скролл в корзине после 2-х товаров */
+/* показ скролла для корзины при >2 товарах */
 .cart.scrollable ul {
-  max-height: 200px;
+  max-height: 112px;   /* помещается ровно 2 элемента по ~56px */
   overflow-y: auto;
+}
+
 }
 .cart.scrollable ul::-webkit-scrollbar {
   width: 6px;
