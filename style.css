@@ -129,12 +129,15 @@ body {
   color: #fff; font-size: 20px; cursor: pointer;
 }
 
-/* корзина */
+/* корзина: flex-контейнер по вертикали */
 .cart {
+  display: flex;
+  flex-direction: column;
   flex: 0 0 250px; width: 250px;
   background: #1c1c1c; border-radius: 12px;
   padding: 12px; align-self: flex-start;
 }
+/* шапка корзины */
 .cart-header { margin-bottom: 12px; }
 .cart-header h2 {
   font-size: 18px; margin: 0; color: #fff;
@@ -143,13 +146,16 @@ body {
 .cart-count {
   font-size: 14px; color: #ccc; margin-top: 4px;
 }
-.cart ul {
-  list-style: none; padding: 0; margin: 0 0 12px;
-}
 
-/* ПОКАЗЫВАЕМ СКРОЛЛ ВНУТРИ #cart-items КОГДА >2 ЭЛЕМЕНТОВ */
+/* сам список товаров в корзине (flex-элемент) */
+#cart-items {
+  flex: 1 1 auto;
+  list-style: none; padding: 0; margin: 0;
+  overflow-y: hidden;
+}
+/* показываем скролл, когда в JS добавляется .scrollable */
 .cart.scrollable #cart-items {
-  max-height: 72px;    /* две карточки ~32px + промежуток */
+  max-height: 72px;    /* две карточки по ~32px + gap */
   overflow-y: auto;
 }
 .cart.scrollable #cart-items::-webkit-scrollbar {
@@ -165,8 +171,8 @@ body {
   background: #222; border-radius: 12px;
   padding: 12px; display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center; gap: 12px;
-  margin-bottom: 12px;
+  align-items: start; gap: 12px;
+  margin-bottom: 8px;
 }
 .cart-item-card .item-name,
 .cart-item-card .item-price {
@@ -175,10 +181,9 @@ body {
 /* растянутый счётчик в корзине */
 .cart-item-card .item-counter {
   grid-column: 1 / -1;
-  display: flex; justify-content: space-between;
-  align-items: center; background: #333;
-  border-radius: 12px; height: 32px;
-  padding: 0 8px; margin-top: 8px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: #333; border-radius: 12px;
+  height: 32px; padding: 0 8px; margin-top: 8px;
 }
 .cart-item-card .item-counter button {
   background: none; border: none;
