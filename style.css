@@ -192,15 +192,17 @@ body {
   margin: 0 0 12px;
 }
 
-/* скролл корзины, если >2 товаров */
-.cart.scrollable ul {
-  max-height: 72px;    /* две карточки по 32px + gap */
+/* показываем скролл внутри самого #cart-items, когда .cart.scrollable */
+.cart.scrollable #cart-items {
+  max-height: 72px;    /* две строки по 32px + 8px промежутки */
   overflow-y: auto;
 }
-.cart.scrollable ul::-webkit-scrollbar {
+
+/* тонкая полоска скролла */
+.cart.scrollable #cart-items::-webkit-scrollbar {
   width: 6px;
 }
-.cart.scrollable ul::-webkit-scrollbar-thumb {
+.cart.scrollable #cart-items::-webkit-scrollbar-thumb {
   background: rgba(255,255,255,0.3);
   border-radius: 3px;
 }
