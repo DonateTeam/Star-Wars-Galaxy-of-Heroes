@@ -270,40 +270,47 @@ body {
 .seo-block {
   margin-top: 40px;
 }
-/* сбрасываем стандартный маркер */
+
+/* сбрасываем маркер у <summary> */
 .seo-details summary {
   list-style: none;
   cursor: pointer;
   padding: 0;
-  position: relative; /* чтобы ::after позиционировалось */
+  position: relative; /* для стрелки */
 }
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
-/* заголовок и интро */
+
+/* обёртка заголовка + интро */
 .seo-summary {
   background: #1c1c1c;
   border-radius: 12px 12px 0 0;
   padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 .seo-summary h2 {
   margin: 0;
   font-size: 22px;
   color: #fff;
-  display: inline-block;
+  flex: 1;
 }
 .seo-summary .seo-intro {
-  margin-top: 8px;
+  margin: 8px 0 0;
   color: #ccc;
   line-height: 1.6;
+  flex: 1 1 100%;
+  margin-left: 20px; /* отступ до интро */
 }
 
 /* стрелка у summary */
 .seo-details summary::after {
   content: "▼";
   position: absolute;
-  top: 20px;     /* чуть ниже верхнего края */
-  right: 20px;   /* ровно 20px от правого края */
+  top: 24px;   /* выровнять с заголовком */
+  right: 20px;
   color: #a855f7;
   font-size: 16px;
   transition: transform .2s;
@@ -312,7 +319,7 @@ body {
   transform: rotate(180deg);
 }
 
-/* контент внутри details */
+/* скрываем контент до клика */
 .seo-content {
   background: #1c1c1c;
   border-radius: 0 0 12px 12px;
