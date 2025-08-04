@@ -1,3 +1,4 @@
+// script.js
 const productsData = [
   { id: 1,  name: "610 кристаллов",        price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
   { id: 2,  name: "1340 кристаллов",       price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
@@ -13,11 +14,10 @@ const productsData = [
 ];
 
 const productsContainer = document.getElementById("products");
-const cartItems         = document.getElementById("cart-items");
-const cartTotal         = document.getElementById("cart-total");
-const cartCount         = document.getElementById("cart-count");
-const checkoutBtn       = document.getElementById("checkout-btn");
-
+const cartItems          = document.getElementById("cart-items");
+const cartTotal          = document.getElementById("cart-total");
+const cartCount          = document.getElementById("cart-count");
+const checkoutBtn        = document.getElementById("checkout-btn");
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function renderProducts(filter = "all") {
@@ -66,8 +66,7 @@ function renderProducts(filter = "all") {
     btn.addEventListener("click", () => {
       const id   = +btn.closest(".product-card").dataset.id;
       const item = cart.find(x => x.id === id);
-      if (item.qty > 1) item.qty--;
-      else cart = cart.filter(x => x.id !== id);
+      if (item.qty > 1) item.qty--; else cart = cart.filter(x => x.id !== id);
       saveCart();
     })
   );
@@ -97,24 +96,24 @@ function renderCart() {
 
     li.querySelector(".inc").onclick = () => { it.qty++; saveCart(); };
     li.querySelector(".dec").onclick = () => {
-      if (it.qty > 1) it.qty--;
-      else cart = cart.filter(x => x.id !== it.id);
+      if (it.qty > 1) it.qty--; else cart = cart.filter(x => x.id !== it.id);
       saveCart();
     };
   });
 
   cartTotal.textContent = `${total} ₽`;
-  cartCount.textContent = 
+  cartCount.textContent  =
     `${count} ${
-      count % 10 === 1 && count % 100 !== 11 ? "товар" :
-      count % 10 >= 2 && count % 10 <= 4 &&
-      !(count % 100 >= 12 && count % 100 <= 14) ? "товара" : "товаров"
+      count % 10 === 1 && count % 100 !== 11 ? "товар"
+      : count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)
+        ? "товара" : "товаров"
     }`;
 
   checkoutBtn.disabled = total === 0;
 
-  // ⬇️ вот эта строка «включает» скролл при > 2 позиций
-  document.querySelector(".cart").classList.toggle("scrollable", cart.length > 2);
+  document
+    .querySelector(".cart")
+    .classList.toggle("scrollable", cart.length > 2);
 }
 
 function saveCart() {
