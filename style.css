@@ -117,7 +117,7 @@ body {
   height: 32px;
   line-height: 32px;
 }
-/* счётчик в карточке товара */
+/* счётчик */
 .product-card .counter {
   grid-row: 4;
   justify-self: stretch;
@@ -192,9 +192,9 @@ body {
   margin: 0 0 12px;
 }
 
-/* показываем скролл внутри #cart-items, когда >2 товаров */
+/* скролл в корзине при >2 товаров */
 .cart.scrollable #cart-items {
-  max-height: 150px; /* поместится ровно 2 элемента + запас */
+  max-height: 150px;
   overflow-y: auto;
 }
 .cart.scrollable #cart-items::-webkit-scrollbar {
@@ -275,6 +275,8 @@ body {
   background: #1c1c1c;
   overflow: hidden;
 }
+
+/* summary — только заголовок + вводный абзац */
 .seo-details summary {
   list-style: none;
   cursor: pointer;
@@ -284,34 +286,36 @@ body {
   color: #fff;
   position: relative;
   margin: 0;
+  /* сразу в одну строку: текст и стрелка */
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
+
+/* убираем маркер браузера */
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
-/* стрелка */
-.seo-details summary::after {
-  content: "▼";
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  color: #a855f7;
-  transition: transform .2s;
-}
-/* при открытии — переворачиваем */
-.seo-details[open] summary::after {
-  transform: translateY(-50%) rotate(180deg);
-}
 
-/* абзац, который всегда виден */
+/* всегда показываем первый абзац */
 .seo-intro {
-  padding: 0 20px 16px;
-  margin: 0;
+  margin: 8px 20px 16px;
   color: #ccc;
   line-height: 1.6;
 }
 
-/* скрываем/показываем остальной контент */
+/* стрелка */
+.seo-details summary::after {
+  content: "▼";
+  color: #a855f7;
+  font-size: 16px;
+  transition: transform .2s;
+}
+.seo-details[open] summary::after {
+  transform: rotate(180deg);
+}
+
+/* скрываем остальной контент, пока не открыт */
 .seo-content {
   display: none;
   padding: 0 20px 20px;
@@ -321,7 +325,7 @@ body {
   display: block;
 }
 
-/* стили внутри скрываемого блока */
+/* стили скрываемого блока */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
