@@ -270,46 +270,52 @@ body {
 .seo-block {
   margin-top: 40px;
 }
-.seo-block h2 {
-  font-size: 22px;
-  color: #fff;
-  margin-bottom: 12px;
-}
-.seo-intro {
-  color: #ccc;
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
 
-/* стили для details */
-.seo-details {
-  background: #1c1c1c;
-  border-radius: 12px;
-  overflow: hidden;
-}
+/* обнуляем дефолтные маркеры */
 .seo-details summary {
   list-style: none;
   cursor: pointer;
-  padding: 12px 20px;
-  position: relative;
+  padding: 0;
 }
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
+
+/* контейнер summary */
+.seo-summary {
+  background: #1c1c1c;
+  border-radius: 12px 12px 0 0;
+  padding: 16px 20px;
+}
+.seo-summary h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #fff;
+}
+.seo-summary .seo-intro {
+  margin: 8px 0 0;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* стрелка у summary */
 .seo-details summary::after {
   content: "▼";
   position: absolute;
   right: 20px;
+  top: 24px; /* выровнять по центру h2 */
   color: #a855f7;
   transition: transform .2s;
 }
 .seo-details[open] summary::after {
   transform: rotate(180deg);
 }
+
+/* контент внутри details */
 .seo-content {
+  background: #1c1c1c;
+  border-radius: 0 0 12px 12px;
   padding: 0 20px 20px;
-  color: #ccc;
-  line-height: 1.6;
 }
 .seo-content h3 {
   margin-top: 16px;
@@ -318,13 +324,17 @@ body {
 }
 .seo-content ul {
   margin: 8px 0 0 20px;
+  list-style: disc;
 }
 .seo-content ul li {
   margin-bottom: 8px;
+  color: #ccc;
 }
 .seo-content ul li strong {
   color: #a855f7;
 }
 .seo-content p {
   margin-top: 8px;
+  color: #ccc;
+  line-height: 1.6;
 }
