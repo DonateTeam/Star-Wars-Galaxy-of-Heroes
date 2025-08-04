@@ -192,7 +192,7 @@ body {
   margin: 0 0 12px;
 }
 
-/* ПОКАЗЫВАЕМ СКРОЛЛ ВНУТРИ #cart-items, КОГДА В КОРЗИНЕ >2 ЭЛЕМЕНТОВ */
+/* показываем скролл внутри #cart-items, когда >2 товаров */
 .cart.scrollable #cart-items {
   max-height: 150px;    /* две карточки и счётчик + запас */
   overflow-y: auto;
@@ -293,6 +293,7 @@ body {
   position: absolute;
   right: 20px;
   font-size: 16px;
+  color: #a855f7;             /* фиолетовая стрелка */
   transition: transform 0.2s;
 }
 .seo-details[open] summary::after {
@@ -314,6 +315,9 @@ body {
 }
 .seo-content ul li {
   margin-bottom: 6px;
+}
+.seo-content ul li strong {
+  color: #a855f7;             /* фиолетовый акцент */
 }
 .seo-content p {
   margin-top: 8px;
