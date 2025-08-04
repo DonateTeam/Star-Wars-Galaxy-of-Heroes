@@ -1,174 +1,145 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // === данные товаров ===
-  const productsData = [
-    { id:1,name:"610 кристаллов",price:550,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
-    { id:2,name:"1340 кристаллов",price:1100,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
-    { id:3,name:"2800 кристаллов",price:2100,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-    { id:4,name:"7370 кристаллов",price:4600,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
-    { id:5,name:"15710 кристаллов",price:8800,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
-    { id:6,name:"Набор джедая",   price:3200,category:"sets",    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
-    { id:7,name:"Набор ситха",    price:4100,category:"sets",    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-    { id:8,name:"Пропуск эпизода",price:2000,category:"passes",  img:"https://i.imgur.com/1QtabKs.png" },
-    { id:9,name:"Пропуск эпизода +",price:3800,category:"passes", img:"https://i.imgur.com/1QtabKs.png" },
-    { id:10,name:"Пропуск завоевания",price:1100,category:"passes",img:"https://i.imgur.com/1QtabKs.png" },
-    { id:11,name:"Пропуск завоевания +",price:3000,category:"passes",img:"https://i.imgur.com/1QtabKs.png" },
-  ];
+const productsData = [
+  { id: 1,  name: "610 кристаллов",   price: 550,  category: "crystals", img: "https://i.imgur.com/12345.png" },
+  { id: 2,  name: "1340 кристаллов",  price: 1100, category: "crystals", img: "https://i.imgur.com/12345.png" },
+  { id: 3,  name: "2800 кристаллов",  price: 2100, category: "crystals", img: "https://i.imgur.com/12345.png" },
+  { id: 4,  name: "7370 кристаллов",  price: 4600, category: "crystals", img: "https://i.imgur.com/12345.png" },
+  { id: 5,  name: "15710 кристаллов", price: 8800, category: "crystals", img: "https://i.imgur.com/12345.png" },
+  { id: 6,  name: "Набор джедая",     price: 3200, category: "sets",     img: "https://i.imgur.com/12345.png" },
+  { id: 7,  name: "Набор ситха",      price: 4100, category: "sets",     img: "https://i.imgur.com/12345.png" },
+  { id: 8,  name: "Боевой пропуск",   price: 950,  category: "passes",   img: "https://i.imgur.com/12345.png" },
+  { id: 9,  name:"Пропуск эпизода +",  price:3800,category:  "passes",   img:"https://i.imgur.com/1QtabKs.png" },
+  { id: 10, name:"Пропуск завоевания",  price:1100,category:  "passes",  img:"https://i.imgur.com/1QtabKs.png" },
+  { id: 11, name:"Пропуск завоевания +",  price:3000,category:  "passes",  img:"https://i.imgur.com/1QtabKs.png" },
+];
 
-  // === селекторы ===
-  const productsContainer = document.getElementById("products");
-  const cartItems          = document.getElementById("cart-items");
-  const cartTotal          = document.getElementById("cart-total");
-  const cartCount          = document.getElementById("cart-count");
-  const checkoutBtn        = document.getElementById("checkout-btn");
-  const clearCartImg       = document.getElementById("clear-cart-img");
+const productsContainer = document.getElementById("products");
+const cartItems          = document.getElementById("cart-items");
+const cartTotal          = document.getElementById("cart-total");
+const cartCount          = document.getElementById("cart-count");
+const checkoutBtn        = document.getElementById("checkout-btn");
 
-  let cart = JSON.parse(localStorage.getItem("cart"))||[];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // плавная анимация числа
-  function animateValue(el,start,end,d=500){
-    let sTime=null;
-    function step(ts){
-      if(!sTime) sTime=ts;
-      const prog=Math.min((ts-sTime)/d,1);
-      const val=Math.floor(prog*(end-start)+start);
-      el.textContent=`${val} ₽`;
-      if(prog<1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
+function animateValue(el, start, end, duration = 300) {
+  let ts0 = null;
+  function step(ts) {
+    if (!ts0) ts0 = ts;
+    const prog = Math.min((ts - ts0) / duration, 1);
+    el.textContent = Math.floor(start + (end - start) * prog) + " ₽";
+    if (prog < 1) requestAnimationFrame(step);
   }
+  requestAnimationFrame(step);
+}
 
-  // рендер продуктов
-  function renderProducts(filter="all"){
-    productsContainer.innerHTML="";
-    const list = filter==="all"
-      ? productsData
-      : productsData.filter(p=>p.category===filter);
-    list.forEach(prod=>{
-      const inCart=cart.find(i=>i.id===prod.id);
-      const qty=inCart?.qty||0;
-      const card=document.createElement("div");
-      card.className="product-card"; card.dataset.id=prod.id;
-      card.innerHTML=`
-        <img src="${prod.img}" alt="${prod.name}">
-        <h3>${prod.name}</h3>
-        <div class="price">${prod.price} ₽</div>
-        ${qty>0
-          ?`<div class="counter">
-              <button class="dec">−</button>
-              <span class="count">${qty}</span>
-              <button class="inc">+</button>
-            </div>`
-          :`<button class="add-btn">+</button>`
-        }
-      `;
-      productsContainer.appendChild(card);
-    });
-    // кнопки +/−
-    document.querySelectorAll(".add-btn").forEach(btn=>
-      btn.addEventListener("click",()=>{
-        const id=+btn.closest(".product-card").dataset.id;
-        cart.push({id,qty:1});
-        saveAndRepaint();
-      })
-    );
-    document.querySelectorAll(".inc").forEach(btn=>
-      btn.addEventListener("click",()=>{
-        const id=+btn.closest(".product-card").dataset.id;
-        cart.find(i=>i.id===id).qty++;
-        saveAndRepaint();
-      })
-    );
-    document.querySelectorAll(".dec").forEach(btn=>
-      btn.addEventListener("click",()=>{
-        const id=+btn.closest(".product-card").dataset.id;
-        const item=cart.find(i=>i.id===id);
-        if(item.qty>1) item.qty--; else cart=cart.filter(i=>i.id!==id);
-        saveAndRepaint();
-      })
-    );
-  }
+function renderProducts(category = "all") {
+  productsContainer.innerHTML = "";
+  const list = category === "all" ? productsData : productsData.filter(p => p.category === category);
+  list.forEach(p => {
+    const inCart = cart.find(x => x.id === p.id);
+    const qty = inCart ? inCart.qty : 0;
+    const div = document.createElement("div");
+    div.className = "product-card";
+    div.dataset.id = p.id;
+    div.innerHTML = `
+      <img src="${p.img}" alt="${p.name}">
+      <h3>${p.name}</h3>
+      <div class="price">${p.price} ₽</div>
+      ${qty > 0
+        ? `<div class="counter">
+             <button class="dec">−</button>
+             <span class="count">${qty}</span>
+             <button class="inc">+</button>
+           </div>`
+        : `<button class="add-btn">+</button>`
+      }
+    `;
+    productsContainer.appendChild(div);
+  });
 
-  // рендер корзины
-  function renderCart(){
-    cartItems.innerHTML="";
-    let total=0, countSum=0;
-    cart.forEach(item=>{
-      const prod=productsData.find(p=>p.id===item.id);
-      total+=prod.price*item.qty; countSum+=item.qty;
-      const li=document.createElement("li");
-      li.className="cart-item-card";
-      li.innerHTML=`
-        <div class="item-header">
-          <div class="item-name">${prod.name}</div>
-          <div class="item-price">${prod.price} ₽</div>
-        </div>
-        <div class="item-counter">
-          <button class="dec">−</button>
-          <span class="count">${item.qty}</span>
-          <button class="inc">+</button>
-        </div>
-      `;
-      cartItems.appendChild(li);
-      // +/−
-      li.querySelector(".inc").addEventListener("click",()=>{
-        item.qty++; saveAndRepaint();
-      });
-      li.querySelector(".dec").addEventListener("click",()=>{
-        if(item.qty>1) item.qty--; else cart=cart.filter(i=>i.id!==item.id);
-        saveAndRepaint();
-      });
-    });
-    const prev=parseInt(cartTotal.dataset.prev)||0;
-    animateValue(cartTotal,prev,total);
-    cartTotal.dataset.prev=total;
-    const word = countSum%10===1&&countSum%100!==11?"товар":
-                 countSum%10>=2&&countSum%10<=4?"товара":"товаров";
-    cartCount.textContent=`${countSum} ${word}`;
-    checkoutBtn.disabled = total===0;
-    document.querySelector(".cart").classList.toggle("scrollable",cart.length>2);
-  }
-
-  // сохранить + рендер
-  function saveAndRepaint(){
-    localStorage.setItem("cart",JSON.stringify(cart));
-    renderProducts(document.querySelector(".filter-btn.active").dataset.category);
-    renderCart();
-  }
-
-  // фильтры
-  document.querySelectorAll(".filter-btn").forEach(btn=>
-    btn.addEventListener("click",()=>{
-      document.querySelectorAll(".filter-btn")
-              .forEach(b=>b.classList.remove("active"));
-      btn.classList.add("active");
-      renderProducts(btn.dataset.category);
+  document.querySelectorAll(".add-btn").forEach(btn =>
+    btn.addEventListener("click", () => {
+      const id = +btn.closest(".product-card").dataset.id;
+      cart.push({ id, qty: 1 });
+      save();
     })
   );
+  document.querySelectorAll(".inc").forEach(btn =>
+    btn.addEventListener("click", () => {
+      const id = +btn.closest(".product-card").dataset.id;
+      cart.find(x => x.id === id).qty++;
+      save();
+    })
+  );
+  document.querySelectorAll(".dec").forEach(btn =>
+    btn.addEventListener("click", () => {
+      const id = +btn.closest(".product-card").dataset.id;
+      const item = cart.find(x => x.id === id);
+      if (item.qty > 1) item.qty--; else cart = cart.filter(x => x.id !== id);
+      save();
+    })
+  );
+}
 
-  // Перейти в Telegram сразу
-  checkoutBtn.addEventListener("click", e=>{
-    e.preventDefault();
-    if(checkoutBtn.disabled) return;
-    const title = document.querySelector(".game-title").textContent.trim();
-    let text = `${title}\n\nВаш заказ:\n`, total=0;
-    cart.forEach(i=>{
-      const p = productsData.find(x=>x.id===i.id);
-      text += `• ${p.name} × ${i.qty} — ${p.price * i.qty} ₽\n`;
-      total += p.price * i.qty;
-    });
-    text += `\nИтого: ${total} ₽`;
-    window.open(
-      `https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`,
-      "_blank"
-    );
+function renderCart() {
+  cartItems.innerHTML = "";
+  let total = 0, count = 0;
+  cart.forEach(it => {
+    const p = productsData.find(x => x.id === it.id);
+    total += p.price * it.qty;
+    count += it.qty;
+    const li = document.createElement("li");
+    li.className = "cart-item-card";
+    li.innerHTML = `
+      <div class="item-name">${p.name}</div>
+      <div class="item-price">${p.price} ₽</div>
+      <div class="item-counter">
+        <button class="dec">−</button>
+        <span class="count">${it.qty}</span>
+        <button class="inc">+</button>
+      </div>
+    `;
+    cartItems.appendChild(li);
+
+    li.querySelector(".inc").onclick = () => { it.qty++; save(); };
+    li.querySelector(".dec").onclick = () => {
+      if (it.qty > 1) it.qty--; else cart = cart.filter(x => x.id !== it.id);
+      save();
+    };
   });
 
-  // очистка
-  clearCartImg.addEventListener("click",()=>{
-    cart=[]; saveAndRepaint();
-  });
+  animateValue(cartTotal, +(cartTotal.textContent||0), total);
+  cartCount.textContent = `${count} ${count % 10 === 1 && count % 100 !== 11 ? "товар" : count % 10 <=4 && count % 100 < 10 ? "товара" : "товаров"}`;
+  checkoutBtn.disabled = !total;
+}
 
-  // старт
-  renderProducts();
+function save() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  const active = document.querySelector(".filter-btn.active").dataset.category;
+  renderProducts(active);
   renderCart();
+}
+
+document.querySelectorAll(".filter-btn").forEach(b =>
+  b.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
+    b.classList.add("active");
+    renderProducts(b.dataset.category);
+  })
+);
+
+checkoutBtn.addEventListener("click", () => {
+  // сразу отправляем в Telegram
+  const title = "Star Wars: Galaxy of Heroes";
+  let text = `${title}\n\nСодержимое корзины:\n`;
+  let total = 0;
+  cart.forEach(it => {
+    const p = productsData.find(x => x.id === it.id);
+    text += `• ${p.name} × ${it.qty} — ${p.price * it.qty} ₽\n`;
+    total += p.price * it.qty;
+  });
+  text += `\nИтого: ${total} ₽`;
+  window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`, "_blank");
 });
+
+renderProducts();
+renderCart();
