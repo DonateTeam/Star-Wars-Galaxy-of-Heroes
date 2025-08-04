@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   // === данные товаров ===
   const productsData = [
     { id:1,name:"610 кристаллов",price:550,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
     { id:3,name:"2800 кристаллов",price:2100,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
     { id:4,name:"7370 кристаллов",price:4600,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/7370.png" },
     { id:5,name:"15710 кристаллов",price:8800,category:"crystals",img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
-    { id:6,name:"Набор джедая",    price:3200,category:"sets",    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
-    { id:7,name:"Набор ситха",     price:4100,category:"sets",    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-    { id:8,name:"Пропуск эпизода", price:2000,category:"passes",  img:"https://i.imgur.com/1QtabKs.png" },
+    { id:6,name:"Набор джедая",   price:3200,category:"sets",    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
+    { id:7,name:"Набор ситха",    price:4100,category:"sets",    img:"https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
+    { id:8,name:"Пропуск эпизода",price:2000,category:"passes",  img:"https://i.imgur.com/1QtabKs.png" },
     { id:9,name:"Пропуск эпизода +",price:3800,category:"passes", img:"https://i.imgur.com/1QtabKs.png" },
     { id:10,name:"Пропуск завоевания",price:1100,category:"passes",img:"https://i.imgur.com/1QtabKs.png" },
     { id:11,name:"Пропуск завоевания +",price:3000,category:"passes",img:"https://i.imgur.com/1QtabKs.png" },
@@ -21,10 +21,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   const cartCount          = document.getElementById("cart-count");
   const checkoutBtn        = document.getElementById("checkout-btn");
   const clearCartImg       = document.getElementById("clear-cart-img");
-  const dialog             = document.getElementById("pay-dialog");
-  const closeBtn           = dialog.querySelector(".modal-close");
-  const tgBtn              = dialog.querySelector(".messenger-btn.telegram");
-  const waBtn              = dialog.querySelector(".messenger-btn.whatsapp");
 
   let cart = JSON.parse(localStorage.getItem("cart"))||[];
 
@@ -149,48 +145,27 @@ document.addEventListener("DOMContentLoaded", ()=>{
     })
   );
 
-  // открытие <dialog>
-  checkoutBtn.addEventListener("click",e=>{
+  // Перейти в Telegram сразу
+  checkoutBtn.addEventListener("click", e=>{
     e.preventDefault();
-    if(!checkoutBtn.disabled) dialog.showModal();
+    if(checkoutBtn.disabled) return;
+    const title = document.querySelector(".game-title").textContent.trim();
+    let text = `${title}\n\nВаш заказ:\n`, total=0;
+    cart.forEach(i=>{
+      const p = productsData.find(x=>x.id===i.id);
+      text += `• ${p.name} × ${i.qty} — ${p.price * i.qty} ₽\n`;
+      total += p.price * i.qty;
+    });
+    text += `\nИтого: ${total} ₽`;
+    window.open(
+      `https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`,
+      "_blank"
+    );
   });
-  // закрытие
-  closeBtn.addEventListener("click",()=>dialog.close());
-  dialog.addEventListener("cancel",e=>e.preventDefault());
 
   // очистка
   clearCartImg.addEventListener("click",()=>{
     cart=[]; saveAndRepaint();
-  });
-
-  // Telegram
-  tgBtn.addEventListener("click",()=>{
-    const title = document.querySelector(".game-title").textContent;
-    let text = `${title}\n\nСодержимое корзины:\n`;
-    cart.forEach(i=>{
-      const p=productsData.find(x=>x.id===i.id);
-      text+=`• ${p.name} × ${i.qty} — ${p.price*i.qty} ₽\n`;
-    });
-    text+=`\nИтого: ${cart.reduce((s,i)=>
-      s + productsData.find(p=>p.id===i.id).price*i.qty,0
-    )} ₽`;
-    window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(text)}`,"_blank");
-    dialog.close();
-  });
-
-  // WhatsApp
-  waBtn.addEventListener("click",()=>{
-    const title = document.querySelector(".game-title").textContent;
-    let text = `*${title}*\n\nСодержимое корзины:\n`;
-    cart.forEach(i=>{
-      const p=productsData.find(x=>x.id===i.id);
-      text+=`- ${p.name} × ${i.qty} — ${p.price*i.qty} ₽\n`;
-    });
-    text+=`\n*Итого:* ${cart.reduce((s,i)=>
-      s + productsData.find(p=>p.id===i.id).price*i.qty,0
-    )} ₽`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`,"_blank");
-    dialog.close();
   });
 
   // старт
