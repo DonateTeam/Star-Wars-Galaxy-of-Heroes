@@ -13,10 +13,10 @@ const productsData = [
 ];
 
 const productsContainer = document.getElementById("products");
-const cartItems          = document.getElementById("cart-items");
-const cartTotal          = document.getElementById("cart-total");
-const cartCount          = document.getElementById("cart-count");
-const checkoutBtn        = document.getElementById("checkout-btn");
+const cartItems         = document.getElementById("cart-items");
+const cartTotal         = document.getElementById("cart-total");
+const cartCount         = document.getElementById("cart-count");
+const checkoutBtn       = document.getElementById("checkout-btn");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -30,9 +30,9 @@ function renderProducts(filter = "all") {
     const inCart = cart.find(x => x.id === p.id);
     const qty    = inCart ? inCart.qty : 0;
     const div = document.createElement("div");
-    div.className = "product-card";
+    div.className  = "product-card";
     div.dataset.id = p.id;
-    div.innerHTML = `
+    div.innerHTML  = `
       <img src="${p.img}" alt="${p.name}">
       <h3>${p.name}</h3>
       <div class="price">${p.price} ₽</div>
@@ -48,7 +48,6 @@ function renderProducts(filter = "all") {
     productsContainer.appendChild(div);
   });
 
-  // навешиваем обработчики на +/−
   document.querySelectorAll(".add-btn").forEach(btn =>
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
@@ -65,7 +64,7 @@ function renderProducts(filter = "all") {
   );
   document.querySelectorAll(".dec").forEach(btn =>
     btn.addEventListener("click", () => {
-      const id = +btn.closest(".product-card").dataset.id;
+      const id   = +btn.closest(".product-card").dataset.id;
       const item = cart.find(x => x.id === id);
       if (item.qty > 1) item.qty--;
       else cart = cart.filter(x => x.id !== id);
@@ -98,23 +97,24 @@ function renderCart() {
 
     li.querySelector(".inc").onclick = () => { it.qty++; saveCart(); };
     li.querySelector(".dec").onclick = () => {
-      if (it.qty > 1) it.qty--; else cart = cart.filter(x => x.id !== it.id);
+      if (it.qty > 1) it.qty--;
+      else cart = cart.filter(x => x.id !== it.id);
       saveCart();
     };
   });
 
-  // обновляем общую сумму и кол-во
   cartTotal.textContent = `${total} ₽`;
-  cartCount.textContent =
-    `${count} ${count % 10 === 1 && count % 100 !== 11 ? "товар"
-      : count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)
-        ? "товара" : "товаров"}`;
+  cartCount.textContent = 
+    `${count} ${
+      count % 10 === 1 && count % 100 !== 11 ? "товар" :
+      count % 10 >= 2 && count % 10 <= 4 &&
+      !(count % 100 >= 12 && count % 100 <= 14) ? "товара" : "товаров"
+    }`;
 
   checkoutBtn.disabled = total === 0;
 
-  // ПЕРЕКЛЮЧАЕМ СКРОЛЛ при >2 товаров:
-  const cartBox = document.querySelector(".cart");
-  cartBox.classList.toggle("scrollable", cart.length > 2);
+  // ⬇️ вот эта строка «включает» скролл при > 2 позиций
+  document.querySelector(".cart").classList.toggle("scrollable", cart.length > 2);
 }
 
 function saveCart() {
@@ -124,7 +124,6 @@ function saveCart() {
   renderCart();
 }
 
-// фильтры
 document.querySelectorAll(".filter-btn").forEach(b =>
   b.addEventListener("click", () => {
     document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
@@ -133,12 +132,9 @@ document.querySelectorAll(".filter-btn").forEach(b =>
   })
 );
 
-// кнопка оплаты — сразу уходим в Telegram
 checkoutBtn.addEventListener("click", () => {
   const title = "Star Wars: Galaxy of Heroes";
-  let msg = `${title}\n\nСодержимое корзины:\n`;
-  let total = 0;
-
+  let msg = `${title}\n\nСодержимое корзины:\n`, total = 0;
   cart.forEach(it => {
     const p = productsData.find(x => x.id === it.id);
     msg += `• ${p.name} × ${it.qty} — ${p.price * it.qty} ₽\n`;
@@ -148,6 +144,5 @@ checkoutBtn.addEventListener("click", () => {
   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(msg)}`, "_blank");
 });
 
-// initial
 renderProducts();
 renderCart();
