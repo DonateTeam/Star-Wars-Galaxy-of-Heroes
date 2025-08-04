@@ -57,14 +57,14 @@ body {
 .filter-buttons {
   margin-top: 12px;
   display: flex;
-  gap: 20px;   /* увеличенный отступ между кнопками */
+  gap: 20px;   /* отступ между кнопками */
 }
 .filter-btn {
   background: #222;
   color: #fff;
   border: none;
-  padding: 14px 24px;  /* увеличенный padding */
-  font-size: 18px;     /* больший шрифт */
+  padding: 14px 24px;
+  font-size: 18px;
   border-radius: 12px;
   cursor: pointer;
 }
@@ -89,7 +89,7 @@ body {
   background: #1c1c1c;
   border-radius: 12px;
   display: grid;
-  /* 4 строки: 140px (картинка), 32px (заголовок), 32px (цена), 32px (действия) */
+  /* 4 ряда: картинка, заголовок, цена, действия */
   grid-template-rows: 140px 32px 32px 32px;
   gap: 8px;
   padding: 12px;
@@ -97,8 +97,7 @@ body {
 }
 .product-card img {
   grid-row: 1;
-  width: 100%;
-  height: 140px;
+  width: 100%; height: 140px;
   object-fit: contain;
   border-radius: 8px;
 }
@@ -114,7 +113,6 @@ body {
   background: #555;
   color: #fff;
   border-radius: 12px;
-  display: inline-block;
   width: 100%;
   height: 32px;
   line-height: 32px;
@@ -126,13 +124,12 @@ body {
   justify-self: stretch;
   align-self: center;
   display: flex;
-  justify-content: space-between; /* кнопки по краям */
+  justify-content: space-between;
   align-items: center;
   background: #222;
   border-radius: 12px;
-  height: 32px;      /* фиксированная высота */
+  height: 32px;
   padding: 0 12px;
-  margin-top: 0;
 }
 .product-card .counter button {
   background: none;
@@ -140,8 +137,7 @@ body {
   color: #a855f7;
   font-size: 20px;
   cursor: pointer;
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
 }
 .product-card .counter .count {
   color: #fff;
@@ -157,13 +153,11 @@ body {
   align-self: center;
   background: #a855f7;
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 32px; height: 32px;
   border-radius: 50%;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  margin-top: 0;
 }
 
 /* корзина */
@@ -198,12 +192,10 @@ body {
   margin: 0 0 12px;
 }
 
-/* показ скролла для корзины при >2 товарах */
+/* скролл корзины, если >2 товаров */
 .cart.scrollable ul {
-  max-height: 112px;   /* помещается ровно 2 элемента по ~56px */
+  max-height: 72px;    /* две карточки по 32px + gap */
   overflow-y: auto;
-}
-
 }
 .cart.scrollable ul::-webkit-scrollbar {
   width: 6px;
@@ -229,9 +221,9 @@ body {
   font-size: 14px;
   color: #fff;
 }
-/* счётчик в корзине — растянуть на всю ширину */
+/* растянутый счётчик в корзине */
 .cart-item-card .item-counter {
-  grid-column: 1 / -1;      /* занимает обе колонки */
+  grid-column: 1 / -1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -247,8 +239,7 @@ body {
   font-size: 18px;
   color: #a855f7;
   cursor: pointer;
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
 }
 .cart-item-card .count {
   color: #fff;
