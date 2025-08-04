@@ -48,6 +48,7 @@ function renderProducts(filter = "all") {
     productsContainer.appendChild(div);
   });
 
+  // навешиваем обработчики на +/−
   document.querySelectorAll(".add-btn").forEach(btn =>
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
@@ -66,7 +67,8 @@ function renderProducts(filter = "all") {
     btn.addEventListener("click", () => {
       const id = +btn.closest(".product-card").dataset.id;
       const item = cart.find(x => x.id === id);
-      if (item.qty > 1) item.qty--; else cart = cart.filter(x => x.id !== id);
+      if (item.qty > 1) item.qty--;
+      else cart = cart.filter(x => x.id !== id);
       saveCart();
     })
   );
@@ -101,13 +103,18 @@ function renderCart() {
     };
   });
 
+  // обновляем общую сумму и кол-во
   cartTotal.textContent = `${total} ₽`;
-  cartCount.textContent = 
+  cartCount.textContent =
     `${count} ${count % 10 === 1 && count % 100 !== 11 ? "товар"
-           : count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)
-             ? "товара" : "товаров"}`;
+      : count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)
+        ? "товара" : "товаров"}`;
 
   checkoutBtn.disabled = total === 0;
+
+  // ПЕРЕКЛЮЧАЕМ СКРОЛЛ при >2 товаров:
+  const cartBox = document.querySelector(".cart");
+  cartBox.classList.toggle("scrollable", cart.length > 2);
 }
 
 function saveCart() {
@@ -117,6 +124,7 @@ function saveCart() {
   renderCart();
 }
 
+// фильтры
 document.querySelectorAll(".filter-btn").forEach(b =>
   b.addEventListener("click", () => {
     document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
@@ -125,6 +133,7 @@ document.querySelectorAll(".filter-btn").forEach(b =>
   })
 );
 
+// кнопка оплаты — сразу уходим в Telegram
 checkoutBtn.addEventListener("click", () => {
   const title = "Star Wars: Galaxy of Heroes";
   let msg = `${title}\n\nСодержимое корзины:\n`;
@@ -139,5 +148,6 @@ checkoutBtn.addEventListener("click", () => {
   window.open(`https://t.me/DonateTeam_support?text=${encodeURIComponent(msg)}`, "_blank");
 });
 
+// initial
 renderProducts();
 renderCart();
