@@ -5,11 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Star Wars: Galaxy of Heroes</title>
   <link rel="stylesheet" href="style.css" />
-  <!-- убрали integrity/crossorigin, чтобы ничего не блокировалось -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
 </head>
 <body>
   <div class="container">
@@ -21,11 +16,8 @@
 
     <!-- Шапка -->
     <div class="header-grid">
-      <img
-        src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png"
-        alt="Logo"
-        class="game-logo"
-      />
+      <img src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png"
+           alt="Logo" class="game-logo" />
       <div class="header-info">
         <h1 class="game-title">Star Wars: Galaxy of Heroes</h1>
         <div class="filter-buttons">
@@ -42,88 +34,13 @@
       <section id="products" class="products"></section>
       <aside class="cart">
         <div class="cart-header">
-          <h2>
-            Корзина
-            <span id="cart-total">0 ₽</span>
-            <img
-              id="clear-cart-img"
-              src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/clear.png"
-              alt="Очистить корзину"
-              class="clear-img"
-            />
-          </h2>
+          <h2>Корзина <span id="cart-total">0 ₽</span></h2>
           <div id="cart-count" class="cart-count">0 товаров</div>
         </div>
         <ul id="cart-items"></ul>
-        <button id="checkout-btn" disabled>Перейти к оплате</button>
+        <button id="checkout-btn" disabled>Оплатить</button>
       </aside>
     </main>
-
-    <!-- Описание игры -->
-    <details class="more-info">
-      <summary>Описание игры</summary>
-      <p>
-        <strong>Star Wars: Galaxy of Heroes</strong> — это коллекционная RPG-стратегия во вселенной «Звёздных Войн», где вы быстро прокачиваете героев, собираете отряды и сражаетесь в эпичных PvP-аренах. С донатом процесс идёт ещё быстрее: появляются легендарные персонажи, эксклюзивные скины и внутриигровые бустеры.
-      </p>
-      <h2>Какие виды доната?</h2>
-      <ul>
-        <li><span class="highlight">Кристаллы</span> — основная валюта.</li>
-        <li><span class="highlight">Боевые наборы</span> — гарантированные ресурсы.</li>
-        <li><span class="highlight">Пропуска сезона</span> — эксклюзивные награды.</li>
-      </ul>
-      <h2>Что выбрать?</h2>
-      <p>
-        Если хотите быстро прокачаться — берите <span class="highlight">кристаллы</span>. Для PvP — <span class="highlight">боевые наборы</span>. Регулярный фарм — <span class="highlight">пропуск сезона</span>.
-      </p>
-      <h2>Почему DonateTeam?</h2>
-      <p>
-        Гарантируем <strong>скорость</strong>, <strong>безопасность</strong> и <strong>выгодные цены</strong>. Просто введите свой Game ID — и ресурсы будут зачислены моментально!
-      </p>
-    </details>
-
-    <!-- FAQ-блок -->
-    <section class="faq">
-      <h2 class="faq-title">FAQ</h2>
-      <details class="faq-item">
-        <summary>Как быстро зачисляются кристаллы?</summary>
-        <p>Мгновенно после оплаты.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Безопасно ли оплачивать?</summary>
-        <p>Да, мы сотрудничаем только с проверенными платёжными провайдерами.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Как подарить кристаллы другу?</summary>
-        <p>Укажите Game ID друга при оформлении.</p>
-      </details>
-    </section>
-
-    <!-- Модалка оплаты через <dialog> -->
-    <dialog id="pay-dialog">
-      <button class="modal-close">×</button>
-      <div class="modal-content">
-        <button class="messenger-btn telegram"><i class="fab fa-telegram-plane"></i> Пополнить через Telegram</button>
-        <button class="messenger-btn whatsapp"><i class="fab fa-whatsapp"></i> Пополнить через WhatsApp</button>
-      </div>
-    </dialog>
-
-    <!-- Футер -->
-    <footer class="site-footer">
-      <hr class="footer-separator"/>
-      <div class="footer-content">
-        <p class="footer-text">DonateTeam. Магазин пополнения и донатов.</p>
-        <div class="footer-buttons">
-          <a href="https://t.me/DonateTeam_channel" target="_blank" class="footer-btn">
-            <img
-              src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/telegram.png"
-              alt="Telegram"
-              style="width:20px; height:20px;"
-            />
-          </a>
-        </div>
-      </div>
-      <hr class="footer-separator"/>
-    </footer>
   </div>
 
   <script src="script.js"></script>
