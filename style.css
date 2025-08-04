@@ -1,10 +1,11 @@
+/* style.css */
 /* убрать все встроенные скроллбары */
 * {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+  scrollbar-width: none!important;
+  -ms-overflow-style: none!important;
 }
 *::-webkit-scrollbar {
-  display: none !important;
+  display: none!important;
 }
 
 /* базовые */
@@ -27,13 +28,8 @@ body {
   padding: 20px 0 10px;
   margin-bottom: 20px;
 }
-.breadcrumbs a {
-  color: #aaa;
-  text-decoration: none;
-}
-.game-title-inline {
-  color: #fff;
-}
+.breadcrumbs a { color: #aaa; text-decoration: none; }
+.game-title-inline { color: #fff; }
 
 /* шапка */
 .header-grid {
@@ -44,20 +40,18 @@ body {
   margin-bottom: 30px;
 }
 .game-logo {
-  width: 100px;
-  height: 100px;
+  width: 100px; height: 100px;
   border-radius: 12px;
 }
 .header-info .game-title {
-  margin: 0;
-  font-size: 28px;
+  margin: 0; font-size: 28px;
 }
 
 /* фильтры */
 .filter-buttons {
   margin-top: 12px;
   display: flex;
-  gap: 20px;   /* отступ между кнопками */
+  gap: 20px;
 }
 .filter-btn {
   background: #222;
@@ -74,13 +68,12 @@ body {
 
 /* основной контент */
 .main-content {
-  display: flex;
-  gap: 20px;
+  display: flex; gap: 20px;
 }
 .products {
   flex: 1 1 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px,1fr));
   gap: 20px;
 }
 
@@ -89,7 +82,6 @@ body {
   background: #1c1c1c;
   border-radius: 12px;
   display: grid;
-  /* 4 ряда: картинка, заголовок, цена, действия */
   grid-template-rows: 140px 32px 32px 32px;
   gap: 8px;
   padding: 12px;
@@ -98,107 +90,68 @@ body {
 .product-card img {
   grid-row: 1;
   width: 100%; height: 140px;
-  object-fit: contain;
-  border-radius: 8px;
+  object-fit: contain; border-radius: 8px;
 }
 .product-card h3 {
   grid-row: 2;
-  margin: 0;
-  font-size: 16px;
-  line-height: 32px;
-  overflow: hidden;
+  margin: 0; font-size: 16px;
+  line-height: 32px; overflow: hidden;
 }
 .product-card .price {
   grid-row: 3;
-  background: #555;
-  color: #fff;
-  border-radius: 12px;
-  width: 100%;
-  height: 32px;
-  line-height: 32px;
+  background: #555; color: #fff;
+  border-radius: 12px; width: 100%;
+  height: 32px; line-height: 32px;
 }
-
 /* счётчик в карточке товара */
 .product-card .counter {
   grid-row: 4;
-  justify-self: stretch;
-  align-self: center;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #222;
-  border-radius: 12px;
-  height: 32px;
-  padding: 0 12px;
+  justify-self: stretch; align-self: center;
+  display: flex; justify-content: space-between; align-items: center;
+  background: #222; border-radius: 12px;
+  height: 32px; padding: 0 12px;
 }
 .product-card .counter button {
-  background: none;
-  border: none;
-  color: #a855f7;
-  font-size: 20px;
-  cursor: pointer;
-  width: 28px; height: 28px;
+  background: none; border: none;
+  color: #a855f7; font-size: 20px;
+  cursor: pointer; width: 28px; height: 28px;
 }
 .product-card .counter .count {
-  color: #fff;
-  font-size: 16px;
-  min-width: 24px;
-  text-align: center;
+  color: #fff; font-size: 16px;
+  min-width: 24px; text-align: center;
 }
-
 /* кнопка «+» */
 .product-card .add-btn {
   grid-row: 4;
-  justify-self: center;
-  align-self: center;
-  background: #a855f7;
-  border: none;
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
+  justify-self: center; align-self: center;
+  background: #a855f7; border: none;
+  width: 32px; height: 32px; border-radius: 50%;
+  color: #fff; font-size: 20px; cursor: pointer;
 }
 
 /* корзина */
 .cart {
-  flex: 0 0 250px;
-  width: 250px;
-  background: #1c1c1c;
-  border-radius: 12px;
-  padding: 12px;
-  align-self: flex-start;
+  flex: 0 0 250px; width: 250px;
+  background: #1c1c1c; border-radius: 12px;
+  padding: 12px; align-self: flex-start;
 }
-.cart-header {
-  margin-bottom: 12px;
-}
+.cart-header { margin-bottom: 12px; }
 .cart-header h2 {
-  font-size: 18px;
-  margin: 0;
-  color: #fff;
+  font-size: 18px; margin: 0; color: #fff;
 }
-#cart-total {
-  color: #a855f7;
-  margin-left: 8px;
-}
+#cart-total { color: #a855f7; margin-left: 8px; }
 .cart-count {
-  font-size: 14px;
-  color: #ccc;
-  margin-top: 4px;
+  font-size: 14px; color: #ccc; margin-top: 4px;
 }
 .cart ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 12px;
+  list-style: none; padding: 0; margin: 0 0 12px;
 }
 
-/* показываем скролл внутри самого #cart-items, когда .cart.scrollable */
+/* ПОКАЗЫВАЕМ СКРОЛЛ ВНУТРИ #cart-items КОГДА >2 ЭЛЕМЕНТОВ */
 .cart.scrollable #cart-items {
-  max-height: 72px;    /* две строки по 32px + 8px промежутки */
+  max-height: 72px;    /* две карточки ~32px + промежуток */
   overflow-y: auto;
 }
-
-/* тонкая полоска скролла */
 .cart.scrollable #cart-items::-webkit-scrollbar {
   width: 6px;
 }
@@ -209,60 +162,41 @@ body {
 
 /* товары в корзине */
 .cart-item-card {
-  background: #222;
-  border-radius: 12px;
-  padding: 12px;
-  display: grid;
+  background: #222; border-radius: 12px;
+  padding: 12px; display: grid;
   grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 12px;
+  align-items: center; gap: 12px;
   margin-bottom: 12px;
 }
 .cart-item-card .item-name,
 .cart-item-card .item-price {
-  font-size: 14px;
-  color: #fff;
+  font-size: 14px; color: #fff;
 }
 /* растянутый счётчик в корзине */
 .cart-item-card .item-counter {
   grid-column: 1 / -1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #333;
-  border-radius: 12px;
-  height: 32px;
-  padding: 0 8px;
-  margin-top: 8px;
+  display: flex; justify-content: space-between;
+  align-items: center; background: #333;
+  border-radius: 12px; height: 32px;
+  padding: 0 8px; margin-top: 8px;
 }
 .cart-item-card .item-counter button {
-  background: none;
-  border: none;
-  font-size: 18px;
-  color: #a855f7;
-  cursor: pointer;
-  width: 28px; height: 28px;
+  background: none; border: none;
+  font-size: 18px; color: #a855f7;
+  cursor: pointer; width: 28px; height: 28px;
 }
 .cart-item-card .count {
-  color: #fff;
-  font-size: 16px;
-  min-width: 24px;
-  text-align: center;
+  color: #fff; font-size: 16px;
+  min-width: 24px; text-align: center;
 }
 
 /* кнопка оплаты */
 #checkout-btn {
-  width: 100%;
-  padding: 10px;
-  background: #a855f7;
-  border: none;
-  border-radius: 12px;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
+  width: 100%; padding: 10px;
+  background: #a855f7; border: none;
+  border-radius: 12px; color: #fff;
+  font-size: 16px; cursor: pointer;
 }
 #checkout-btn:disabled {
-  background: #555;
-  cursor: not-allowed;
-  opacity: .5;
+  background: #555; cursor: not-allowed; opacity: .5;
 }
