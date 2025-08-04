@@ -194,7 +194,7 @@ body {
 
 /* показываем скролл внутри #cart-items, когда >2 товаров */
 .cart.scrollable #cart-items {
-  max-height: 150px;    /* две карточки и счётчик + запас */
+  max-height: 150px; /* поместится ровно 2 элемента + запас */
   overflow-y: auto;
 }
 .cart.scrollable #cart-items::-webkit-scrollbar {
@@ -270,18 +270,17 @@ body {
 .seo-block {
   margin-top: 40px;
 }
-
-/* обнуляем дефолтные маркеры */
+/* сбрасываем стандартный маркер */
 .seo-details summary {
   list-style: none;
   cursor: pointer;
   padding: 0;
+  position: relative; /* чтобы ::after позиционировалось */
 }
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
-
-/* контейнер summary */
+/* заголовок и интро */
 .seo-summary {
   background: #1c1c1c;
   border-radius: 12px 12px 0 0;
@@ -291,9 +290,10 @@ body {
   margin: 0;
   font-size: 22px;
   color: #fff;
+  display: inline-block;
 }
 .seo-summary .seo-intro {
-  margin: 8px 0 0;
+  margin-top: 8px;
   color: #ccc;
   line-height: 1.6;
 }
@@ -302,9 +302,10 @@ body {
 .seo-details summary::after {
   content: "▼";
   position: absolute;
-  right: 20px;
-  top: 24px; /* выровнять по центру h2 */
+  top: 20px;     /* чуть ниже верхнего края */
+  right: 20px;   /* ровно 20px от правого края */
   color: #a855f7;
+  font-size: 16px;
   transition: transform .2s;
 }
 .seo-details[open] summary::after {
