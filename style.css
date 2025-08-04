@@ -57,14 +57,14 @@ body {
 .filter-buttons {
   margin-top: 12px;
   display: flex;
-  gap: 20px;
+  gap: 20px;   /* увеличенный отступ между кнопками */
 }
 .filter-btn {
   background: #222;
   color: #fff;
   border: none;
-  padding: 14px 24px;
-  font-size: 18px;
+  padding: 14px 24px;  /* увеличенный padding */
+  font-size: 18px;     /* больший шрифт */
   border-radius: 12px;
   cursor: pointer;
 }
@@ -120,18 +120,18 @@ body {
   line-height: 32px;
 }
 
-/* счётчик */
+/* счётчик в карточке товара */
 .product-card .counter {
   grid-row: 4;
   justify-self: stretch;
   align-self: center;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* кнопки по краям */
   align-items: center;
   background: #222;
   border-radius: 12px;
   height: 32px;      /* фиксированная высота */
-  padding: 0 12px;   /* убрали вертикальные паддинги */
+  padding: 0 12px;
   margin-top: 0;
 }
 .product-card .counter button {
@@ -198,6 +198,19 @@ body {
   margin: 0 0 12px;
 }
 
+/* скролл в корзине после 2-х товаров */
+.cart.scrollable ul {
+  max-height: 200px;
+  overflow-y: auto;
+}
+.cart.scrollable ul::-webkit-scrollbar {
+  width: 6px;
+}
+.cart.scrollable ul::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 3px;
+}
+
 /* товары в корзине */
 .cart-item-card {
   background: #222;
@@ -214,16 +227,17 @@ body {
   font-size: 14px;
   color: #fff;
 }
-/* растянули счётчик на всю ширину */
+/* счётчик в корзине — растянуть на всю ширину */
 .cart-item-card .item-counter {
+  grid-column: 1 / -1;      /* занимает обе колонки */
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   background: #333;
   border-radius: 12px;
   height: 32px;
   padding: 0 8px;
-  width: 100%;
+  margin-top: 8px;
 }
 .cart-item-card .item-counter button {
   background: none;
