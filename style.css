@@ -20,6 +20,7 @@ body {
   font-size: 14px;
   color: #888;
   padding: 20px 0 10px;
+  margin-bottom: 20px;           /* ← добавлено: отступ под хлебными крошками */
 }
 .breadcrumbs a { color: #aaa; text-decoration: none; }
 .game-title-inline { color: #fff; }
@@ -36,8 +37,13 @@ body {
 .header-info .game-title { margin: 0; font-size: 28px; }
 .filter-buttons { margin-top: 12px; }
 .filter-btn {
-  background: #222; color: #fff; border: none;
-  padding: 6px 12px; border-radius: 12px; cursor: pointer;
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;            /* ← изменено: увеличенный padding */
+  font-size: 16px;               /* ← изменено: больший шрифт */
+  border-radius: 12px;
+  cursor: pointer;
 }
 .filter-btn.active { background: #a855f7; }
 
@@ -71,6 +77,8 @@ body {
   background: #a855f7; border: none;
   width: 36px; height: 36px; border-radius: 50%;
   color: #fff; font-size: 20px; cursor: pointer;
+  display: block;                  /* ← добавлено: центрируем */
+  margin: 12px auto 0;             /* ← добавлено: центрируем */
 }
 .counter {
   display: flex; align-items: center; justify-content: center;
@@ -88,6 +96,7 @@ body {
   flex: 0 0 250px;
   width: 250px;
   background: #1c1c1c; border-radius: 12px; padding: 12px;
+  align-self: flex-start;          /* ← добавлено: не растягивать на всю высоту */
 }
 .cart-header { margin-bottom: 12px; }
 .cart-header h2 {
@@ -96,15 +105,18 @@ body {
 #cart-total { color: #a855f7; margin-left: 8px; }
 .cart-count { font-size: 14px; color: #ccc; margin-top: 4px; }
 .cart ul { list-style: none; padding: 0; margin: 0 0 12px; }
+
+/* карточка в корзине */
 .cart-item-card {
-  background: #222; border-radius: 12px; padding: 8px;
+  background: #222; border-radius: 12px; padding: 12px; /* ← padding увеличен */
   display: grid; grid-template-columns: 1fr auto; align-items: center;
-  margin-bottom: 8px;
+  gap: 12px;                            /* ← добавлено: пространство между колонками */
+  margin-bottom: 12px;                  /* ← чуть больше межблочного отступа */
 }
 .cart-item-card .item-name { font-size: 14px; color: #fff; }
 .cart-item-card .item-price { font-size: 14px; color: #fff; }
 .cart-item-card .item-counter {
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; gap: 12px;   /* ← увеличен gap */
 }
 .cart-item-card .item-counter button {
   background: none; border: none; font-size: 18px; color: #a855f7;
