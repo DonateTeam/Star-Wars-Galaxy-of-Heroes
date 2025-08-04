@@ -6,7 +6,7 @@ const productsData = [
   { id: 5,  name: "15710 кристаллов",      price: 8800, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
   { id: 6,  name: "Набор джедая",          price: 3200, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
   { id: 7,  name: "Набор ситха",           price: 4100, category: "sets",     img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/2800.png" },
-  { id: 8,  name: "Пропуск эпизода",       price: 2000, category: "passes",   img: "https://i.imgur.com/12345.png" },
+  { id: 8,  name: "Пропуск эпизода",       price: 2000, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
   { id: 9,  name: "Пропуск эпизода +",     price: 3800, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
   { id: 10, name: "Пропуск завоевания",     price: 1100, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
   { id: 11, name: "Пропуск завоевания +",   price: 3000, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
