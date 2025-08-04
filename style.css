@@ -277,23 +277,29 @@ body {
   opacity: .5;
 }
 
-/* ↓ Стили для нового SEO-блока */
+/* ↓ стили для SEO-блока ↓ */
 .seo-block {
   margin-top: 40px;
 }
 
-/* видимый заголовок + интро */
-.seo-summary {
+/* сам <details> */
+.seo-details {
   background: #1c1c1c;
   border-radius: 12px;
+  overflow: hidden;
+}
+
+/* summary содержит и заголовок, и интро */
+.seo-summary {
+  display: block;
+  cursor: pointer;
   padding: 16px 20px;
+  position: relative;
 }
 .seo-summary h2 {
   margin: 0;
   font-size: 22px;
   color: #fff;
-  display: inline-block;
-  vertical-align: middle;
 }
 .seo-summary .seo-intro {
   margin: 8px 0 0;
@@ -301,29 +307,13 @@ body {
   line-height: 1.6;
 }
 
-/* контейнер details */
-.seo-details {
-  background: #1c1c1c;
-  border-radius: 0 0 12px 12px;
-  overflow: hidden;
-  border-top: 1px solid #2a2a2a;
-  position: relative;
-}
-
-/* пустой summary для стрелки */
-.seo-details summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 12px 20px;
-  margin: 0;
-  position: relative;
-}
-.seo-details summary::-webkit-details-marker {
+/* убираем маркер браузера */
+.seo-summary::-webkit-details-marker {
   display: none;
 }
 
-/* стрелка под переключение */
-.seo-details summary::after {
+/* стрелка */
+.seo-summary::after {
   content: "▼";
   position: absolute;
   top: 50%;
@@ -333,7 +323,7 @@ body {
   font-size: 16px;
   transition: transform 0.2s;
 }
-.seo-details[open] summary::after {
+.seo-details[open] .seo-summary::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
@@ -341,10 +331,13 @@ body {
 .seo-content {
   display: none;
   padding: 0 20px 20px;
+  border-top: 1px solid #2a2a2a;
 }
 .seo-details[open] .seo-content {
   display: block;
 }
+
+/* внутренние стили */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
