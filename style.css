@@ -20,12 +20,12 @@ body {
   padding: 0 20px;
 }
 
-/* хлебные крошки */
+/* Навигация */
 .breadcrumbs {
   font-size: 14px;
   color: #888;
   padding: 20px 0 10px;
-  margin-bottom: 20px;   /* отступ под хлебными */
+  margin-bottom: 20px;   /* отступ под навигацией */
 }
 .breadcrumbs a {
   color: #aaa;
@@ -41,7 +41,7 @@ body {
   grid-template-columns: 100px 1fr;
   gap: 20px;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 30px;   /* отступ под шапкой */
 }
 .game-logo {
   width: 100px;
@@ -57,14 +57,14 @@ body {
 .filter-buttons {
   margin-top: 12px;
   display: flex;
-  gap: 20px;   /* увеличенный отступ между кнопками */
+  gap: 24px;   /* увеличенный отступ между кнопками */
 }
 .filter-btn {
   background: #222;
   color: #fff;
   border: none;
-  padding: 12px 20px;  /* увеличенный padding */
-  font-size: 16px;     /* больший шрифт */
+  padding: 14px 24px;  /* чуть больше padding */
+  font-size: 18px;     /* увеличенный шрифт */
   border-radius: 12px;
   cursor: pointer;
 }
@@ -89,11 +89,8 @@ body {
   background: #1c1c1c;
   border-radius: 12px;
   display: grid;
-  /* 1) картинка 140px
-     2) заголовок 32px
-     3) цена 32px
-     4) кнопка/счётчик auto */
-  grid-template-rows: 140px 32px 32px auto;
+  /* 4 строки: 140px (картинка), 32px (заголовок), 32px (цена), 50px (действия) */
+  grid-template-rows: 140px 32px 32px 50px;
   gap: 8px;
   padding: 12px;
   text-align: center;
@@ -109,8 +106,8 @@ body {
   grid-row: 2;
   margin: 0;
   font-size: 16px;
-  line-height: 32px;    /* выровнять текст по центру 32px */
-  overflow: hidden;     /* на случай длинного названия */
+  line-height: 32px;    /* выровнять текст по центру строки */
+  overflow: hidden;
 }
 .product-card .price {
   grid-row: 3;
@@ -119,14 +116,14 @@ body {
   border-radius: 12px;
   display: inline-block;
   width: 100%;
-  height: 32px;         /* фикс. высота */
+  height: 32px;
   line-height: 32px;    /* выровнять текст */
 }
 
 /* счётчик */
 .product-card .counter {
   grid-row: 4;
-  justify-self: stretch;     /* растягиваем по ширине */
+  justify-self: stretch;
   align-self: center;
   display: flex;
   justify-content: space-between; /* кнопки по краям */
@@ -134,7 +131,6 @@ body {
   background: #222;
   border-radius: 12px;
   padding: 8px 12px;
-  margin-top: 4px;
 }
 .product-card .counter button {
   background: none;
@@ -142,7 +138,7 @@ body {
   color: #a855f7;
   font-size: 20px;
   cursor: pointer;
-  width: 32px;   /* квадрат */
+  width: 32px;
   height: 32px;
 }
 .product-card .counter .count {
@@ -159,13 +155,12 @@ body {
   align-self: center;
   background: #a855f7;
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 32px;   /* чуть меньше, чтобы красиво помещаться */
+  height: 32px;
   border-radius: 50%;
   color: #fff;
   font-size: 20px;
   cursor: pointer;
-  margin-top: 4px;
 }
 
 /* корзина */
@@ -209,7 +204,7 @@ body {
   grid-template-columns: 1fr auto;
   align-items: center;
   gap: 12px;                 /* пространство между колонками */
-  margin-bottom: 12px;       /* межблочный отступ */
+  margin-bottom: 12px;
 }
 .cart-item-card .item-name,
 .cart-item-card .item-price {
