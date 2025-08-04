@@ -20,18 +20,29 @@ body {
   padding: 0 20px;
 }
 
-/* хлебные крошки */
+/* Навигация (breadcrumbs) */
 .breadcrumbs {
-  font-size: 14px;
+  font-size: 16px;        /* увеличенный шрифт */
   color: #888;
   padding: 20px 0 10px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  user-select: none;
 }
-.breadcrumbs a {
+.breadcrumbs .breadcrumb-link {
   color: #aaa;
   text-decoration: none;
+  transition: color .2s;
 }
-.game-title-inline {
+.breadcrumbs .breadcrumb-link:hover {
+  color: #fff;            /* эффект подсветки при наведении */
+}
+.breadcrumbs .breadcrumb-sep {
+  margin: 0 8px;          /* отступы перед и после "/" */
+  color: #888;
+}
+.breadcrumbs .breadcrumb-current {
   color: #fff;
 }
 
