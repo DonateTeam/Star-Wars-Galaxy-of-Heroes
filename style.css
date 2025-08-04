@@ -36,7 +36,7 @@ body {
   transition: color .2s;
 }
 .breadcrumbs .breadcrumb-link:hover {
-  color: #fff;            /* эффект подсветки при наведении */
+  color: #a855f7;            /* эффект подсветки при наведении */
 }
 .breadcrumbs .breadcrumb-sep {
   margin: 0 8px;          /* отступы перед и после "/" */
