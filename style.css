@@ -277,66 +277,74 @@ body {
   opacity: .5;
 }
 
-/* SEO-блок */
+/* ↓ Стили для нового SEO-блока */
 .seo-block {
   margin-top: 40px;
 }
-.seo-details {
-  border-radius: 12px;
+
+/* видимый заголовок + интро */
+.seo-summary {
   background: #1c1c1c;
-  overflow: hidden;
-}
-
-/* summary — только заголовок + вводный абзац */
-.seo-details summary {
-  list-style: none;
-  cursor: pointer;
+  border-radius: 12px;
   padding: 16px 20px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
-  position: relative;
+}
+.seo-summary h2 {
   margin: 0;
-  /* сразу в одну строку: текст и стрелка */
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  font-size: 22px;
+  color: #fff;
+  display: inline-block;
+  vertical-align: middle;
 }
-
-/* убираем маркер браузера */
-.seo-details summary::-webkit-details-marker {
-  display: none;
-}
-
-/* всегда показываем первый абзац */
-.seo-intro {
-  margin: 8px 20px 16px;
+.seo-summary .seo-intro {
+  margin: 8px 0 0;
   color: #ccc;
   line-height: 1.6;
 }
 
-/* стрелка */
-.seo-details summary::after {
-  content: "▼";
-  color: #a855f7;
-  font-size: 16px;
-  transition: transform .2s;
-}
-.seo-details[open] summary::after {
-  transform: rotate(180deg);
+/* контейнер details */
+.seo-details {
+  background: #1c1c1c;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  border-top: 1px solid #2a2a2a;
+  position: relative;
 }
 
-/* скрываем остальной контент, пока не открыт */
+/* пустой summary для стрелки */
+.seo-details summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  margin: 0;
+  position: relative;
+}
+.seo-details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* стрелка под переключение */
+.seo-details summary::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  color: #a855f7;
+  font-size: 16px;
+  transition: transform 0.2s;
+}
+.seo-details[open] summary::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* скрытый контент */
 .seo-content {
   display: none;
   padding: 0 20px 20px;
-  border-top: 1px solid #2a2a2a;
 }
 .seo-details[open] .seo-content {
   display: block;
 }
-
-/* стили скрываемого блока */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
