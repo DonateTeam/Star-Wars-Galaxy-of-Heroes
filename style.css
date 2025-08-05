@@ -357,7 +357,6 @@ body {
   border-radius: 12px;
   padding: 0 0 28px 0;
   width: 100%;
-  /* max-width: none;  <-- ЭТО УДАЛЕНО! */
   box-sizing: border-box;
 }
 .faq-title {
@@ -370,10 +369,12 @@ body {
   align-items: center;
   gap: 8px;
 }
-.faq-emoji,
-.faq-emoji-green {
+.faq-emoji {
   color: #a855f7;
+  font-size: 24px;
+  font-weight: normal;
 }
+
 .faq-list {
   display: flex;
   flex-direction: column;
@@ -394,7 +395,7 @@ body {
   width: 100%;
   background: none;
   border: none;
-  color: #a855f7;        /* <-- фиолетовый цвет вопроса */
+  color: #fff;  /* Всегда белый */
   font-size: 22px;
   font-weight: bold;
   display: flex;
@@ -404,11 +405,11 @@ body {
   cursor: pointer;
   border-radius: 12px;
   text-align: left;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s;
 }
 .faq-question:hover, .faq-item.open .faq-question {
   background: #191919;
-  color: #fff;
+  /* color убран */
 }
 .faq-toggle {
   display: flex;
@@ -443,7 +444,7 @@ body {
   color: #ddd;
   font-size: 18px;
   line-height: 1.6;
-  transition: max-height 0.3s cubic-bezier(.4,0,.2,1), opacity 0.2s;
+  transition: max-height 0.18s cubic-bezier(.4,0,.2,1), opacity 0.13s;
 }
 .faq-item.open .faq-answer {
   max-height: 200px;
