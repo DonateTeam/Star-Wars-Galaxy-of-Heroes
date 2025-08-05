@@ -351,15 +351,14 @@ body {
 
 /* === FAQ-блок === */
 
-/* === FAQ-блок === */
-
 .faq-block {
   margin: 40px auto 0 auto;
   background: #181818;
   border-radius: 12px;
   padding: 0 0 28px 0;
-  max-width: 900px;
   width: 100%;
+  max-width: none;
+  box-sizing: border-box;
 }
 .faq-title {
   font-size: 28px;
@@ -371,16 +370,9 @@ body {
   align-items: center;
   gap: 8px;
 }
-.faq-emoji {
-  font-size: 24px;
-  font-weight: normal;
-  color: #a855f7; /* теперь фиолетовый */
-}
+.faq-emoji,
 .faq-emoji-green {
-  color: #a855f7; /* тоже фиолетовый */
-  font-size: 20px;
-  position: relative;
-  left: -5px;
+  color: #a855f7;
 }
 .faq-list {
   display: flex;
@@ -396,13 +388,13 @@ body {
   transition: box-shadow 0.2s;
 }
 .faq-item.open {
-  box-shadow: 0 2px 16px 0 #a855f71a; /* легкая тень фиолетовым */
+  box-shadow: 0 2px 16px 0 #a855f71a;
 }
 .faq-question {
   width: 100%;
   background: none;
   border: none;
-  color: #fff;
+  color: #a855f7;        /* <-- фиолетовый цвет вопроса */
   font-size: 22px;
   font-weight: bold;
   display: flex;
@@ -412,11 +404,15 @@ body {
   cursor: pointer;
   border-radius: 12px;
   text-align: left;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
 }
+/* Если хочешь, чтобы вопрос был белым при открытии/наведении: */
 .faq-question:hover, .faq-item.open .faq-question {
   background: #191919;
+  color: #fff;
 }
+/* Если хочешь, чтобы он всегда был фиолетовым, убери строку color: #fff; сверху ^ */
+
 .faq-toggle {
   display: flex;
   align-items: center;
