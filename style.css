@@ -277,7 +277,7 @@ body {
   opacity: .5;
 }
 
-/* === SEO-блок === */
+/* CSS для SEO-блока */
 .seo-block {
   margin-top: 40px;
 }
@@ -286,37 +286,36 @@ body {
   border-radius: 12px;
   overflow: hidden;
 }
-/* Сбрасываем маркер */
+/* Сбрасываем маркеры */
 .seo-details summary {
   list-style: none;
   cursor: pointer;
   padding: 16px 20px;
+  display: flex;
+  align-items: center;      /* выравниваем текст и стрелку по центру */
+  justify-content: space-between;
   font-size: 22px;
   font-weight: bold;
   color: #fff;
-  position: relative;
   margin: 0;
 }
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
-/* Стрелка возле заголовка */
+/* Стрелка — через псевдоэлемент */
 .seo-details summary::after {
   content: "▼";
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  color: #a855f7;
   transition: transform .2s;
+  color: #a855f7;
+  font-size: 16px;
 }
 .seo-details[open] summary::after {
-  transform: translateY(-50%) rotate(180deg);
+  transform: rotate(180deg);
 }
-/* Абзац, который всегда виден */
+/* Описание игры всегда видно */
 .seo-intro {
-  padding: 0 20px 16px;
   margin: 0;
+  padding: 0 20px 16px;
   color: #ccc;
   line-height: 1.6;
 }
@@ -329,7 +328,7 @@ body {
 .seo-details[open] .seo-content {
   display: block;
 }
-/* Стили для скрываемого */
+/* Стили для скрываемых разделов */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
