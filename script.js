@@ -156,13 +156,13 @@ renderCart();
 
 // SEO
 document.addEventListener("DOMContentLoaded", () => {
-  const header = document.querySelector(".seo-header");
-  const toggle = header.querySelector(".seo-toggle");
+  const toggle = document.querySelector(".seo-toggle");
   const extra  = document.querySelector(".seo-extra");
 
-  header.addEventListener("click", () => {
-    const expanded = toggle.getAttribute("aria-expanded")==="true";
+  toggle.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
     toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-    extra.classList.toggle("hidden");
+    if (expanded) extra.classList.add("hidden");
+    else          extra.classList.remove("hidden");
   });
 });
