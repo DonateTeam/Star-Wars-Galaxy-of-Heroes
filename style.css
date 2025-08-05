@@ -351,12 +351,15 @@ body {
 
 /* === FAQ-блок === */
 
+/* === FAQ-блок === */
+
 .faq-block {
-  margin-top: 40px;
+  margin: 40px auto 0 auto;
   background: #181818;
   border-radius: 12px;
   padding: 0 0 28px 0;
   max-width: 900px;
+  width: 100%;
 }
 .faq-title {
   font-size: 28px;
@@ -371,9 +374,10 @@ body {
 .faq-emoji {
   font-size: 24px;
   font-weight: normal;
+  color: #a855f7; /* теперь фиолетовый */
 }
 .faq-emoji-green {
-  color: #b3ff00;
+  color: #a855f7; /* тоже фиолетовый */
   font-size: 20px;
   position: relative;
   left: -5px;
@@ -392,7 +396,7 @@ body {
   transition: box-shadow 0.2s;
 }
 .faq-item.open {
-  box-shadow: 0 2px 16px 0 rgba(50,255,0,0.10);
+  box-shadow: 0 2px 16px 0 #a855f71a; /* легкая тень фиолетовым */
 }
 .faq-question {
   width: 100%;
@@ -421,17 +425,22 @@ body {
   height: 34px;
   background: #232323;
   border-radius: 8px;
-  color: #b3ff00;
+  color: #a855f7;
   font-size: 30px;
   font-weight: 600;
   margin-left: 12px;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
   user-select: none;
+  box-shadow: 0 0 0 0 #a855f7;
+}
+.faq-question:hover .faq-toggle,
+.faq-item.open .faq-toggle {
+  background: #2c003b;
+  color: #a855f7;
+  box-shadow: 0 0 12px 2px #a855f7cc;
 }
 .faq-item.open .faq-toggle {
-  background: #b3ff00;
-  color: #232323;
-  transform: rotate(45deg); /* Плюс превращается в крест */
+  transform: rotate(45deg);
 }
 .faq-answer {
   max-height: 0;
@@ -449,4 +458,3 @@ body {
   padding-bottom: 18px;
   margin-top: -12px;
 }
-
