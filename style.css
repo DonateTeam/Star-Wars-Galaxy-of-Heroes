@@ -282,27 +282,30 @@ body {
   margin-top: 40px;
 }
 
-/* контейнер details */
 .seo-details {
   background: #1c1c1c;
   border-radius: 12px;
   overflow: hidden;
 }
 
-/* сбрасываем маркер */
+/* сам заголовок-разворачивалка */
 .seo-details summary {
   list-style: none;
-  margin: 0;
-  padding: 0;
   cursor: pointer;
+  margin: 0;
+  padding: 16px 20px;       /* отступ вокруг текста */
   position: relative;
+  display: inline-block;    /* чтобы ширина подхватывала контент */
 }
 
-/* flex-контейнер для заголовка + интро */
+/* скрываем дефолтный маркер */
+.seo-details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* обёртка внутри summary для текста */
 .seo-details summary .summary-inner {
-  display: flex;
-  flex-direction: column;
-  padding: 16px 20px;
+  display: block;
 }
 
 /* заголовок */
@@ -312,14 +315,14 @@ body {
   color: #fff;
 }
 
-/* абзац (интро) */
+/* вводный параграф (всегда видим) */
 .seo-details summary .seo-intro {
   margin: 8px 0 0;
   color: #ccc;
   line-height: 1.6;
 }
 
-/* стрелка справа в summary */
+/* стрелка */
 .seo-details summary::after {
   content: "▼";
   position: absolute;
@@ -331,11 +334,20 @@ body {
   transition: transform .2s;
 }
 
-/* скрытый контент */
+/* поворот при открытии */
+.seo-details[open] summary::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* линия-подчёркивание сразу после заголовка */
+.seo-details summary + .seo-content {
+  border-top: 1px solid #2a2a2a;
+}
+
+/* скрываемый контент */
 .seo-details .seo-content {
   display: none;
   padding: 0 20px 20px;
-  border-top: 1px solid #2a2a2a;
 }
 
 /* показываем при открытии */
@@ -343,12 +355,7 @@ body {
   display: block;
 }
 
-/* поворот стрелки при открытии */
-.seo-details[open] summary::after {
-  transform: translateY(-50%) rotate(180deg);
-}
-
-/* стили внутри seo-content */
+/* стили внутри скрытой части */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
