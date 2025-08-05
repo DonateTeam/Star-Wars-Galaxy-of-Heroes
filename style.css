@@ -277,33 +277,33 @@ body {
   opacity: .5;
 }
 
-/* ==== SEO-блок ==== */
+/* === SEO-блок === */
 .seo-block {
   margin-top: 40px;
 }
 
-/* общий контейнер details */
 .seo-details {
   background: #1c1c1c;
   border-radius: 12px;
   overflow: hidden;
 }
 
-/* summary — только заголовок */
+/* Убираем маркер, стилизуем summary */
 .seo-details summary {
+  list-style: none;
   cursor: pointer;
   padding: 16px 20px;
   font-size: 22px;
   font-weight: bold;
   color: #fff;
   position: relative;
-  list-style: none; /* сброс маркера */
+  margin: 0;
 }
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
 
-/* стрелка */
+/* Стрелка рядом с текстом */
 .seo-details summary::after {
   content: "▼";
   position: absolute;
@@ -317,7 +317,7 @@ body {
   transform: translateY(-50%) rotate(180deg);
 }
 
-/* всегда видимый абзац */
+/* Абзац описания всегда видим */
 .seo-intro {
   padding: 0 20px 16px;
   margin: 0;
@@ -325,7 +325,7 @@ body {
   line-height: 1.6;
 }
 
-/* скрываемый контент */
+/* Скрываем/показываем остальной контент */
 .seo-content {
   display: none;
   padding: 0 20px 20px;
@@ -335,7 +335,7 @@ body {
   display: block;
 }
 
-/* стили внутри скрытой части */
+/* Стили внутри скрываемой части */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
@@ -357,4 +357,3 @@ body {
   color: #ccc;
   line-height: 1.6;
 }
-
