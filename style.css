@@ -468,10 +468,10 @@ body {
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 28px;
+  padding: 0 0;         /* убери боковые паддинги */
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between;  /* распределяет текст и иконку по краям */
   flex-wrap: wrap;
   gap: 24px;
 }
@@ -481,6 +481,7 @@ body {
   font-weight: bold;
   color: #fff;
   letter-spacing: 0.02em;
+  /* text-align: left; ← это по умолчанию */
 }
 .footer-tg {
   display: inline-flex;
