@@ -288,58 +288,45 @@ body {
   overflow: hidden;
 }
 
-/* Сбрасываем маркеры и делаем summary inline */
+/* summary с заголовком */
 .seo-details summary {
   list-style: none;
   cursor: pointer;
-  margin: 0;
   padding: 16px 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
   position: relative;
-  display: inline-block;
-  user-select: none;
+  margin: 0;
 }
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
 
-/* Внутренний контейнер для заголовка + интро */
-.seo-details .summary-inner {
-  display: block;
-}
-
-/* Заголовок */
-.seo-details summary h2 {
-  margin: 0;
-  font-size: 22px;
-  color: #fff;
-}
-
-/* Интро-параграф (всегда виден) */
-.seo-details summary .seo-intro {
-  margin: 8px 0 0;
-  color: #ccc;
-  line-height: 1.6;
-}
-
-/* Стрелка справа от текста */
+/* стрелка рядом с заголовком */
 .seo-details summary::after {
   content: "▼";
   position: absolute;
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  font-size: 16px;
   color: #a855f7;
   transition: transform .2s;
 }
-
-/* Поворот стрелки при открытии */
 .seo-details[open] summary::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
-/* Скрываем/показываем контент */
-.seo-details .seo-content {
+/* абзац, который всегда видим */
+.seo-intro {
+  padding: 0 20px 16px;
+  margin: 0;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* скрываем/показываем остальной контент */
+.seo-content {
   display: none;
   padding: 0 20px 20px;
   border-top: 1px solid #2a2a2a;
@@ -348,7 +335,7 @@ body {
   display: block;
 }
 
-/* Стили внутри скрытого блока */
+/* стили внутри скрытого блока */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
