@@ -468,13 +468,14 @@ body {
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 0;         /* убери боковые паддинги */
+  padding: 0 20px;  /* или 0 28px; — как у других блоков */
   display: flex;
   align-items: center;
-  justify-content: space-between;  /* распределяет текст и иконку по краям */
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 24px;
 }
+
 .footer-title {
   font-family: inherit;
   font-size: 22px;
