@@ -458,6 +458,7 @@ body {
 .footer {
   padding: 32px 0 24px 0;
   margin-top: 56px;
+  background: transparent;
 }
 
 .footer-sep {
@@ -472,14 +473,16 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 0; /* !!! */
-  max-width: none; /* !!! */
+  padding: 0;          /* убираем дублирующий паддинг */
+  max-width: none;
 }
 
 .footer-title {
+  font-family: inherit;
   font-size: 22px;
   font-weight: bold;
   color: #fff;
+  letter-spacing: 0.02em;
 }
 
 .footer-tg {
