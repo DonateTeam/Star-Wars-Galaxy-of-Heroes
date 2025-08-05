@@ -277,7 +277,7 @@ body {
   opacity: .5;
 }
 
-/* SEO-блок */
+/* === SEO-блок === */
 .seo-block {
   margin-top: 40px;
   background: #1c1c1c;
@@ -285,33 +285,48 @@ body {
   overflow: hidden;
 }
 
-/* header + toggle */
+/* шапка блока */
 .seo-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 16px 20px;
-  cursor: pointer;
+  position: relative;
 }
-.seo-header h2 {
+/* Заголовок */
+.seo-title {
   margin: 0;
   font-size: 22px;
   color: #fff;
-}
-.seo-toggle {
-  background: none;
-  border: none;
-  font-size: 16px;
-  color: #a855f7;
-  transform: rotate(0deg);
-  transition: transform .2s;
-  cursor: pointer;
-}
-.seo-toggle[aria-expanded="true"] {
-  transform: rotate(180deg);
+  /* чтобы справа оставить место для стрелки */
+  padding-right: 40px;
 }
 
-/* всегда видимый абзац */
+/* Кнопка-стрелка */
+.seo-toggle {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform .2s;
+}
+.seo-toggle::before {
+  content: "▼";
+  color: #a855f7;
+  font-size: 16px;
+  line-height: 1;
+}
+/* при раскрытии поворачиваем */
+.seo-toggle[aria-expanded="true"] {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* описание всегда видно */
 .seo-intro {
   margin: 0;
   padding: 0 20px 16px;
@@ -324,11 +339,11 @@ body {
   padding: 0 20px 20px;
   border-top: 1px solid #2a2a2a;
 }
-.seo-extra.hidden {
+.hidden {
   display: none;
 }
 
-/* стили внутри */
+/* стили внутри скрытого */
 .seo-extra h3 {
   margin-top: 16px;
   font-size: 18px;
