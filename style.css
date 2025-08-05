@@ -22,7 +22,7 @@ body {
 
 /* Навигация (breadcrumbs) */
 .breadcrumbs {
-  font-size: 16px;        /* увеличенный шрифт */
+  font-size: 16px;
   color: #888;
   padding: 20px 0 10px;
   margin-bottom: 20px;
@@ -30,23 +30,23 @@ body {
   align-items: center;
   user-select: none;
 }
-.breadcrumbs .breadcrumb-link {
+.breadcrumb-link {
   color: #aaa;
   text-decoration: none;
   transition: color .2s;
 }
-.breadcrumbs .breadcrumb-link:hover {
-  color: #a855f7;            /* эффект подсветки при наведении */
+.breadcrumb-link:hover {
+  color: #a855f7;
 }
-.breadcrumbs .breadcrumb-sep {
-  margin: 0 8px;          /* отступы перед и после "/" */
+.breadcrumb-sep {
+  margin: 0 8px;
   color: #888;
 }
-.breadcrumbs .breadcrumb-current {
+.breadcrumb-current {
   color: #fff;
 }
 
-/* шапка */
+/* Шапка */
 .header-grid {
   display: grid;
   grid-template-columns: 100px 1fr;
@@ -59,12 +59,12 @@ body {
   height: 100px;
   border-radius: 12px;
 }
-.header-info .game-title {
+.game-title {
   margin: 0;
   font-size: 28px;
 }
 
-/* фильтры */
+/* Фильтры */
 .filter-buttons {
   margin-top: 12px;
   display: flex;
@@ -83,7 +83,7 @@ body {
   background: #a855f7;
 }
 
-/* основной контент */
+/* Основной контент */
 .main-content {
   display: flex;
   gap: 20px;
@@ -95,7 +95,7 @@ body {
   gap: 20px;
 }
 
-/* карточка товара */
+/* Карточка товара */
 .product-card {
   background: #1c1c1c;
   border-radius: 12px;
@@ -128,7 +128,6 @@ body {
   height: 32px;
   line-height: 32px;
 }
-/* счётчик */
 .product-card .counter {
   grid-row: 4;
   justify-self: stretch;
@@ -156,7 +155,6 @@ body {
   min-width: 24px;
   text-align: center;
 }
-/* кнопка «+» */
 .product-card .add-btn {
   grid-row: 4;
   justify-self: center;
@@ -171,7 +169,7 @@ body {
   cursor: pointer;
 }
 
-/* корзина */
+/* Корзина */
 .cart {
   flex: 0 0 250px;
   width: 250px;
@@ -205,7 +203,7 @@ body {
 
 /* скролл в корзине при >2 товаров */
 .cart.scrollable #cart-items {
-  max-height: 150px;
+  max-height: 150px; /* поместится ровно 2 элемента + запас */
   overflow-y: auto;
 }
 .cart.scrollable #cart-items::-webkit-scrollbar {
@@ -284,57 +282,45 @@ body {
   border-radius: 12px;
   overflow: hidden;
 }
-
-/* шапка блока */
 .seo-header {
   display: flex;
   align-items: center;
   padding: 16px 20px;
   position: relative;
 }
-/* Заголовок */
 .seo-title {
   margin: 0;
   font-size: 22px;
   color: #fff;
-  /* чтобы справа оставить место для стрелки */
   padding-right: 40px;
 }
-
 /* Кнопка-стрелка */
 .seo-toggle {
   position: absolute;
   right: 20px;
   top: 50%;
-  width: 16px;
-  height: 16px;
+  transform: translateY(-50%) rotate(0deg);
   background: none;
   border: none;
-  padding: 0;
   cursor: pointer;
-  transform: translateY(-50%) rotate(0deg);
+  width: 16px;
+  height: 16px;
   transition: transform .2s;
 }
 .seo-toggle::before {
   content: "▼";
   color: #a855f7;
   font-size: 16px;
-  line-height: 1;
 }
-/* при раскрытии поворачиваем */
 .seo-toggle[aria-expanded="true"] {
   transform: translateY(-50%) rotate(180deg);
 }
-
-/* описание всегда видно */
 .seo-intro {
   margin: 0;
   padding: 0 20px 16px;
   color: #ccc;
   line-height: 1.6;
 }
-
-/* скрываемый контент */
 .seo-extra {
   padding: 0 20px 20px;
   border-top: 1px solid #2a2a2a;
@@ -342,8 +328,6 @@ body {
 .hidden {
   display: none;
 }
-
-/* стили внутри скрытого */
 .seo-extra h3 {
   margin-top: 16px;
   font-size: 18px;
