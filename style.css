@@ -282,54 +282,62 @@ body {
   margin-top: 40px;
 }
 
-/* Заголовок + стрелка */
-.seo-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* базовый контейнер details */
+.seo-details {
   background: #1c1c1c;
   border-radius: 12px;
-  padding: 16px 20px;
+  overflow: hidden;
+}
+
+/* summary — заголовок + стрелка */
+.seo-details summary {
+  list-style: none;
   cursor: pointer;
-}
-.seo-header h2 {
-  margin: 0;
+  padding: 16px 20px;
   font-size: 22px;
+  font-weight: bold;
   color: #fff;
+  position: relative;
+  margin: 0;
 }
-.seo-arrow {
-  font-size: 16px;
+.seo-details summary::-webkit-details-marker {
+  display: none;
+}
+/* стрелка сразу после текста */
+.seo-details summary::after {
+  content: "▼";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
   color: #a855f7;
   transition: transform .2s;
 }
+/* поворот стрелки при открытии */
+.seo-details[open] summary::after {
+  transform: translateY(-50%) rotate(180deg);
+}
 
-/* Всегда видимый вводный текст */
+/* интро-абзац — всегда виден */
 .seo-intro {
-  margin: 8px 0 0;
+  margin: 0;
   padding: 0 20px 16px;
   color: #ccc;
   line-height: 1.6;
 }
 
-/* Скрываемый блок по умолчанию */
+/* скрываемый контент по умолчанию */
 .seo-content {
   display: none;
-  background: #1c1c1c;
-  border-radius: 0 0 12px 12px;
   padding: 0 20px 20px;
   border-top: 1px solid #2a2a2a;
 }
-
-/* Когда блок открыт — показываем его и поворачиваем стрелку */
-.seo-content.open {
+/* показываем при open */
+.seo-details[open] .seo-content {
   display: block;
 }
-.seo-header .seo-arrow.open,
-.seo-content.open ~ .seo-header .seo-arrow {
-  transform: rotate(180deg);
-}
 
-/* Внутри скрываемой части */
+/* стили внутреннего содержимого */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
