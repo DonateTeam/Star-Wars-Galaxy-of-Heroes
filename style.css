@@ -453,11 +453,13 @@ body {
   margin-top: -12px;
 }
 
-/* === FAQ-блок === */
+/* === Футер === */
 
 .footer {
   margin-top: 56px;
-  /* нет max-width! */
+  background: #181818;
+  padding: 40px 0 24px 0;
+  width: 100vw;
 }
 .footer-sep {
   border: none;
@@ -467,10 +469,15 @@ body {
 }
 .footer-content {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.footer-info {
+  max-width: 550px;
 }
 .footer-title {
   font-family: inherit;
@@ -478,27 +485,86 @@ body {
   font-weight: bold;
   color: #fff;
   letter-spacing: 0.02em;
+  margin-bottom: 18px;
 }
+.footer-desc {
+  color: #aaa;
+  font-size: 15px;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+.footer-links {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 10px;
+}
+.footer-link {
+  color: #a855f7;
+  font-size: 15px;
+  text-decoration: underline dotted;
+  cursor: pointer;
+  transition: color .2s;
+}
+.footer-link:hover {
+  color: #fff;
+}
+
+/* Правая часть — только кнопка */
+.footer-support-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  min-width: 140px;
+  width: 170px;
+}
+.footer-support-btn {
+  display: inline-block;
+  background: #1d1026;
+  color: #a855f7;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 600;
+  padding: 14px 34px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 2px 12px 0 #a855f733;
+  transition: background .18s, color .2s, box-shadow .18s;
+  margin-bottom: 10px;
+}
+.footer-support-btn:hover {
+  background: #a855f7;
+  color: #fff;
+  box-shadow: 0 4px 18px 0 #a855f766;
+}
+
+/* Скрыть старую иконку TG, если была */
 .footer-tg {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  transition: box-shadow 0.18s, transform 0.18s;
-  box-shadow: none;
-  outline: none;
-  margin-left: 16px;
-}
-.footer-tg:hover,
-.footer-tg:focus {
-  box-shadow: 0 0 10px 2px #36B2EC44;
-  transform: translateY(-3px) scale(1.05);
-}
-.footer-tg svg {
-  display: block;
+  display: none !important;
 }
 
 /* === Адаптив === */
+
+@media (max-width: 850px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    padding: 0 8px;
+  }
+  .footer-support-block {
+    align-items: flex-start;
+    width: 100%;
+    min-width: 0;
+  }
+  .footer-support-btn {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 0 0 0;
+  }
+}
 
 @media (max-width: 700px) {
   .main-content {
@@ -559,17 +625,12 @@ body {
     font-size: 15px;
     padding: 0 18px;
   }
-  .footer-content {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-    padding: 0 10px;
-  }
   .footer-title {
     font-size: 17px;
     text-align: left;
   }
 }
+
 @media (max-width: 480px) {
   .products {
     grid-template-columns: 1fr;
