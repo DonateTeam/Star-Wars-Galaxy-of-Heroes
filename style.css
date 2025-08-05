@@ -382,7 +382,7 @@ body {
   padding: 0 24px;
 }
 .faq-item {
-  background: #141414;
+  background: #141414 !important;
   border-radius: 12px;
   padding: 0;
   box-shadow: none;
@@ -390,6 +390,7 @@ body {
 }
 .faq-item.open {
   box-shadow: 0 2px 16px 0 #a855f71a;
+  background: #141414 !important;
 }
 .faq-question {
   width: 100%;
@@ -407,9 +408,8 @@ body {
   text-align: left;
   transition: background 0.2s;
 }
-.faq-question:hover, .faq-item.open .faq-question {
-  background: #191919;
-  /* color убран */
+.faq-question:hover {
+  background: inherit !important;
 }
 .faq-toggle {
   display: flex;
@@ -444,7 +444,7 @@ body {
   color: #ddd;
   font-size: 18px;
   line-height: 1.6;
-  transition: max-height 0.18s cubic-bezier(.4,0,.2,1), opacity 0.13s;
+  transition: max-height 0.13s cubic-bezier(.4,0,.2,1), opacity 0.12s;
 }
 .faq-item.open .faq-answer {
   max-height: 200px;
