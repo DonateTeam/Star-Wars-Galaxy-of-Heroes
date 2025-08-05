@@ -156,13 +156,11 @@ renderCart();
 
 // SEO
 document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.querySelector(".seo-toggle");
-  const extra  = document.querySelector(".seo-extra");
-
-  toggle.addEventListener("click", () => {
-    const expanded = toggle.getAttribute("aria-expanded") === "true";
-    toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-    if (expanded) extra.classList.add("hidden");
-    else          extra.classList.remove("hidden");
+  const btn = document.querySelector(".seo-toggle");
+  const extra = document.querySelector(".seo-extra");
+  btn.addEventListener("click", () => {
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!expanded));
+    extra.classList.toggle("hidden", expanded);
   });
 });
