@@ -462,7 +462,7 @@ body {
 .footer-sep {
   border: none;
   border-top: 1px solid #666;
-  margin: 0 0 22px 0;
+  margin: 0 0 22px 0;   /* убрано 28px слева и справа */
   width: 100%;
 }
 .footer-content {
