@@ -282,62 +282,73 @@ body {
   margin-top: 40px;
 }
 
-/* базовый контейнер details */
+/* контейнер details */
 .seo-details {
   background: #1c1c1c;
   border-radius: 12px;
   overflow: hidden;
 }
 
-/* summary — заголовок + стрелка */
+/* сбрасываем маркер */
 .seo-details summary {
   list-style: none;
-  cursor: pointer;
-  padding: 16px 20px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
-  position: relative;
   margin: 0;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
 }
-.seo-details summary::-webkit-details-marker {
-  display: none;
+
+/* flex-контейнер для заголовка + интро */
+.seo-details summary .summary-inner {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
 }
-/* стрелка сразу после текста */
+
+/* заголовок */
+.seo-details summary h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #fff;
+}
+
+/* абзац (интро) */
+.seo-details summary .seo-intro {
+  margin: 8px 0 0;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+/* стрелка справа в summary */
 .seo-details summary::after {
   content: "▼";
   position: absolute;
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
+  font-size: 16px;
   color: #a855f7;
   transition: transform .2s;
 }
+
+/* скрытый контент */
+.seo-details .seo-content {
+  display: none;
+  padding: 0 20px 20px;
+  border-top: 1px solid #2a2a2a;
+}
+
+/* показываем при открытии */
+.seo-details[open] .seo-content {
+  display: block;
+}
+
 /* поворот стрелки при открытии */
 .seo-details[open] summary::after {
   transform: translateY(-50%) rotate(180deg);
 }
 
-/* интро-абзац — всегда виден */
-.seo-intro {
-  margin: 0;
-  padding: 0 20px 16px;
-  color: #ccc;
-  line-height: 1.6;
-}
-
-/* скрываемый контент по умолчанию */
-.seo-content {
-  display: none;
-  padding: 0 20px 20px;
-  border-top: 1px solid #2a2a2a;
-}
-/* показываем при open */
-.seo-details[open] .seo-content {
-  display: block;
-}
-
-/* стили внутреннего содержимого */
+/* стили внутри seo-content */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
