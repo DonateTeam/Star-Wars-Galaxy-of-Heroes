@@ -282,60 +282,54 @@ body {
   margin-top: 40px;
 }
 
-.seo-details {
+/* Заголовок + стрелка */
+.seo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: #1c1c1c;
   border-radius: 12px;
-  overflow: hidden;
-}
-
-/* Убираем маркер, стилизуем summary */
-.seo-details summary {
-  list-style: none;
-  cursor: pointer;
   padding: 16px 20px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
-  position: relative;
+  cursor: pointer;
+}
+.seo-header h2 {
   margin: 0;
+  font-size: 22px;
+  color: #fff;
 }
-.seo-details summary::-webkit-details-marker {
-  display: none;
-}
-
-/* Стрелка рядом с текстом */
-.seo-details summary::after {
-  content: "▼";
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
+.seo-arrow {
+  font-size: 16px;
   color: #a855f7;
   transition: transform .2s;
 }
-.seo-details[open] summary::after {
-  transform: translateY(-50%) rotate(180deg);
-}
 
-/* Абзац описания всегда видим */
+/* Всегда видимый вводный текст */
 .seo-intro {
+  margin: 8px 0 0;
   padding: 0 20px 16px;
-  margin: 0;
   color: #ccc;
   line-height: 1.6;
 }
 
-/* Скрываем/показываем остальной контент */
+/* Скрываемый блок по умолчанию */
 .seo-content {
   display: none;
+  background: #1c1c1c;
+  border-radius: 0 0 12px 12px;
   padding: 0 20px 20px;
   border-top: 1px solid #2a2a2a;
 }
-.seo-details[open] .seo-content {
+
+/* Когда блок открыт — показываем его и поворачиваем стрелку */
+.seo-content.open {
   display: block;
 }
+.seo-header .seo-arrow.open,
+.seo-content.open ~ .seo-header .seo-arrow {
+  transform: rotate(180deg);
+}
 
-/* Стили внутри скрываемой части */
+/* Внутри скрываемой части */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
