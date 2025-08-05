@@ -357,7 +357,7 @@ body {
   border-radius: 12px;
   padding: 0 0 28px 0;
   width: 100%;
-  max-width: none;
+  /* max-width: none;  <-- ЭТО УДАЛЕНО! */
   box-sizing: border-box;
 }
 .faq-title {
@@ -406,13 +406,10 @@ body {
   text-align: left;
   transition: background 0.2s, color 0.2s;
 }
-/* Если хочешь, чтобы вопрос был белым при открытии/наведении: */
 .faq-question:hover, .faq-item.open .faq-question {
   background: #191919;
   color: #fff;
 }
-/* Если хочешь, чтобы он всегда был фиолетовым, убери строку color: #fff; сверху ^ */
-
 .faq-toggle {
   display: flex;
   align-items: center;
