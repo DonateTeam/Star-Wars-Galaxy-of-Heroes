@@ -277,75 +277,75 @@ body {
   opacity: .5;
 }
 
-/* CSS для SEO-блока */
+/* SEO-блок */
 .seo-block {
   margin-top: 40px;
-}
-.seo-details {
   background: #1c1c1c;
   border-radius: 12px;
   overflow: hidden;
 }
-/* Сбрасываем маркеры */
-.seo-details summary {
-  list-style: none;
-  cursor: pointer;
-  padding: 16px 20px;
+
+/* header + toggle */
+.seo-header {
   display: flex;
-  align-items: center;      /* выравниваем текст и стрелку по центру */
+  align-items: center;
   justify-content: space-between;
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
+  padding: 16px 20px;
+  cursor: pointer;
+}
+.seo-header h2 {
   margin: 0;
+  font-size: 22px;
+  color: #fff;
 }
-.seo-details summary::-webkit-details-marker {
-  display: none;
-}
-/* Стрелка — через псевдоэлемент */
-.seo-details summary::after {
-  content: "▼";
-  transition: transform .2s;
-  color: #a855f7;
+.seo-toggle {
+  background: none;
+  border: none;
   font-size: 16px;
+  color: #a855f7;
+  transform: rotate(0deg);
+  transition: transform .2s;
+  cursor: pointer;
 }
-.seo-details[open] summary::after {
+.seo-toggle[aria-expanded="true"] {
   transform: rotate(180deg);
 }
-/* Описание игры всегда видно */
+
+/* всегда видимый абзац */
 .seo-intro {
   margin: 0;
   padding: 0 20px 16px;
   color: #ccc;
   line-height: 1.6;
 }
-/* Скрываем/показываем остальной контент */
-.seo-content {
-  display: none;
+
+/* скрываемый контент */
+.seo-extra {
   padding: 0 20px 20px;
   border-top: 1px solid #2a2a2a;
 }
-.seo-details[open] .seo-content {
-  display: block;
+.seo-extra.hidden {
+  display: none;
 }
-/* Стили для скрываемых разделов */
-.seo-content h3 {
+
+/* стили внутри */
+.seo-extra h3 {
   margin-top: 16px;
   font-size: 18px;
   color: #fff;
 }
-.seo-content ul {
+.seo-extra ul {
   margin: 8px 0 0 20px;
   list-style: disc;
 }
-.seo-content ul li {
+.seo-extra li {
   margin-bottom: 8px;
   color: #ccc;
 }
-.seo-content ul li strong {
+.seo-extra li strong {
   color: #a855f7;
 }
-.seo-content p {
+.seo-extra p {
   margin-top: 8px;
   color: #ccc;
   line-height: 1.6;
