@@ -281,14 +281,12 @@ body {
 .seo-block {
   margin-top: 40px;
 }
-
 .seo-details {
   background: #1c1c1c;
   border-radius: 12px;
   overflow: hidden;
 }
-
-/* summary с заголовком */
+/* Сбрасываем маркер */
 .seo-details summary {
   list-style: none;
   cursor: pointer;
@@ -302,8 +300,7 @@ body {
 .seo-details summary::-webkit-details-marker {
   display: none;
 }
-
-/* стрелка рядом с заголовком */
+/* Стрелка возле заголовка */
 .seo-details summary::after {
   content: "▼";
   position: absolute;
@@ -316,16 +313,14 @@ body {
 .seo-details[open] summary::after {
   transform: translateY(-50%) rotate(180deg);
 }
-
-/* абзац, который всегда видим */
+/* Абзац, который всегда виден */
 .seo-intro {
   padding: 0 20px 16px;
   margin: 0;
   color: #ccc;
   line-height: 1.6;
 }
-
-/* скрываем/показываем остальной контент */
+/* Скрываем/показываем остальной контент */
 .seo-content {
   display: none;
   padding: 0 20px 20px;
@@ -334,8 +329,7 @@ body {
 .seo-details[open] .seo-content {
   display: block;
 }
-
-/* стили внутри скрытого блока */
+/* Стили для скрываемого */
 .seo-content h3 {
   margin-top: 16px;
   font-size: 18px;
