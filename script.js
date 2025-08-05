@@ -164,3 +164,13 @@ document.addEventListener("DOMContentLoaded", () => {
     extra.classList.toggle("hidden", expanded);
   });
 });
+
+// FAQ-аккордеон
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const item = this.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
