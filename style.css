@@ -457,9 +457,7 @@ body {
 
 .footer {
   margin-top: 56px;
-  background: #181818;
   padding: 40px 0 24px 0;
-  width: 100vw;
 }
 
 .footer-sep {
@@ -483,8 +481,6 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 32px;
-  max-width: 1200px;
-  margin: 0 auto;
   padding: 0 20px;
 }
 
