@@ -169,8 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// === SEO: динамическая подстановка ===
-
+// === SEO и FAQ-контент для каждой вкладки ===
 const seoBlocks = {
   all: {
     title: "Описание игры",
@@ -186,7 +185,17 @@ const seoBlocks = {
       <p>Новичкам — кристаллы, фанатам коллекционных героев — наборы персонажей, активным игрокам — боевой пропуск.</p>
       <h3>Почему DonateTeam?</h3>
       <p>DonateTeam — ваш надёжный партнёр по пополнению Galaxy of Heroes: быстрые платежи, 24/7 поддержка и лучшие цены на все виды доната.</p>
-    `
+    `,
+    faqs: [
+      {
+        q: "Как быстро происходит донат в Star Wars Galaxy of Heroes?",
+        a: "Донат занимает обычно 5–10 минут. В зависимости от загруженности."
+      },
+      {
+        q: "Меня не забанят в Star Wars Galaxy of Heroes?",
+        a: "Оплата проходит через официальный магазин игры. Ваша учётная запись в безопасности при соблюдении всех инструкций."
+      }
+    ]
   },
   crystals: {
     title: "Кристаллы в Star Wars: Galaxy of Heroes",
@@ -199,7 +208,17 @@ const seoBlocks = {
         <li>Эксклюзивные предметы и возможности.</li>
       </ul>
       <p>Кристаллы подойдут как новичкам, так и продвинутым игрокам!</p>
-    `
+    `,
+    faqs: [
+      {
+        q: "Что дают кристаллы?",
+        a: "За кристаллы можно покупать героев, энергию, ускорять прогресс и многое другое."
+      },
+      {
+        q: "Можно ли купить кристаллы дешевле?",
+        a: "Через DonateTeam вы получаете скидку и быструю поддержку."
+      }
+    ]
   },
   sets: {
     title: "Наборы в Galaxy of Heroes",
@@ -211,7 +230,17 @@ const seoBlocks = {
         <li>Энергия, кредиты и другие ресурсы.</li>
       </ul>
       <p>Отличный выбор для коллекционеров и тех, кто хочет ускорить прогресс!</p>
-    `
+    `,
+    faqs: [
+      {
+        q: "Что входит в наборы?",
+        a: "Наборы содержат героев, ресурсы, жетоны и бонусы для прокачки."
+      },
+      {
+        q: "Можно ли купить несколько наборов сразу?",
+        a: "Да, вы можете выбрать нужное количество и оформить заказ через корзину."
+      }
+    ]
   },
   passes: {
     title: "Пропуски в Galaxy of Heroes",
@@ -223,9 +252,47 @@ const seoBlocks = {
         <li>Эксклюзивные предметы и герои только для владельцев пропуска.</li>
       </ul>
       <p>Лучшее решение для самых активных игроков!</p>
-    `
+    `,
+    faqs: [
+      {
+        q: "Для чего нужны пропуски?",
+        a: "Пропуски дают доступ к сезонным ивентам и эксклюзивным наградам."
+      },
+      {
+        q: "На сколько хватает пропуска?",
+        a: "Обычно пропуск действует на сезон или определённый период, указанный в описании."
+      }
+    ]
   }
 };
+
+function renderFaqBlock(faqs = []) {
+  const faqList = document.querySelector('.faq-list');
+  if (!faqList) return;
+  faqList.innerHTML = '';
+  faqs.forEach(({ q, a }) => {
+    const item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML = `
+      <button class="faq-question">
+        ${q}
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer">${a}</div>
+    `;
+    faqList.appendChild(item);
+  });
+
+  // FAQ-аккордеон для новых элементов
+  faqList.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const item = this.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      faqList.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+}
 
 function renderSeoBlock(category = "all") {
   const block = seoBlocks[category] || seoBlocks.all;
@@ -234,26 +301,8 @@ function renderSeoBlock(category = "all") {
   document.querySelector('.seo-extra').innerHTML = block.extra;
   document.querySelector('.seo-extra').classList.add('hidden');
   document.querySelector('.seo-toggle').setAttribute("aria-expanded", "false");
+  renderFaqBlock(block.faqs || []);
 }
-
-// Динамическая смена SEO-блока при клике по фильтру
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const cat = btn.dataset.category;
-    renderSeoBlock(cat);
-  });
-});
 
 // При загрузке страницы
 renderSeoBlock("all");
-
-
-// FAQ-аккордеон
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', function() {
-    const item = this.closest('.faq-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
