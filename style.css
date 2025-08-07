@@ -470,6 +470,7 @@ body {
 .footer-title-row {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 14px;
   margin-top: 38px;
   margin-bottom: 18px;
@@ -479,6 +480,7 @@ body {
   font-size: 24px;
   font-weight: bold;
   color: #fff;
+  white-space: nowrap;
 }
 
 .footer-tg {
@@ -488,6 +490,7 @@ body {
   border-radius: 50%;
   transition: box-shadow 0.18s, transform 0.18s;
   background: transparent;
+  margin-left: 10px;
 }
 .footer-tg:hover {
   box-shadow: 0 0 10px 2px #36B2EC44;
@@ -514,7 +517,7 @@ body {
   flex-wrap: wrap;
   gap: 28px;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 .footer-link {
