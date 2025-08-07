@@ -459,6 +459,7 @@ body {
   margin-top: 56px;
   padding: 0 0 32px 0;
   background: none;
+  width: 100%;
 }
 
 .footer-content {
@@ -491,6 +492,9 @@ body {
   transition: box-shadow 0.18s, transform 0.18s;
   background: transparent;
   margin-left: 10px;
+  /* чтобы всегда быть справа от заголовка */
+  position: relative;
+  top: 2px;
 }
 .footer-tg:hover {
   box-shadow: 0 0 10px 2px #36B2EC44;
@@ -510,6 +514,11 @@ body {
   border-top: 1px solid #444;
   margin: 0 0 24px 0;
   width: 100%;
+}
+
+/* убрать разделитель, если он самый последний в футере */
+.footer-sep:last-child {
+  display: none !important;
 }
 
 .footer-links-row {
@@ -553,7 +562,6 @@ body {
     gap: 10px;
   }
 }
-
 
 
 /* === Адаптив === */
