@@ -11,6 +11,12 @@ const productsData = [
   { id: 9,  name: "Пропуск эпизода +",   price: 3800, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
   { id: 10, name: "Пропуск завоевания",   price: 1100, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
   { id: 11, name: "Пропуск завоевания +", price: 3000, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
+  { id: 12, name: "Кайбер-жетон скорости света", price: 1600, category: "sets",   img: "https://i.imgur.com/MFICVuR.png" },
+  { id: 13, name: "Хромиумный жетон скорости света", price: 1100, category: "sets",   img: "https://i.imgur.com/3Bc8Gvc.png" },
+  { id: 14, name: "Бронзиумный жетон скорости света", price: 600, category: "sets",   img: "https://i.imgur.com/pbmx8XO.png" },
+  { id: 15, name: "Календарь пополнения запасов энергии", price: 2000, category: "sets",   img: "https://i.imgur.com/SUKsx7U.png" },
+  { id: 16, name: "Календарь пополнения запасов кристаллов", price: 2000, category: "sets",   img: "https://i.imgur.com/8QrvXPv.png" },
+  { id: 17, name: "Взломанный комплект Осколки, чертежи, мат. дзета и омикрон - весь комплект, price: 5500, category: "sets",   img: "https://i.imgur.com/mw1u0AG.png" },
 ];
 
 const productsContainer = document.getElementById("products");
