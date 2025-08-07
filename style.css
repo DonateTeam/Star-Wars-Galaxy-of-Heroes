@@ -478,7 +478,7 @@ body {
   gap: 24px;
 }
 .footer-row--top {
-  margin-bottom: 6px;
+  margin-bottom: 20px; /* Больше отступа между заголовком и текстом */
 }
 .footer-title {
   font-family: inherit;
@@ -506,6 +506,7 @@ body {
 
 .footer-row--bottom {
   margin-bottom: 0;
+  align-items: flex-start; /* Чтобы кнопка выравнивалась по верху блока с текстом */
 }
 .footer-info {
   max-width: 600px;
@@ -545,6 +546,7 @@ body {
   text-decoration: none;
   box-shadow: 0 2px 16px 0 #a855f744;
   transition: background .18s, color .2s, box-shadow .18s;
+  margin-top: 0;
 }
 .footer-support-btn:hover {
   background: #a855f7;
@@ -581,6 +583,7 @@ body {
     align-self: flex-start;
   }
 }
+
 
 /* === Адаптив === */
 
