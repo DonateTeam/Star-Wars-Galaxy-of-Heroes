@@ -460,47 +460,40 @@ body {
   padding: 0 0 32px 0;
   background: none;
 }
-.footer-sep {
-  border: none;
-  border-top: 1px solid #444;
-  margin: 0 0 24px 0;
-  width: 100%;
-}
+
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
 }
+
 .footer-title-row {
   display: flex;
   align-items: center;
-  margin-bottom: 22px;
-  gap: 12px;
+  gap: 14px;
+  margin-top: 38px;
+  margin-bottom: 18px;
 }
+
 .footer-title {
   font-size: 24px;
   font-weight: bold;
   color: #fff;
-  display: flex;
-  align-items: center;
-  gap: 14px;
 }
+
 .footer-tg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   transition: box-shadow 0.18s, transform 0.18s;
-  box-shadow: none;
   background: transparent;
 }
 .footer-tg:hover {
   box-shadow: 0 0 10px 2px #36B2EC44;
   transform: scale(1.10);
 }
-.footer-info {
-  margin-top: 0;
-}
+
 .footer-desc {
   color: #aaa;
   font-size: 15px;
@@ -508,18 +501,22 @@ body {
   line-height: 1.7;
   max-width: 600px;
 }
-.footer-links-sep {
+
+.footer-sep {
   border: none;
   border-top: 1px solid #444;
-  margin: 0 0 16px 0;
+  margin: 0 0 24px 0;
   width: 100%;
 }
+
 .footer-links-row {
   display: flex;
   flex-wrap: wrap;
   gap: 28px;
   align-items: center;
+  margin-bottom: 12px;
 }
+
 .footer-link {
   color: #a855f7;
   font-size: 15px;
@@ -530,35 +527,30 @@ body {
   padding: 2px 12px;
   font-weight: 500;
 }
-.footer-link:hover,
-.footer-support-link:hover {
+.footer-link:hover {
   color: #fff;
   background: #a855f733;
   text-decoration: underline;
 }
-.footer-support-link {
-  text-decoration: underline dotted;
-  font-weight: 600;
-}
+
 @media (max-width: 700px) {
   .footer-content {
     padding: 0 8px;
   }
   .footer-title-row {
-    flex-direction: column;
-    align-items: flex-start;
+    margin-top: 24px;
     gap: 8px;
+  }
+  .footer-title {
+    font-size: 18px;
   }
   .footer-links-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  .footer-title {
-    font-size: 18px;
-    gap: 7px;
-  }
 }
+
 
 
 /* === Адаптив === */
