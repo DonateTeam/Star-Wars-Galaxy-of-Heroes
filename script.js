@@ -169,6 +169,85 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+// === SEO: динамическая подстановка ===
+
+const seoBlocks = {
+  all: {
+    title: "Описание игры",
+    intro: `Star Wars: Galaxy of Heroes — коллекционная ролевая RPG от EA и Lucasfilm, где вы собираете команду легендарных героев, прокачиваете их и сражаетесь в эпических баталиях по всей Галактике.`,
+    extra: `
+      <h3>Какие виды пополнения в Galaxy of Heroes?</h3>
+      <ul>
+        <li><strong>Кристаллы</strong> — внутриигровая валюта для ускорения прогресса и разблокировки героев.</li>
+        <li><strong>Наборы персонажей</strong> — фрагменты легендарных героев и бонусы к прокачке.</li>
+        <li><strong>Боевые пропуски</strong> — доступ к эксклюзивным наградам за еженедельные и сезонные задания.</li>
+      </ul>
+      <h3>Что выбрать?</h3>
+      <p>Новичкам — кристаллы, фанатам коллекционных героев — наборы персонажей, активным игрокам — боевой пропуск.</p>
+      <h3>Почему DonateTeam?</h3>
+      <p>DonateTeam — ваш надёжный партнёр по пополнению Galaxy of Heroes: быстрые платежи, 24/7 поддержка и лучшие цены на все виды доната.</p>
+    `
+  },
+  crystals: {
+    title: "Кристаллы в Star Wars: Galaxy of Heroes",
+    intro: `Кристаллы — основная игровая валюта для прокачки, ускорения развития, покупки героев и ускорителей прогресса.`,
+    extra: `
+      <h3>Для чего нужны кристаллы?</h3>
+      <ul>
+        <li>Покупка героев и ресурсов.</li>
+        <li>Ускорение прокачки.</li>
+        <li>Эксклюзивные предметы и возможности.</li>
+      </ul>
+      <p>Кристаллы подойдут как новичкам, так и продвинутым игрокам!</p>
+    `
+  },
+  sets: {
+    title: "Наборы в Galaxy of Heroes",
+    intro: `Наборы персонажей и ресурсы содержат ценные предметы для ускоренного развития вашей команды и получения редких героев.`,
+    extra: `
+      <h3>Что можно найти в наборах?</h3>
+      <ul>
+        <li>Фрагменты героев, прокачка, уникальные жетоны.</li>
+        <li>Энергия, кредиты и другие ресурсы.</li>
+      </ul>
+      <p>Отличный выбор для коллекционеров и тех, кто хочет ускорить прогресс!</p>
+    `
+  },
+  passes: {
+    title: "Пропуски в Galaxy of Heroes",
+    intro: `Боевые пропуски открывают доступ к премиальным наградам, заданиям и эксклюзивным бонусам.`,
+    extra: `
+      <h3>Зачем покупать пропуск?</h3>
+      <ul>
+        <li>Доступ к лучшим наградам за события и сезонные активности.</li>
+        <li>Эксклюзивные предметы и герои только для владельцев пропуска.</li>
+      </ul>
+      <p>Лучшее решение для самых активных игроков!</p>
+    `
+  }
+};
+
+function renderSeoBlock(category = "all") {
+  const block = seoBlocks[category] || seoBlocks.all;
+  document.querySelector('.seo-title').textContent = block.title;
+  document.querySelector('.seo-intro').innerHTML = block.intro;
+  document.querySelector('.seo-extra').innerHTML = block.extra;
+  document.querySelector('.seo-extra').classList.add('hidden');
+  document.querySelector('.seo-toggle').setAttribute("aria-expanded", "false");
+}
+
+// Динамическая смена SEO-блока при клике по фильтру
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const cat = btn.dataset.category;
+    renderSeoBlock(cat);
+  });
+});
+
+// При загрузке страницы
+renderSeoBlock("all");
+
+
 // FAQ-аккордеон
 document.querySelectorAll('.faq-question').forEach(btn => {
   btn.addEventListener('click', function() {
