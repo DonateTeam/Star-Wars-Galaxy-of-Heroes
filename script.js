@@ -1,4 +1,4 @@
-// script.js
+// ==== Каталог товаров ====
 const productsData = [
   { id: 1,  name: "610 кристаллов",      price: 550,  category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/610.png" },
   { id: 2,  name: "1340 кристаллов",     price: 1100, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/1340.png" },
@@ -7,21 +7,21 @@ const productsData = [
   { id: 5,  name: "15710 кристаллов",    price: 8800, category: "crystals", img: "https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/15710.png" },
   { id: 6,  name: "Пропуск эпизода",     price: 2000, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
   { id: 7,  name: "Пропуск эпизода +",   price: 3800, category: "passes",   img: "https://i.imgur.com/1QtabKs.png" },
-  { id: 8, name: "Пропуск завоевания",   price: 1100, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
-  { id: 9, name: "Пропуск завоевания +", price: 3000, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
-  { id: 10, name: "Кайбер-жетон", price: 1600, category: "sets",   img: "https://i.imgur.com/MFICVuR.png" },
-  { id: 11, name: "Хромиумный жетон", price: 1100, category: "sets",   img: "https://i.imgur.com/3Bc8Gvc.png" },
-  { id: 12, name: "Бронзиумный жетон", price: 600, category: "sets",   img: "https://i.imgur.com/pbmx8XO.png" },
-  { id: 13, name: "Календарь энергии", price: 2000, category: "sets",   img: "https://i.imgur.com/SUKsx7U.png" },
-  { id: 14, name: "Календарь кристаллов", price: 2000, category: "sets",   img: "https://i.imgur.com/8QrvXPv.png" },
-  { id: 15, name: "Взломанный комплект", price: 5500, category: "sets",   img: "https://i.imgur.com/mw1u0AG.png" },
+  { id: 8,  name: "Пропуск завоевания",   price: 1100, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
+  { id: 9,  name: "Пропуск завоевания +", price: 3000, category: "passes",   img: "https://i.imgur.com/mHQJlxn.png" },
+  { id: 10, name: "Кайбер-жетон",         price: 1600, category: "sets",     img: "https://i.imgur.com/MFICVuR.png" },
+  { id: 11, name: "Хромиумный жетон",     price: 1100, category: "sets",     img: "https://i.imgur.com/3Bc8Gvc.png" },
+  { id: 12, name: "Бронзиумный жетон",    price: 600,  category: "sets",     img: "https://i.imgur.com/pbmx8XO.png" },
+  { id: 13, name: "Календарь энергии",    price: 2000, category: "sets",     img: "https://i.imgur.com/SUKsx7U.png" },
+  { id: 14, name: "Календарь кристаллов", price: 2000, category: "sets",     img: "https://i.imgur.com/8QrvXPv.png" },
+  { id: 15, name: "Взломанный комплект",  price: 5500, category: "sets",     img: "https://i.imgur.com/mw1u0AG.png" },
 ];
 
 const productsContainer = document.getElementById("products");
-const cartItems          = document.getElementById("cart-items");
-const cartTotal          = document.getElementById("cart-total");
-const cartCount          = document.getElementById("cart-count");
-const checkoutBtn        = document.getElementById("checkout-btn");
+const cartItems   = document.getElementById("cart-items");
+const cartTotal   = document.getElementById("cart-total");
+const cartCount   = document.getElementById("cart-count");
+const checkoutBtn = document.getElementById("checkout-btn");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -117,8 +117,6 @@ function renderCart() {
     }`;
 
   checkoutBtn.disabled = total === 0;
-
-  // включаем прокрутку, когда в корзине больше 2 товаров
   document.querySelector(".cart")
     .classList.toggle("scrollable", cart.length > 2);
 }
@@ -130,15 +128,18 @@ function saveCart() {
   renderCart();
 }
 
+// --- Кнопки фильтров (и динамика SEO/FAQ) ---
 document.querySelectorAll(".filter-btn").forEach(b =>
   b.addEventListener("click", () => {
     document.querySelectorAll(".filter-btn")
       .forEach(x => x.classList.remove("active"));
     b.classList.add("active");
     renderProducts(b.dataset.category);
+    renderSeoBlock(b.dataset.category); // динамика SEO и FAQ!
   })
 );
 
+// Кнопка оплаты
 checkoutBtn.addEventListener("click", () => {
   const title = "Star Wars: Galaxy of Heroes";
   let msg = `${title}\n\nСодержимое корзины:\n`, total = 0;
@@ -154,22 +155,12 @@ checkoutBtn.addEventListener("click", () => {
   );
 });
 
-// initial render
+// Первоначальный рендер
 renderProducts();
 renderCart();
 
-// SEO
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.querySelector(".seo-toggle");
-  const extra = document.querySelector(".seo-extra");
-  btn.addEventListener("click", () => {
-    const expanded = btn.getAttribute("aria-expanded") === "true";
-    btn.setAttribute("aria-expanded", String(!expanded));
-    extra.classList.toggle("hidden", expanded);
-  });
-});
 
-// === SEO и FAQ-контент для каждой вкладки ===
+// --- SEO и FAQ для каждой вкладки ---
 const seoBlocks = {
   all: {
     title: "Описание игры",
@@ -266,6 +257,7 @@ const seoBlocks = {
   }
 };
 
+// --- SEO/FAQ динамика ---
 function renderFaqBlock(faqs = []) {
   const faqList = document.querySelector('.faq-list');
   if (!faqList) return;
@@ -304,5 +296,14 @@ function renderSeoBlock(category = "all") {
   renderFaqBlock(block.faqs || []);
 }
 
-// При загрузке страницы
-renderSeoBlock("all");
+// --- SEO toggle (открыть/закрыть) ---
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.querySelector(".seo-toggle");
+  const extra = document.querySelector(".seo-extra");
+  btn.addEventListener("click", () => {
+    const expanded = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!expanded));
+    extra.classList.toggle("hidden", expanded);
+  });
+  renderSeoBlock("all"); // первый запуск!
+});
