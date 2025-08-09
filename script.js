@@ -22,14 +22,15 @@ const cartItems   = document.getElementById("cart-items");
 const cartTotal   = document.getElementById("cart-total");
 const cartCount   = document.getElementById("cart-count");
 const checkoutBtn = document.getElementById("checkout-btn");
+const cartEl      = document.getElementById("cart");
+const cartToggle  = document.querySelector(".cart-toggle");
+const overlay     = document.querySelector(".overlay");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function renderProducts(filter = "all") {
   productsContainer.innerHTML = "";
-  const list = filter === "all"
-    ? productsData
-    : productsData.filter(p => p.category === filter);
+  const list = filter === "all" ? productsData : productsData.filter(p => p.category === filter);
 
   list.forEach(p => {
     const inCart = cart.find(x => x.id === p.id);
@@ -71,7 +72,7 @@ function renderProducts(filter = "all") {
     btn.addEventListener("click", () => {
       const id   = +btn.closest(".product-card").dataset.id;
       const item = cart.find(x => x.id === id);
-      if (item.qty > 1) item.qty--; 
+      if (item.qty > 1) item.qty--;
       else cart = cart.filter(x => x.id !== id);
       saveCart();
     })
@@ -102,23 +103,21 @@ function renderCart() {
 
     li.querySelector(".inc").onclick = () => { it.qty++; saveCart(); };
     li.querySelector(".dec").onclick = () => {
-      if (it.qty > 1) it.qty--; 
+      if (it.qty > 1) it.qty--;
       else cart = cart.filter(x => x.id !== it.id);
       saveCart();
     };
   });
 
   cartTotal.textContent = `${total} ₽`;
-  cartCount.textContent  =
-    `${count} ${
-      count % 10 === 1 && count % 100 !== 11 ? "товар"
-      : count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)
-        ? "товара" : "товаров"
-    }`;
+  cartCount.textContent  = `${count} ${
+    count % 10 === 1 && count % 100 !== 11 ? "товар"
+    : count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)
+      ? "товара" : "товаров"
+  }`;
 
   checkoutBtn.disabled = total === 0;
-  document.querySelector(".cart")
-    .classList.toggle("scrollable", cart.length > 2);
+  cartEl.classList.toggle("scrollable", cart.length > 2);
 }
 
 function saveCart() {
@@ -128,14 +127,43 @@ function saveCart() {
   renderCart();
 }
 
-// --- Кнопки фильтров (и динамика SEO/FAQ) ---
+// --- Управление корзиной-дровером на мобиле ---
+function openCart(){
+  cartEl.classList.add('is-open');
+  document.body.classList.add('is-locked');
+  overlay.classList.remove('hidden');
+  cartToggle.setAttribute('aria-expanded','true');
+}
+function closeCart(){
+  cartEl.classList.remove('is-open');
+  document.body.classList.remove('is-locked');
+  overlay.classList.add('hidden');
+  cartToggle.setAttribute('aria-expanded','false');
+}
+
+if (cartToggle && cartEl) {
+  cartToggle.addEventListener('click', () => {
+    if (cartEl.classList.contains('is-open')) closeCart(); else openCart();
+  });
+  overlay && overlay.addEventListener('click', closeCart);
+
+  // свайп-вниз для закрытия
+  let startY = null;
+  cartEl.addEventListener('touchstart', (e)=>{ startY = e.touches[0].clientY; }, {passive:true});
+  cartEl.addEventListener('touchmove', (e)=>{
+    if(startY===null) return;
+    const dy = e.touches[0].clientY - startY;
+    if(dy>60) closeCart();
+  }, {passive:true});
+}
+
+// --- Кнопки фильтров + динамика SEO/FAQ ---
 document.querySelectorAll(".filter-btn").forEach(b =>
   b.addEventListener("click", () => {
-    document.querySelectorAll(".filter-btn")
-      .forEach(x => x.classList.remove("active"));
+    document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
     b.classList.add("active");
     renderProducts(b.dataset.category);
-    renderSeoBlock(b.dataset.category); // динамика SEO и FAQ!
+    renderSeoBlock(b.dataset.category);
   })
 );
 
@@ -159,8 +187,7 @@ checkoutBtn.addEventListener("click", () => {
 renderProducts();
 renderCart();
 
-
-// --- SEO и FAQ для каждой вкладки ---
+// --- SEO и FAQ для вкладок ---
 const seoBlocks = {
   all: {
     title: "Описание игры",
@@ -178,14 +205,8 @@ const seoBlocks = {
       <p>DonateTeam — ваш надёжный партнёр по пополнению Galaxy of Heroes: быстрые платежи, 24/7 поддержка и лучшие цены на все виды доната.</p>
     `,
     faqs: [
-      {
-        q: "Как быстро происходит донат в Star Wars Galaxy of Heroes?",
-        a: "Донат занимает обычно 5–10 минут. В зависимости от загруженности."
-      },
-      {
-        q: "Меня не забанят в Star Wars Galaxy of Heroes?",
-        a: "Оплата проходит через официальный магазин игры. Ваша учётная запись в безопасности при соблюдении всех инструкций."
-      }
+      { q: "Как быстро происходит донат в Star Wars Galaxy of Heroes?", a: "Донат занимает обычно 5–10 минут. В зависимости от загруженности." },
+      { q: "Меня не забанят в Star Wars Galaxy of Heroes?", a: "Оплата проходит через официальный магазин игры. Ваша учётная запись в безопасности при соблюдении всех инструкций." }
     ]
   },
   crystals: {
@@ -201,14 +222,8 @@ const seoBlocks = {
       <p>Кристаллы подойдут как новичкам, так и продвинутым игрокам!</p>
     `,
     faqs: [
-      {
-        q: "Что дают кристаллы?",
-        a: "За кристаллы можно покупать героев, энергию, ускорять прогресс и многое другое."
-      },
-      {
-        q: "Можно ли купить кристаллы дешевле?",
-        a: "Через DonateTeam вы получаете скидку и быструю поддержку."
-      }
+      { q: "Что дают кристаллы?", a: "За кристаллы можно покупать героев, энергию, ускорять прогресс и многое другое." },
+      { q: "Можно ли купить кристаллы дешевле?", a: "Через DonateTeam вы получаете скидку и быструю поддержку." }
     ]
   },
   sets: {
@@ -223,14 +238,8 @@ const seoBlocks = {
       <p>Отличный выбор для коллекционеров и тех, кто хочет ускорить прогресс!</p>
     `,
     faqs: [
-      {
-        q: "Что входит в наборы?",
-        a: "Наборы содержат героев, ресурсы, жетоны и бонусы для прокачки."
-      },
-      {
-        q: "Можно ли купить несколько наборов сразу?",
-        a: "Да, вы можете выбрать нужное количество и оформить заказ через корзину."
-      }
+      { q: "Что входит в наборы?", a: "Наборы содержат героев, ресурсы, жетоны и бонусы для прокачки." },
+      { q: "Можно ли купить несколько наборов сразу?", a: "Да, вы можете выбрать нужное количество и оформить заказ через корзину." }
     ]
   },
   passes: {
@@ -245,19 +254,12 @@ const seoBlocks = {
       <p>Лучшее решение для самых активных игроков!</p>
     `,
     faqs: [
-      {
-        q: "Для чего нужны пропуски?",
-        a: "Пропуски дают доступ к сезонным ивентам и эксклюзивным наградам."
-      },
-      {
-        q: "На сколько хватает пропуска?",
-        a: "Обычно пропуск действует на сезон или определённый период, указанный в описании."
-      }
+      { q: "Для чего нужны пропуски?", a: "Пропуски дают доступ к сезонным ивентам и эксклюзивным наградам." },
+      { q: "На сколько хватает пропуска?", a: "Обычно пропуск действует на сезон или определённый период, указанный в описании." }
     ]
   }
 };
 
-// --- SEO/FAQ динамика ---
 function renderFaqBlock(faqs = []) {
   const faqList = document.querySelector('.faq-list');
   if (!faqList) return;
@@ -270,12 +272,10 @@ function renderFaqBlock(faqs = []) {
         ${q}
         <span class="faq-toggle">+</span>
       </button>
-      <div class="faq-answer">${a}</div>
-    `;
+      <div class="faq-answer">${a}</div>`;
     faqList.appendChild(item);
   });
 
-  // FAQ-аккордеон для новых элементов
   faqList.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', function() {
       const item = this.closest('.faq-item');
@@ -296,7 +296,6 @@ function renderSeoBlock(category = "all") {
   renderFaqBlock(block.faqs || []);
 }
 
-// --- SEO toggle (открыть/закрыть) ---
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.querySelector(".seo-toggle");
   const extra = document.querySelector(".seo-extra");
@@ -305,5 +304,5 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.setAttribute("aria-expanded", String(!expanded));
     extra.classList.toggle("hidden", expanded);
   });
-  renderSeoBlock("all"); // первый запуск!
+  renderSeoBlock("all");
 });
