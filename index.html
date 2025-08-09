@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
   <title>Star Wars: Galaxy of Heroes</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -24,6 +24,8 @@
       />
       <div class="header-info">
         <h1 class="game-title">Star Wars: Galaxy of Heroes</h1>
+
+        <!-- 2x2 сетка кнопок на мобиле -->
         <div class="filter-buttons">
           <button class="filter-btn active" data-category="all">Все товары</button>
           <button class="filter-btn" data-category="crystals">Кристаллы</button>
@@ -33,14 +35,11 @@
       </div>
     </div>
 
-    <!-- Кнопка корзины для мобилы -->
-    <button class="cart-toggle" aria-controls="cart" aria-expanded="false">Корзина</button>
-    <div class="overlay hidden" aria-hidden="true"></div>
-
     <!-- Контент и корзина -->
     <main class="main-content">
       <section id="products" class="products"></section>
-      <aside id="cart" class="cart" aria-label="Корзина">
+
+      <aside class="cart" aria-hidden="true">
         <div class="cart-header">
           <h2>Корзина <span id="cart-total">0 ₽</span></h2>
           <div id="cart-count" class="cart-count">0 товаров</div>
@@ -84,7 +83,10 @@
     <footer class="footer">
       <div class="footer-content">
         <div class="footer-title-row">
-          <span class="footer-title">DonateTeam. Магазин игрового доната.</span>
+          <div class="footer-title">
+            <span class="brand">DonateTeam</span><br>
+            <span class="subtitle">Магазин игрового доната</span>
+          </div>
           <a class="footer-tg" href="https://t.me/DonateTeam_channel" target="_blank" rel="noopener" aria-label="Telegram">
             <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
               <circle cx="20" cy="20" r="20" fill="#36B2EC"/>
@@ -105,6 +107,10 @@
         </div>
       </div>
     </footer>
+
+    <!-- Плавающая кнопка корзины + оверлей -->
+    <button class="cart-toggle" aria-controls="cart" aria-expanded="false">Корзина</button>
+    <div class="overlay hidden"></div>
 
     <script src="script.js"></script>
   </div>
