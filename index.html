@@ -33,10 +33,14 @@
       </div>
     </div>
 
+    <!-- Кнопка корзины для мобилы -->
+    <button class="cart-toggle" aria-controls="cart" aria-expanded="false">Корзина</button>
+    <div class="overlay hidden" aria-hidden="true"></div>
+
     <!-- Контент и корзина -->
     <main class="main-content">
       <section id="products" class="products"></section>
-      <aside class="cart">
+      <aside id="cart" class="cart" aria-label="Корзина">
         <div class="cart-header">
           <h2>Корзина <span id="cart-total">0 ₽</span></h2>
           <div id="cart-count" class="cart-count">0 товаров</div>
@@ -69,7 +73,7 @@
       </div>
     </section>
 
-    <!-- FAQ-блок — обязательно внутри .container! -->
+    <!-- FAQ-блок -->
     <section class="faq-block">
       <h2 class="faq-title">
         FAQ <span class="faq-emoji">❓</span>
