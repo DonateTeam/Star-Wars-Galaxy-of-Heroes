@@ -1,70 +1,68 @@
-/* скрываем горизонтальные «белые поля» и инерцию на iOS */
+/* убираем горизонтальный скролл */
 html,body{overflow-x:hidden}
 *{scrollbar-width:none!important;-ms-overflow-style:none!important}
 *::-webkit-scrollbar{display:none!important}
 
-/* базовые */
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#111;
-  color:#fff;
-  min-width:320px;
-  overscroll-behavior-x:none;
-  touch-action:pan-y;
-}
+/* База */
+body{margin:0;font-family:Arial, sans-serif;background:#111;color:#fff;min-width:320px;overscroll-behavior-x:none;touch-action:pan-y}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-/* breadcrumbs */
+/* Крошки */
 .breadcrumbs{font-size:16px;color:#888;padding:20px 0 10px;margin-bottom:20px;display:flex;align-items:center}
 .breadcrumb-link{color:#aaa;text-decoration:none;transition:color .2s}
 .breadcrumb-link:hover{color:#a855f7}
 .breadcrumb-sep{margin:0 8px;color:#888}
 .breadcrumb-current{color:#fff}
 
-/* шапка (без бордюров) */
-.header-grid{display:grid;grid-template-columns:100px 1fr;gap:20px;align-items:center;margin-bottom:20px}
-.game-logo{width:100px;height:100px;border-radius:12px}
-.game-title{margin:0;font-size:28px}
-.header-info{display:flex;flex-direction:column;gap:12px}
-
-/* фильтры */
-.filter-buttons{display:flex;gap:20px;flex-wrap:wrap}
+/* ===== Шапка (ПК) ===== */
+.header-grid{
+  display:grid;
+  grid-template-columns:100px 1fr;
+  grid-template-areas:
+    "logo title"
+    "logo actions";
+  column-gap:20px; row-gap:10px;
+  align-items:center;
+  margin-bottom:20px;
+}
+.game-title{grid-area:title;margin:0;font-size:28px}
+.game-logo{grid-area:logo;width:100px;height:100px;border-radius:12px;object-fit:cover}
+.header-actions{grid-area:actions;display:flex;gap:20px;flex-wrap:wrap}
 .filter-btn{background:#222;color:#fff;border:none;padding:14px 24px;font-size:18px;border-radius:12px;cursor:pointer}
 .filter-btn.active{background:#a855f7}
 
-/* контентная область */
+/* Контент */
 .main-content{display:flex;gap:20px}
-.products{flex:1 1 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px}
+.products{flex:1 1 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
 
-/* карточки товаров */
-.product-card{background:#1c1c1c;border-radius:12px;padding:12px;display:grid;gap:8px;text-align:center}
-.product-card img{width:100%;height:140px;object-fit:contain;border-radius:8px}
-.product-card h3{margin:0;font-size:16px;line-height:1.4}
+/* Карточки */
+.product-card{
+  background:#1c1c1c;border-radius:12px;padding:12px;display:grid;text-align:center;gap:8px;
+  grid-template-rows:150px 48px 32px 32px;
+}
+.product-card img{width:100%;height:150px;object-fit:contain;border-radius:8px}
+.product-card h3{margin:0;font-size:16px;line-height:1.35}
 .product-card .price{background:#555;color:#fff;border-radius:12px;height:32px;line-height:32px}
 .product-card .counter{display:flex;justify-content:space-between;align-items:center;background:#222;border-radius:12px;height:32px;padding:0 12px}
 .product-card .counter button{background:none;border:none;color:#a855f7;font-size:20px;cursor:pointer;width:28px;height:28px}
 .product-card .count{color:#fff;font-size:16px;min-width:24px;text-align:center}
 .product-card .add-btn{background:#a855f7;border:none;width:32px;height:32px;border-radius:50%;color:#fff;font-size:20px;cursor:pointer;justify-self:center}
 
-/* корзина (десктоп) */
-.cart{flex:0 0 250px;width:250px;background:#1c1c1c;border-radius:12px;padding:12px;position:sticky;top:16px;max-height:calc(100dvh - 32px);overflow:auto}
+/* Корзина (ПК) */
+.cart{flex:0 0 300px;width:300px;background:#1c1c1c;border-radius:12px;padding:16px;position:sticky;top:16px;max-height:calc(100dvh - 32px);overflow:auto;align-self:flex-start}
 .cart-header{margin-bottom:12px}
 .cart-header h2{font-size:18px;margin:0}
 #cart-total{color:#a855f7;margin-left:8px}
 .cart-count{font-size:14px;color:#ccc;margin-top:4px}
 .cart ul{list-style:none;padding:0;margin:0 0 12px}
-
-/* элементы корзины */
+.cart.scrollable #cart-items{max-height:150px;overflow-y:auto}
 .cart-item-card{background:#222;border-radius:12px;padding:12px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin-bottom:12px}
 .item-counter{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center;background:#333;border-radius:12px;height:32px;padding:0 8px;margin-top:8px}
 .item-counter button{background:none;border:none;font-size:18px;color:#a855f7;cursor:pointer;width:28px;height:28px}
-
-/* кнопка оплаты */
 #checkout-btn{width:100%;padding:10px;background:#a855f7;border:none;border-radius:12px;color:#fff;font-size:16px;cursor:pointer}
 #checkout-btn:disabled{background:#555;opacity:.5;cursor:not-allowed}
 
-/* SEO */
+/* SEO/FAQ */
 .seo-block{margin-top:40px;background:#1c1c1c;border-radius:12px;overflow:hidden}
 .seo-header{display:flex;align-items:center;padding:16px 20px}
 .seo-title{margin:0;font-size:22px;margin-right:18px}
@@ -75,69 +73,128 @@ body{
 .seo-extra{padding:0 20px 20px;border-top:1px solid #2a2a2a}
 .hidden{display:none}
 
-/* FAQ */
 .faq-block{margin:40px auto 0;background:#181818;border-radius:12px;padding:0 0 28px}
 .faq-title{font-size:28px;font-weight:bold;padding:32px 0 20px 32px;margin:0;display:flex;align-items:center;gap:8px}
 .faq-emoji{color:#a855f7;font-size:24px}
 .faq-list{display:flex;flex-direction:column;gap:20px;padding:0 24px}
 .faq-item{background:#141414;border-radius:12px}
-.faq-question{width:100%;background:none;border:none;color:#fff;font-size:22px;font-weight:700;padding:28px;display:flex;align-items:center;justify-content:space-between}
+.faq-question{width:100%;background:none;border:none;color:#fff;font-size:22px;font-weight:700;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left}
 .faq-toggle{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#232323;border-radius:8px;color:#a855f7;font-size:28px}
-.faq-answer{max-height:0;overflow:hidden;opacity:0;padding:0 28px;color:#ddd;font-size:18px;line-height:1.6;transition:max-height .13s ease,opacity .12s}
-.faq-item.open .faq-answer{max-height:220px;opacity:1;padding-bottom:16px;margin-top:-8px}
+.faq-answer{max-height:0;overflow:hidden;opacity:0;padding:0 28px 0;color:#ddd;font-size:18px;line-height:1.7;transition:max-height .18s ease,opacity .16s}
+.faq-item.open .faq-answer{max-height:260px;opacity:1;padding-bottom:18px;margin-top:-8px}
 
 /* Футер */
 .footer{margin-top:56px;padding:0 0 32px}
 .footer-content{max-width:1200px;margin:0 auto;padding:0 24px}
-.footer-title-row{display:flex;align-items:center;gap:14px;margin-top:24px;margin-bottom:14px}
+.footer-title-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:16px 0}
 .footer-title-1line{font-size:24px;font-weight:800}
 .footer-tg{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;transition:box-shadow .18s, transform .18s}
 .footer-tg:hover{box-shadow:0 0 10px 2px #36B2EC44;transform:scale(1.1)}
-.push-right{margin-left:auto}
-.footer-sep{border:none;border-top:1px solid #444;margin:12px 0 20px}
+.footer-sep{border:none;border-top:1px solid #444;width:100%;margin:12px 0 20px}
+@media (min-width:993px){
+  .footer-sep{margin-left:-24px;margin-right:-24px;width:calc(100% + 48px);}
+}
+.footer-sep--top{margin-top:0}
 .footer-desc{color:#aaa;font-size:15px;margin-bottom:20px;line-height:1.7}
 .footer-links-row{display:flex;gap:28px;flex-wrap:wrap}
 .footer-link{color:#a855f7;font-size:15px;text-decoration:underline dotted;border-radius:8px;padding:2px 12px}
 
-/* плавающая кнопка корзины + оверлей */
-.cart-toggle{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:50;display:none;padding:12px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:#a855f7;color:#fff;font-weight:700;box-shadow:0 10px 25px rgba(168,85,247,.3)}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:35}
-.overlay.hidden{display:none}
+/* ======= Адаптив ======= */
 
-/* брейкпоинты */
+/* ≤1200 — 3 карточки */
 @media (max-width:1200px){
   .products{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 
-/* <992px: мобильные правки */
+/* ≤992 — мобильная шапка + дровер корзины */
 @media (max-width:992px){
-  .container{padding:0 16px}             /* одинаковые левые/правые отступы — фикс п.3 */
+  :root{
+    --btn-h:44px;
+    --btn-gap:10px;
+  }
+
+  .container{padding:0 16px}
   .main-content{flex-direction:column}
-  /* полностью прячем корзину до клика — фикс п.1 */
+
+  /* Корзина-дровер */
   .cart{
-    position:fixed;left:0;right:0;bottom:0;top:auto;
-    transform:translateY(110%);visibility:hidden;pointer-events:none;
-    width:100%;max-height:70dvh;border-radius:16px 16px 0 0;padding:16px;
-    z-index:40;box-shadow:0 -10px 30px rgba(0,0,0,.35);
+    position:fixed; left:16px; right:16px; bottom:16px;
+    transform:translateY(120%); visibility:hidden; pointer-events:none;
+    width:auto; max-height:70dvh; border-radius:16px;
+    padding:16px 16px calc(16px + env(safe-area-inset-bottom));
+    z-index:40; box-shadow:0 20px 40px rgba(0,0,0,.45);
   }
   .cart.is-open{transform:translateY(0);visibility:visible;pointer-events:auto}
-  .cart-toggle{display:inline-flex}
+
+  /* Шапка-макет */
+  .header-grid{
+    /* две колонки: слева квадрат под лого, справа область под кнопки */
+    grid-template-columns: calc( (var(--btn-h)*2) + var(--btn-gap) ) 1fr;
+    grid-template-areas:
+      "title title"
+      "logo  actions";
+    column-gap: var(--btn-gap);
+    row-gap: 10px;
+    align-items:start;
+    margin-bottom:12px;
+  }
+
+  /* Заголовок — РАСТЯГИВАЕТСЯ ОТ ЛОГО ДО КНОПОК */
+  .game-title{
+    grid-area:title;
+    margin:0;
+    font-size:22px;
+    line-height:1.2;
+    width:100%;      /* тянется на всю ширину обеих колонок */
+    display:block;
+  }
+
+  /* Лого = высота двух рядов кнопок */
+  .game-logo{
+    grid-area:logo;
+    width: calc( (var(--btn-h)*2) + var(--btn-gap) );
+    height: calc( (var(--btn-h)*2) + var(--btn-gap) );
+    object-fit:cover;
+    border-radius:12px;
+  }
+
+  /* Кнопки 2×2 справа */
+  .header-actions{
+    grid-area:actions;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-auto-rows: var(--btn-h);
+    gap: var(--btn-gap);
+    align-self:start;
+    margin:0;
+  }
+  .filter-btn{width:100%;padding:0 12px;font-size:16px}
+
   .products{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-
-/* ≤576px: шапка — иконка слева (больше), title во всю ширину, кнопки сеткой 2×2 — фикс п.2 */
-@media (max-width:576px){
-  .header-grid{grid-template-columns:84px 1fr;gap:12px;margin-bottom:12px}
-  .game-logo{width:84px;height:84px;grid-row:1 / span 2}
-  .game-title{font-size:20px;align-self:center}
-  .filter-buttons{grid-column:2;display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px}
-  .filter-btn{width:100%;padding:10px 12px;font-size:16px}
-  .products{grid-template-columns:1fr;gap:14px}
-  /* футер — кнопки столбиком — фикс п.4 */
+  .footer-content{padding:0 16px}
   .footer-links-row{flex-direction:column;align-items:flex-start;gap:10px}
+  .footer-link{padding:2px 0}
 }
 
-/* только для десктопа — фикс п.5 */
+/* ≤576 — 1 колонка товаров */
+@media (max-width:576px){
+  .products{grid-template-columns:1fr;gap:14px}
+}
+
+/* ПК — корзина sticky */
 @media (min-width:993px){
+  .cart{position:sticky;transform:none;visibility:visible;pointer-events:auto}
   .desktop-only{display:block}
 }
+
+/* Плавающая кнопка корзины */
+.cart-toggle{
+  position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom));
+  z-index:50; display:none; padding:12px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.15);
+  background:#a855f7; color:#fff; font-weight:700; box-shadow:0 10px 25px rgba(168,85,247,.3);
+}
+@media (max-width:992px){ .cart-toggle{display:inline-flex} }
+
+/* Оверлей */
+.overlay{position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:35}
+.overlay.hidden{display:none}
