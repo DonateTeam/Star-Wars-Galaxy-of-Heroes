@@ -22,6 +22,9 @@ const cartItems   = document.getElementById("cart-items");
 const cartTotal   = document.getElementById("cart-total");
 const cartCount   = document.getElementById("cart-count");
 const checkoutBtn = document.getElementById("checkout-btn");
+const cartEl      = document.getElementById("cart");
+const cartToggle  = document.querySelector(".cart-toggle");
+const overlay     = document.querySelector(".overlay");
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -31,7 +34,7 @@ function renderProducts(filter = "all") {
 
   list.forEach(p => {
     const inCart = cart.find(x => x.id === p.id);
-    const qty = inCart ? inCart.qty : 0;
+    const qty    = inCart ? inCart.qty : 0;
 
     const div = document.createElement("div");
     div.className  = "product-card";
@@ -70,7 +73,8 @@ function renderProducts(filter = "all") {
     btn.addEventListener("click", () => {
       const id   = +btn.closest(".product-card").dataset.id;
       const item = cart.find(x => x.id === id);
-      if (item.qty > 1) item.qty--; else cart = cart.filter(x => x.id !== id);
+      if (item.qty > 1) item.qty--; 
+      else cart = cart.filter(x => x.id !== id);
       saveCart();
     })
   );
@@ -100,14 +104,14 @@ function renderCart() {
 
     li.querySelector(".inc").onclick = () => { it.qty++; saveCart(); };
     li.querySelector(".dec").onclick = () => {
-      if (it.qty > 1) it.qty--;
+      if (it.qty > 1) it.qty--; 
       else cart = cart.filter(x => x.id !== it.id);
       saveCart();
     };
   });
 
   cartTotal.textContent = `${total} ₽`;
-  cartCount.textContent =
+  cartCount.textContent  =
     `${count} ${
       count % 10 === 1 && count % 100 !== 11 ? "товар"
       : count % 10 >= 2 && count % 10 <= 4 && !(count % 100 >= 12 && count % 100 <= 14)
@@ -115,17 +119,54 @@ function renderCart() {
     }`;
 
   checkoutBtn.disabled = total === 0;
-  document.querySelector(".cart").classList.toggle("scrollable", cart.length > 2);
+  cartEl.classList.toggle("scrollable", cart.length > 2);
 }
 
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
-  const active = document.querySelector(".filter-btn.active").dataset.category;
+  const active = document.querySelector(".filter-btn.active")?.dataset.category || "all";
   renderProducts(active);
   renderCart();
 }
 
-// Фильтры + SEO/FAQ
+/* управление мобильной корзиной */
+(function(){
+  if(!cartEl || !cartToggle || !overlay) return;
+
+  function openCart(){
+    cartEl.classList.add('is-open');
+    cartToggle.setAttribute('aria-expanded','true');
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart(){
+    cartEl.classList.remove('is-open');
+    cartToggle.setAttribute('aria-expanded','false');
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+
+  cartToggle.addEventListener('click', () => {
+    cartEl.classList.contains('is-open') ? closeCart() : openCart();
+  });
+  overlay.addEventListener('click', closeCart);
+
+  // свайп вниз для закрытия
+  let startY=null;
+  cartEl.addEventListener('touchstart', e=>{ startY = e.touches[0].clientY; }, {passive:true});
+  cartEl.addEventListener('touchmove', e=>{
+    if(startY===null) return;
+    const dy = e.touches[0].clientY - startY;
+    if(dy>60) closeCart();
+  }, {passive:true});
+
+  // при ресайзе до десктопа — закрыть дровер
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 993) closeCart();
+  });
+})();
+
+/* фильтры + SEO/FAQ */
 document.querySelectorAll(".filter-btn").forEach(b =>
   b.addEventListener("click", () => {
     document.querySelectorAll(".filter-btn").forEach(x => x.classList.remove("active"));
@@ -136,7 +177,7 @@ document.querySelectorAll(".filter-btn").forEach(b =>
   })
 );
 
-// Кнопка оплаты
+/* кнопка оплаты */
 checkoutBtn.addEventListener("click", () => {
   const title = "Star Wars: Galaxy of Heroes";
   let msg = `${title}\n\nСодержимое корзины:\n`, total = 0;
@@ -152,11 +193,11 @@ checkoutBtn.addEventListener("click", () => {
   );
 });
 
-// Первичный рендер
+/* первичный рендер */
 renderProducts();
 renderCart();
 
-/* ====== SEO/FAQ динамика ====== */
+/* SEO/FAQ данные */
 const seoBlocks = {
   all: {
     title: "Описание игры",
@@ -277,39 +318,3 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   renderSeoBlock("all");
 });
-
-/* ====== Мобильная корзина: плавающая кнопка + дровер ====== */
-(function(){
-  const cart = document.querySelector('.cart');
-  const toggle = document.querySelector('.cart-toggle');
-  const overlay = document.querySelector('.overlay');
-
-  if(!cart || !toggle) return;
-
-  function openCart(){
-    cart.classList.add('is-open');
-    toggle.setAttribute('aria-expanded','true');
-    overlay.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeCart(){
-    cart.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded','false');
-    overlay.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  toggle.addEventListener('click', () => {
-    cart.classList.contains('is-open') ? closeCart() : openCart();
-  });
-  overlay.addEventListener('click', closeCart);
-
-  // свайп вниз для закрытия
-  let startY=null;
-  cart.addEventListener('touchstart', e=>{ startY = e.touches[0].clientY; }, {passive:true});
-  cart.addEventListener('touchmove', e=>{
-    if(startY===null) return;
-    const dy = e.touches[0].clientY - startY;
-    if(dy>60) closeCart();
-  }, {passive:true});
-})();
