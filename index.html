@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- Навигация -->
+    <!-- Крошки -->
     <nav class="breadcrumbs">
       <a href="https://donateteam.ru" class="breadcrumb-link">Главная</a>
       <span class="breadcrumb-sep">/</span>
@@ -16,29 +16,28 @@
     </nav>
 
     <!-- Шапка -->
-    <div class="header-grid">
+    <header class="header-grid">
+      <h1 class="game-title">Star Wars: Galaxy of Heroes</h1>
+
       <img
-        src="https://raw.githubusercontent.com/DonateTeam/Star-Wars-Galaxy-of-Heroes/refs/heads/main/starwars.png"
-        alt="Logo"
+        src="https://i.imgur.com/PzUVdEj.png"
+        alt="Лого игры"
         class="game-logo"
       />
-      <div class="header-info">
-        <h1 class="game-title">Star Wars: Galaxy of Heroes</h1>
 
-        <div class="filter-buttons">
-          <button class="filter-btn active" data-category="all">Все товары</button>
-          <button class="filter-btn" data-category="crystals">Кристаллы</button>
-          <button class="filter-btn" data-category="sets">Наборы</button>
-          <button class="filter-btn" data-category="passes">Пропуски</button>
-        </div>
+      <div class="header-actions">
+        <button class="filter-btn active" data-category="all">Все товары</button>
+        <button class="filter-btn" data-category="crystals">Кристаллы</button>
+        <button class="filter-btn" data-category="sets">Наборы</button>
+        <button class="filter-btn" data-category="passes">Пропуски</button>
       </div>
-    </div>
+    </header>
 
     <!-- Контент -->
     <main class="main-content">
       <section id="products" class="products"></section>
 
-      <!-- Десктопная корзина (на мобиле полностью скрыта, открывается дровером) -->
+      <!-- Корзина -->
       <aside id="cart" class="cart" aria-label="Корзина" aria-hidden="true">
         <div class="cart-header">
           <h2>Корзина <span id="cart-total">0 ₽</span></h2>
@@ -74,17 +73,17 @@
 
     <!-- FAQ -->
     <section class="faq-block">
-      <h2 class="faq-title">
-        FAQ <span class="faq-emoji">❓</span>
-      </h2>
+      <h2 class="faq-title">FAQ <span class="faq-emoji">❓</span></h2>
       <div class="faq-list"></div>
     </section>
 
+    <!-- Футер -->
     <footer class="footer">
       <div class="footer-content">
+        <hr class="footer-sep footer-sep--top desktop-only">
         <div class="footer-title-row">
           <span class="footer-title-1line">DonateTeam. Магазин игрового доната.</span>
-          <a class="footer-tg push-right" href="https://t.me/DonateTeam_channel" target="_blank" rel="noopener" aria-label="Telegram">
+          <a class="footer-tg" href="https://t.me/DonateTeam_channel" target="_blank" rel="noopener" aria-label="Telegram">
             <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
               <circle cx="20" cy="20" r="20" fill="#36B2EC"/>
               <path d="M29.18 12.74L26.1 27.38c-.23 1-0.83 1.25-1.69.78l-4.67-3.44-2.25 2.16c-.25.25-.47.47-.96.47l.34-4.81 8.76-7.9c.38-.34-.08-.53-.59-.19l-10.85 6.81-4.67-1.46c-1.02-.32-1.03-1.01.21-1.5l17.94-6.93c.82-.3 1.53.2 1.26 1.48z" fill="#fff"/>
@@ -92,13 +91,13 @@
           </a>
         </div>
 
-        <hr class="footer-sep desktop-only">
-
         <div class="footer-desc">
           Надёжный магазин доната для популярных онлайн-игр.<br>
           Быстрое и безопасное пополнение баланса.<br>
           Все платежи — только через официальный магазин игры.
         </div>
+
+        <hr class="footer-sep">
 
         <div class="footer-links-row">
           <a href="#" class="footer-link">Политика конфиденциальности</a>
@@ -108,7 +107,7 @@
       </div>
     </footer>
 
-    <!-- Плавающая кнопка корзины + оверлей (только <992px) -->
+    <!-- Плавающая кнопка корзины + оверлей -->
     <button class="cart-toggle" aria-controls="cart" aria-expanded="false">Корзина</button>
     <div class="overlay hidden"></div>
 
